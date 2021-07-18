@@ -1,14 +1,12 @@
 A community website which allows users to form communities to learn and share new skills. It allows users to save any blog read online and share among communities and recommends related content to users. A timeline feature in which users can keep track of their journey of the project or skill they started and share them with others. 
 
 
-PROJECT BRIEF
+PROJECT BRIEF: 
+
 SAVE URL:
 Users can save any blog by providing the URL. A thumbnail feature is implemented which fetches the title name, image, short description, date and time and related tags using Beautiful Soup.
 
 ![image](https://user-images.githubusercontent.com/58564764/126083097-12a2f1ad-1f5c-4678-b1f3-e30d911a24c5.png)
-
-
-
 
 
 TAGS:
@@ -25,6 +23,11 @@ The users can save the blogs that they find more important than the rest or the 
 TIMELINE FEATURE:
 A timeline feature in which users can keep track of their journey of the project or skill they started and share them with others. Whenever a developer starts a new project, he/she searches for resources to study from and comes across many blogs. They can save the blogs and can also add them to the timeline to keep track of how and in what order the particular resources were accessed by the user.
 These timelines can also be shared among various communities such that other users can also get to know about these resources and avail advantage from them.
+
+
+
+![image](https://user-images.githubusercontent.com/58564764/126083790-cfe88753-78a2-4821-9656-1a0d17663d3a.png)
+
 
 
 

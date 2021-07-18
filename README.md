@@ -5,7 +5,7 @@ PROJECT BRIEF
 SAVE URL:
 Users can save any blog by providing the URL. A thumbnail feature is implemented which fetches the title name, image, short description, date and time and related tags using Beautiful Soup.
 
-
+![image](blob:https://web.whatsapp.com/f9e8b5e3-770d-47cc-a288-5fc1f5ad869c)
 
 
 

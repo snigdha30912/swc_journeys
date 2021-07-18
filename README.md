@@ -5,14 +5,14 @@ PROJECT BRIEF
 SAVE URL:
 Users can save any blog by providing the URL. A thumbnail feature is implemented which fetches the title name, image, short description, date and time and related tags using Beautiful Soup.
 
-![image](blob:https://web.whatsapp.com/f9e8b5e3-770d-47cc-a288-5fc1f5ad869c)
+![image](https://user-images.githubusercontent.com/58564764/126083097-12a2f1ad-1f5c-4678-b1f3-e30d911a24c5.png)
+
 
 
 
 
 TAGS:
 For every blog that the user saves, we have provided a list of relatable tags. The tags are found from the blogs using Open Calais API which uses Natural Language processing to search relatable tags from the blog and the tag feature is implemented using Django’s Taggable Manager. 
-
 
 
 

@@ -49,6 +49,9 @@ The users can form communities of their own or get added to existing communities
 CHROME EXTENSION AND CONTEXT MENU:
 The website also has a chrome extension built using JavaScript using which the blogs are saved. Also, the chrome’s context menu is updated so that blog’s can also be saved using the right click option.
 
+![image](https://user-images.githubusercontent.com/58564764/126083994-c27ec350-20ea-4909-a2ba-7e52df874599.png)
+
+![image](https://user-images.githubusercontent.com/58564764/126084011-6fd453d6-d4a7-4ae1-98f2-b910b130f855.png)
 
 
 

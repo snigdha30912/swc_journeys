@@ -23,7 +23,7 @@ const Bookmarks = () => {
     const classes = useStyles();
     const [bookmarks, setBookmarks] = useState(null);
 
-    const apiURL = "http://127.0.0.1:8000/bookmarkApi/";
+    const apiURL = "http://127.0.0.1:8000/bookmarksection/bookmarkApi/";
 
     
 
@@ -40,7 +40,7 @@ const Bookmarks = () => {
 
     return ( 
         <div className="bookmark">
-      <h1>Bookmarks</h1>
+      <h1>My Bookmarks</h1>
       
       <div className="books" style={{position:"absolute", zIndex: "10", width:"1200px", right:"0px" ,margin:"10px 10px 10px 10px"}}>
         <Grid container spacing={24} style={{width:"120%"}}>
@@ -49,7 +49,7 @@ const Bookmarks = () => {
             console.log(book.toString());
 
             return (
-                <div style={{paddingBottom:"10px"}}>
+                <div>
                     <Bookmark book = {book}/>
                 </div>
                

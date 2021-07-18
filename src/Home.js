@@ -7,7 +7,7 @@ const Home = () => {
 const submitUrl = () => {
   
   const data = { url_field: url };
-  axios.post('http://127.0.0.1:8000/bookmarkApi/', data)
+  axios.post('http://127.0.0.1:8000/bookmarksection/bookmarkApi/', data)
         .then(response => {setStatus(response.status==201? "Successfully submitted":"Something Went Wrong")});
 }
  

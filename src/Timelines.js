@@ -23,7 +23,7 @@ const Timelines = () => {
   const classes = useStyles();
   const [timelines, setTimelines] = useState(null);
 
-  const apiURL = "http://127.0.0.1:8000/timelines/";
+  const apiURL = "http://127.0.0.1:8000/timelines/timelines";
 
   useEffect(() => {
     fetch(apiURL)
@@ -37,7 +37,7 @@ const Timelines = () => {
 
   return (
     <div className="tiemeline">
-      <h1>Timelines</h1>
+      <h1>My Timelines</h1>
 
       <div
         className="times"

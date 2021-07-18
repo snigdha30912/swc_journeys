@@ -7,10 +7,9 @@ import Timelines from "./Timelines";
 import Explore from "./Explore";
 import Channels from "./Channels";
 import Bookmarks from "./Bookmarks";
+import TimelineSpecific from "./TimelineSpecific";
 import { Container } from "@material-ui/core";
-import Login from "./Login";
-import Logout from "./Logout";
-import SignIn from "./components/auth/login";
+
 
 function App() {
   return (
@@ -27,7 +26,7 @@ function App() {
       
       <div className="content">
         <Switch>
-          <Route exact path="/communities">
+          <Route path="/communities">
             <Communities />
           </Route>
           <Route path="/explore"> 
@@ -42,6 +41,13 @@ function App() {
           <Route path="/bookmarks">
             <Bookmarks />
           </Route>
+           <Route path="/timeline/:id">
+            <TimelineSpecific/>
+          </Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
+         
         </Switch>
       </div>
       

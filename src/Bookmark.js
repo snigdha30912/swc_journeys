@@ -21,64 +21,41 @@ const useStyles = makeStyles({
 
 const Bookmark = ({book}) => {
   const classes = useStyles();
+  const url = book.url_field
+  const urlpage = () =>{
+
+    window.open(url, "_blank")
+  }
   return (
     <Grid
       item
       md={3}
       style={{
         width: "400px",
-        height: "500px",
+        height: "400px",
         margin: "10px 10px 10px 10px",
         paddingBottom: "20px",
       }}
     >
       <Card
         className={classes.root}
-        style={{ width: "400px", height: "600px", paddingBottom: "20px" }}
+        style={{ width: "400px", height: "400px" }}
       >
-        <CardActionArea>
+        
           <CardMedia
             className={classes.media}
             image={book.image_field}
             title={book.title_name}
           />
-          <CardContent style={{ height: "300px" }}>
-            <Typography
-              gutterBottom
-              variant="h5"
-              component="h2"
-              style={{ textAlign: "left" }}
-            >
-              {book.title_name}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-              component="p"
-              style={{
-                width: "190px",
-                height: "200px",
-                textAlign: "center",
-                whiteSpace: "pre-wrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
-              {book.description}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions style={{ height: "50px" }}>
-          {/* <Button size="small" color="primary">
-            
-          </Button> */}
-
-          <Button size="small" color="primary">
-            Learn More
+          
+          <div><h3>{book.title_name}</h3></div>
+          <div><p className="bookmark_description">{book.description}</p></div>
+          <Button onClick={urlpage} className="button-url" size="small" color="primary">
+            Visit Page
           </Button>
-        </CardActions>
-        <CreateNewTimeline id={book.id} date = {book.date} />
-        <AddToTimeline id = {book.id} />
+        <div className="timelineadd">Add to your Timeline</div>
+        {/* <CreateNewTimeline id={book.id} date = {book.date} />
+        <AddToTimeline id = {book.id} /> */}
       </Card>
     </Grid>
   );

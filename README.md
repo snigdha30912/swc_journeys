@@ -60,5 +60,14 @@ REST API:
 We also have a Rest API for our website created using Django Rest Framework. This Rest API was used to build up our chrome extension.
 
 
+![image](https://user-images.githubusercontent.com/58564764/126124302-6d13ec9b-d830-4116-9aff-28f7e3feda49.png)
+
+![image](https://user-images.githubusercontent.com/58564764/126124479-7768c8d6-1a2d-4636-bb4b-0773cb7b4361.png)
+
+![image](https://user-images.githubusercontent.com/58564764/126124736-83ddafff-1548-40b0-8432-66b8af26d328.png)
+
+
+
+
 
 

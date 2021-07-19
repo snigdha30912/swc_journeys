@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 const AddToTimeline = ({id}) => {
    
  
-  const [status, setStatus] = useState("Paste the url and click on submit");
+  const [status, setStatus] = useState("");
   const apiURL = "http://127.0.0.1:8000/timelines/";
   const [name,setName] = useState(null);
 
@@ -52,12 +52,13 @@ const AddToTimeline = ({id}) => {
 
   return (
     <div>
-      <input
+      <div className="heading-create-new-journey"><h3>Type the name of journey to add </h3></div>
+      <input className="input-create-new-journey"
         type="text"
         name="name"
         onChange={(event) => setName(event.target.value)}
       />
-      <button onClick={submitUrl}>submit</button>
+      <button className="btn-create-new-journey" onClick={submitUrl}>Add to this journey</button>
       <p>{status}</p>
     </div>
   );

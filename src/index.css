@@ -56,10 +56,46 @@ code {
   padding: 10px;
   padding-left: 60px;
 }
+.bookmark_title {
+  text-overflow: ellipsis;
+  padding: 7px;
+  overflow: hidden;
+  white-space: nowrap;
+}
 .timeline-tile {
   display: flex;
   size: 14px;
   color: gray;
   font-weight: normal;
   margin-left: 10px;
+}
+.custom-modal {
+  display: inline-flexbox;
+  padding: 50px;
+  padding-top: 10px;
+}
+.button-modal {
+  margin: 10px;
+  padding: 30px;
+  color: blue;
+}
+.input-create-new-journey {
+  width: 300px;
+  height: 10px;
+  padding: 15px;
+  margin-left: 30px;
+  font-size: 16px;
+}
+.btn-create-new-journey {
+  margin: 20px;
+  margin-left: 130px;
+  background-color: blueviolet;
+  color: white;
+  height: 30px;
+}
+.heading-create-new-journey {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

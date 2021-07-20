@@ -37,7 +37,7 @@ const Timelines = () => {
 
   return (
     <div className="tiemeline">
-      <h1>My Timelines</h1>
+      
 
       <div
         className="times"

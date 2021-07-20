@@ -40,7 +40,7 @@ const Bookmarks = () => {
 
     return ( 
         <div className="bookmark">
-      <h1>My Bookmarks</h1>
+     
       
       <div className="books" style={{position:"absolute", zIndex: "10", width:"1200px", right:"0px" ,margin:"10px 10px 10px 10px"}}>
         <Grid container spacing={24} style={{width:"120%"}}>

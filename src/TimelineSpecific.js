@@ -78,7 +78,7 @@ const classes = useStyles();
         
   return (
       <>
-      <div>
+      <div style={{paddingTop:"20px"}}>
           <h2>{current_timeline.tname}</h2>
           <h4 style={{color:"gray",fontWeight:"normal"}}>{current_timeline.tdate}</h4>
       </div>

@@ -8,6 +8,7 @@ import Explore from "./Explore";
 import Channels from "./Channels";
 import Bookmarks from "./Bookmarks";
 import TimelineSpecific from "./TimelineSpecific";
+import CommunityDetail from "./CommunityDetail";
 import { Container } from "@material-ui/core";
 
 
@@ -83,10 +84,18 @@ function App() {
            <Route path="/timeline/:id">
             <TimelineSpecific/>
           </Route>
+          <Route path="/communities/:id">
+            <CommunityDetail/>
+        </Route>
           <Route exact path="/">
             <Home />
           </Route>
-         
+          
+     
+        
+        
+      
+  
         </Switch>
       </div>
       

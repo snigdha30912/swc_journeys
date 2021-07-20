@@ -36,8 +36,35 @@ const Timelines = () => {
   }, []);
 
   return (
-    <div className="tiemeline">
+    <div className="timeline">
+      <section>
+      <div class="element-background flex flex-row px-4 py-10 mx-52 mt-24 h-60 border-5 border-transparent border-solid rounded-md">
+        <div>
+          <h2 class="mb-4 px-6 not-italic font-moderat text-color font-bold text-2xl">What are Timelines?</h2>
+          <p class="pl-6 pr-60 mr-24 leading-tight not-italic font-moderat text-color font-normal text-sm ">
+            Timelines are collection of Bookmarks, Urls, Videos. articles etc.
+            related to a specific topic. These can be used to document your
+            learning journeys and Project Journeys.
+          </p>
+        </div>
+        <div class="-ml-40 mr-10 pr-28 relative bottom-12">
+          <img class="h-60 w-10 relative top-2" src="/images/line.svg" alt="line" />
+        </div>
+        <div>
+          <h4 class="-ml-28 mr-20 pr-20 leading-tight not-italic font-moderat text-color font-bold text-lg flex items-center">
+            Get our chrome extention from chrome webstore to share and manage
+            urls with one click.
+          </h4>
+          <a href="#"
+            ><img class="-ml-28 mt-6 mr-20 pr-20 box-border" src="/images/ChromeWebStore.svg" alt="Chrome Web Store"
+          /></a>
+        </div>
+      </div>
       
+      <img class="absolute top-8 right-32" src="/images/illus2.svg" alt="illus2" />
+      <img class="absolute py-10 top-56 px-4 right-64" src="/images/illus3.svg" alt="illus3" />
+    
+    </section>
 
       <div
         className="times"

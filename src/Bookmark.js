@@ -105,8 +105,8 @@ const Bookmark = ({book}) => {
            {
              !isAddToTimeline && !isCreateNewTimeline ?(
                 <div className="custom-modal">
-              <Button onClick={()=>{setIsCreateNewTimeline(false);setIsAddToTimeline(true)}} style={{color:'blue',padding:'30px',fontWeight:'normal'}}>Add to existing timeline</Button>
-            <Button onClick={()=>{setIsCreateNewTimeline(true);setIsAddToTimeline(false)}} style={{color:'blue',padding:'30px',fontWeight:'normal'}}>Create New Timeline</Button>
+              <Button onClick={()=>{setIsCreateNewTimeline(false);setIsAddToTimeline(true)}} style={{color:'blue',padding:'15px',fontWeight:'normal'}}>Add to existing timeline</Button>
+            <Button onClick={()=>{setIsCreateNewTimeline(true);setIsAddToTimeline(false)}} style={{color:'blue',padding:'15px',fontWeight:'normal'}}>Create New Timeline</Button>
             </div>
              ): isCreateNewTimeline?(
              <CreateNewTimeline id={book.id}/>

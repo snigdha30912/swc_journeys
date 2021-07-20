@@ -40,13 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_auth',
+    'dj_rest_auth',
     'accounts',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'rest_auth.registration',
+    'dj_rest_auth.registration',
     'allauth.socialaccount.providers.google',
     'taggit',
     'timelines',
@@ -192,15 +192,18 @@ SITE_ID = 3
 LOGIN_REDIRECT_URL = '/'
 
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
+    "github": {
+        "APP": {
+            "client_id": "<client_id>",
+            "secret": "<secret>",
+        },
+    },
+    "google": {
+        "APP": {
+            "client_id": "<client_id>",
+            "secret": "<secret>",
+        },
+    },
 }
 
 

@@ -54,7 +54,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/profile/$', RedirectView.as_view(url='/', permanent=True), name='profile-redirect'),
     url(r'^docs/$', schema_view.with_ui('swagger', cache_timeout=0), name='api_docs'),
-    path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('bookmarksection/', include('bookmarksection.urls')),
     path('timelines/', include('timelines.urls')),

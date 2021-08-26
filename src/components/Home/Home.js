@@ -1,7 +1,6 @@
-import axios from 'axios';
 import {useState,useEffect} from 'react';
-import { post } from './util';
-import Cookies from 'js-cookie';
+import { post } from '../Utility Functions/util';
+import NavBar from '../Navbar/NavBar';
 const Home = () => {
   const [url, setUrl] = useState(null);
   const [status, setStatus] = useState("Paste the url and click on submit");
@@ -26,11 +25,16 @@ const submitUrl = () => {
   post('http://127.0.0.1:8000/bookmarksection/bookmarkApi/', data);
 }
  
-  return (<div>
-    <input type="text" name="url" onChange={(event)=>setUrl(event.target.value)}/>
-    <button onClick={submitUrl}>submit</button>
-    <p>{status}</p>
-    </div>
+  return (
+     <div>
+     <NavBar/>
+
+<input type="text" name="url" onChange={(event)=>setUrl(event.target.value)}/>
+<button onClick={submitUrl}>submit</button>
+<p>{status}</p>
+</div>
+  
+ 
   
   )};
 

@@ -3,8 +3,8 @@ import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import CreateNewTimeline from './CreateNewTimeline';
-import AddToTimeline from './AddToTimeline'
+import CreateNewTimeline from '../Timelines/CreateNewTimeline';
+import AddToTimeline from '../Timelines/AddToTimeline'
 import { useState } from "react";
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';

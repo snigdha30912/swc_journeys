@@ -1,8 +1,6 @@
-import {BrowserRouter as Router, Route,  useHistory, Link} from 'react-router-dom'; 
 import {useEffect,useState} from 'react';
 import Grid from "@material-ui/core/Grid";
-import CommunityDetail from './CommunityDetail'
-import background from "./background.svg";
+import background from "../../static/images/background.svg";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";

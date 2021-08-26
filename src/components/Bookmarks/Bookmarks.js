@@ -1,16 +1,9 @@
-import axios from 'axios';
 import {useState, useEffect} from 'react'; 
 import { makeStyles } from '@material-ui/core/styles';
-import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid"
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Bookmark from './Bookmark'; 
-import { get } from './util';
+import Bookmark from './BookmarkCard'; 
+import { get } from '../Utility Functions/util';
+import NavBar from '../Navbar/NavBar';
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -54,7 +47,7 @@ const Bookmarks = () => {
 
     return ( 
         <div className="bookmark">
-     
+      <NavBar/>
       
       <div className="books" style={{position:"absolute", zIndex: "10", width:"1200px", right:"0px" ,margin:"10px 10px 10px 10px"}}>
         <Grid container spacing={24} style={{width:"120%"}}>

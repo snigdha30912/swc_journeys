@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { post } from './util';
+import { post } from '../Utility Functions/util';
 const CreateNewTimeline = ({id}) => {
   const [name, setName] = useState(null);
   const [status, setStatus] = useState("");

@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faShareAlt} from '@fortawesome/free-solid-svg-icons';
-import { get } from './util';
+import { get } from '../Utility Functions/util';
 
 
 const useStyles = makeStyles({

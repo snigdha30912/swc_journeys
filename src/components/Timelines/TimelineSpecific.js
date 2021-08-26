@@ -3,8 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
-import { get } from './util';
-import styled from 'styled-components';
+import { get } from '../Utility Functions/util';
+import NavBar from '../Navbar/NavBar';
 
 
 const useStyles = makeStyles({
@@ -70,6 +70,7 @@ const classes = useStyles();
         
   return (
       <>
+      <NavBar/>
       <div style={{paddingTop:"20px"}}>
           <h2>{current_timeline.tname}</h2>
           <h4 style={{color:"gray",fontWeight:"normal"}}>{current_timeline.tdate}</h4>

@@ -20,11 +20,12 @@ import Cookies from "js-cookie";
 
 function App() {
   let accessToken = Cookies.get("access");
+  console.log(accessToken==='undefined')
   console.log(accessToken);
   const history = useHistory();
     
   useEffect(() => {
-    if(accessToken===undefined)
+    if(accessToken==='undefined')
     {
       history.push('/login');
     }

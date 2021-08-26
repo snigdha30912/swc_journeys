@@ -6,6 +6,18 @@ const Home = () => {
   const [url, setUrl] = useState(null);
   const [status, setStatus] = useState("Paste the url and click on submit");
 
+  useEffect(() => {
+    const reloadCount = sessionStorage.getItem('reloadCount');
+    if(reloadCount < 2) {
+      sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+      window.location.reload();
+    } else {
+      sessionStorage.removeItem('reloadCount');
+    }
+
+  }, []);
+
+
 const submitUrl = () => {
   
   const data = { url_field: url };

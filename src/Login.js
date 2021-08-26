@@ -7,11 +7,6 @@ import Cookies from 'js-cookie';
 const clientId ='398500418397-csmd0de4p1l7b6smiclfbhafubv96vpi.apps.googleusercontent.com';
 
 
-  
-
-
-
-
 function Login({}) {
   
   const onSuccess = async (res) => {

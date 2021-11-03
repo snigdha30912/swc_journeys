@@ -4,7 +4,6 @@ import Cookies from 'js-cookie';
 
 const refresh = refreshToken => {
     
-    console.log("Refreshing token!");
   
     return new Promise((resolve, reject) => {
         axios
@@ -13,7 +12,6 @@ const refresh = refreshToken => {
                 if (res.status != 200) {
                     
                     // set message and return.
-                    console.log("Login again");
                     resolve(false);
                 } else {
                     const  accessToken  = res.data.access;
@@ -39,7 +37,6 @@ const hasAccess = async (accessToken, refreshToken) => {
 
 
 export const postRequest = async (accessToken, refreshToken, url, data) => {
-    console.log(accessToken, refreshToken);
     return new Promise((resolve, reject) => {
         axios
             .post(
@@ -48,26 +45,7 @@ export const postRequest = async (accessToken, refreshToken, url, data) => {
                 { headers: { authorization: `Bearer ${accessToken}` } }
             )
             .then(async res => {
-              console.log(res.status);
-                // if (res.status !=200 && res.status!= 201 && res.status!=401) {
-                //     if (res.data.message === "User not authenticated") {
-                //         console.log("Login again");
-                //         // set err message to login again.
-                //     } else if (
-                //         res.status == 401
-                //     ) {
-                //         const accessToken = await refresh(refreshToken);
-                //         return await postRequest(
-                //             accessToken,
-                //             refreshToken
-                //         );
-                //     }
-  
-                //     resolve(false);
-                // } else {
-                    // protected route has been accessed, response can be used.
-                    console.log("Protected route accessed!");
-                    resolve(true);
+                resolve(true);
                 
             }).catch(error => {
                 // Handle error.
@@ -75,12 +53,9 @@ export const postRequest = async (accessToken, refreshToken, url, data) => {
                 var accessToken;
                 refresh(refreshToken).then(accessToken =>{
                     accessToken = accessToken;
-                    console.log(accessToken);
-                    postRequest(accessToken,refreshToken,url,data);
-                    
+                    postRequest(accessToken,refreshToken,url,data); 
                 });
-                
-                });
+            });
     });
   };
   
@@ -99,7 +74,6 @@ export const post = async (url, data) => {
   };
 
   export const getRequest = async (accessToken, refreshToken, url) => {
-    console.log(accessToken, refreshToken);
     return new Promise((resolve, reject) => {
         axios
             .get(
@@ -108,26 +82,9 @@ export const post = async (url, data) => {
                 { headers: { authorization: `Bearer ${accessToken}` } }
             )
             .then(async res => {
-              console.log(res.status);
-                // if (res.status !=200 && res.status!= 201 && res.status!=401) {
-                //     if (res.data.message === "User not authenticated") {
-                //         console.log("Login again");
-                //         // set err message to login again.
-                //     } else if (
-                //         res.status == 401
-                //     ) {
-                //         const accessToken = await refresh(refreshToken);
-                //         return await getRequest(
-                //             accessToken,
-                //             refreshToken
-                //         );
-                //     }
-  
-                //     resolve(false);
-                // } else {
-                    // protected route has been accessed, response can be used.
-                    console.log("Protected route accessed!");
-                    resolve(res.data.results);
+                if(res.data.results==null)
+                    resolve(res.data);
+                resolve(res.data.results);
                 
             }).catch(error => {
                 // Handle error.
@@ -135,7 +92,6 @@ export const post = async (url, data) => {
                 var accessToken;
                 refresh(refreshToken).then(accessToken =>{
                     accessToken = accessToken;
-                    console.log(accessToken);
                     getRequest(accessToken,refreshToken,url);
                     
                 });
@@ -155,11 +111,7 @@ export const post = async (url, data) => {
     if (!accessToken) {
         // Set message saying login again.
     } else {
-        console.log("processsing")
-        const data = await getRequest(accessToken, refreshToken, url)
-        console.log(data);
-           return data; 
-        
-    
+        const data = await getRequest(accessToken, refreshToken, url);
+        return data;
     }
 };

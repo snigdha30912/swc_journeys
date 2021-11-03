@@ -27,15 +27,26 @@ const submitUrl = () => {
  
   return (
      <div>
+       <div>
      <NavBar/>
+     </div>
+     <div class="event__search__floater">
+<div class="search__anchor">
+  <form id="event-search-form" action={submitUrl}>
+        <input type="text" class="search__bar" placeholder="Paste Url" onChange={(event)=>setUrl(event.target.value)}></input>
+        <input class="search__submit" type="submit"></input>
+        <div class="search__toggler"></div>
+  </form>
+  
+  </div>
+  </div>
 
 <input type="text" name="url" onChange={(event)=>setUrl(event.target.value)}/>
 <button onClick={submitUrl}>submit</button>
 <p>{status}</p>
-</div>
-  
- 
-  
+
+
+</div> 
   )};
 
 export default Home;

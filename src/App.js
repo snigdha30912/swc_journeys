@@ -10,6 +10,7 @@ import TimelineSpecific from "./components/Timelines/TimelineSpecific";
 import CommunityDetail from "./components/Communities/CommunityDetail";
 import Login from "./components/Authentication/Login";
 import Cookies from "js-cookie";
+import Logout from "./components/Authentication/Logout";
 
 
 
@@ -35,6 +36,9 @@ function App() {
         <Route path="/login">
             <Login />
           </Route>
+          <Route path="/logout">
+            <Logout />
+          </Route>
           <Route path="/communities">
             <Communities />
           </Route>
@@ -59,6 +63,8 @@ function App() {
   
         </Switch>
       </div>
+
+      
       
     </div>
     

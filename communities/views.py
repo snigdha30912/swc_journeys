@@ -10,10 +10,10 @@ class CommunityAPIView(ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def perform_create(self, serializer):
-        return serializer.save(user=self.request.user)
+        return serializer.save()
 
     def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
+        return self.queryset.filter()
 
 
 class CommunityDetail(RetrieveUpdateDestroyAPIView):
@@ -23,7 +23,7 @@ class CommunityDetail(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
     def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
+        return self.queryset.filter()
 
 
 class PostDetail(RetrieveUpdateDestroyAPIView):
@@ -44,3 +44,16 @@ class CommentDetail(RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user)
+
+
+class AllCommunities(ListCreateAPIView):
+    serializer_class = CommunitySerializer
+    queryset = Community.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def perform_create(self, serializer):
+        return serializer.save()
+
+    def get_queryset(self):
+        return self.queryset.filter()
+ 

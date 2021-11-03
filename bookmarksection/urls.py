@@ -11,4 +11,6 @@ app_name = 'bookmarksection'
 urlpatterns = [
     path('bookmarkApi/', views.BookmarkAPIView.as_view()),
     path('bookmarkApi/<int:pk>/', views.BookmarkDetail.as_view()),  
+    path('bookmarkApi/discover', views.DiscoverBookmarkApiView.as_view()),
+    
 ]

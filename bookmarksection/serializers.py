@@ -6,6 +6,7 @@ from taggit.managers import TaggableManager
 
 
 class BookmarkSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Bookmark
         fields = ['id', 'title_name', 'url_field','date', 'description','image_field']

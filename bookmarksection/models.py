@@ -19,8 +19,8 @@ class Bookmark(models.Model):
     date = models.DateTimeField(default=timezone.now)
     description = models.CharField(
         default="No Description", max_length=500, null=True)
-    image_field = models.URLField(default="none", max_length=1000)
-    tags = TaggableManager()
+    image_field = models.URLField(default="none", max_length=1000, null=True)
+    tags = TaggableManager(blank=False)
 
 
 class DiscoverBookmark(models.Model):

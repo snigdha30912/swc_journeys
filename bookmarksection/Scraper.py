@@ -14,6 +14,7 @@ def tag_content(content_string):
     content_string = content_string.encode('utf-8')
     response = requests.post('https://api-eit.refinitiv.com/permid/calais', headers=header_content, data=content_string)
     jsonResponse = response.json()
+    print(jsonResponse)
     for obj in jsonResponse:
          try:
              tags_list += [jsonResponse[obj]['name']]
@@ -49,6 +50,7 @@ class scraper:
         self.description = re.sub(' +', ' ', self.description)
         self.description = self.description.replace("\n", "")
         self.tags = tag_content(self.description)
+        print(self.tags)
         if(len(self.description)>500):
             self.description = self.description[0:499]
     def __str__(self):

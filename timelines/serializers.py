@@ -6,7 +6,8 @@ from taggit.managers import TaggableManager
 
 
 class TimelineSerializer(serializers.ModelSerializer):
+    author = serializers.CharField(source='user.username', read_only=True)
     class Meta:
         model = Timeline
-        fields = ['id','name', 'date_started', 'bookmarks']
+        fields = ('author', 'id','name', 'date_started', 'bookmarks', 'description')
 

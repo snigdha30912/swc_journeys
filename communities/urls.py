@@ -12,4 +12,5 @@ urlpatterns = [
          views.PostDetail.as_view()),
     path('communitiesApi/<community_id>/posts/<post_id>/comments/<int:pk>',
          views.CommentDetail.as_view()),
+     path('communitiesApi/exploreCommunities/', views.AllCommunities.as_view())
 ]

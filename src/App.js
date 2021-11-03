@@ -58,16 +58,12 @@ function App() {
             <CommunityDetail/>
         </Route>
           <Route exact path="/">
-            <Home />
+            <Bookmarks />
           </Route>
   
         </Switch>
-      </div>
-
-      
-      
+      </div>      
     </div>
-    
     
     
     

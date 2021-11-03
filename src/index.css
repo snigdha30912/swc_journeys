@@ -307,3 +307,15 @@ code {
   border-radius: 0%;
   transform: rotate(-45deg);
 }
+.add-btn{
+  z-index: 10;
+  
+}
+.add-url-heading{
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: large;
+  font-weight: bold;
+}

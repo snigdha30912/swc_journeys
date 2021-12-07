@@ -115,3 +115,40 @@ export const post = async (url, data) => {
         return data;
     }
 };
+
+export const putRequest = async (accessToken, refreshToken, url, data) => {
+    return new Promise((resolve, reject) => {
+        axios
+            .put(
+                url,
+                data,
+                { headers: { authorization: `Bearer ${accessToken}` } }
+            )
+            .then(async res => {
+                resolve(true);
+                
+            }).catch(error => {
+                // Handle error.
+                console.log('An error occurred:', error.response);
+                var accessToken;
+                refresh(refreshToken).then(accessToken =>{
+                    accessToken = accessToken;
+                    putRequest(accessToken,refreshToken,url,data); 
+                });
+            });
+    });
+  };
+  
+  
+export const put = async (url, data) => {
+      let accessToken = Cookies.get("access");
+      let refreshToken = Cookies.get("refresh");
+  
+      accessToken = await hasAccess(accessToken, refreshToken);
+  
+      if (!accessToken) {
+          // Set message saying login again.
+      } else {
+          await putRequest(accessToken, refreshToken, url, data);
+      }
+  };

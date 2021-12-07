@@ -13,6 +13,7 @@ import Fade from '@material-ui/core/Fade';
 import Button from "@material-ui/core/Button";
 import { post } from '../Utility Functions/util';
 import SendIcon from '@mui/icons-material/Send';
+import ReactPaginate from 'react-paginate';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,7 +46,38 @@ const Bookmarks = () => {
   const [isAddToTimeline, setIsAddToTimeline] = useState(false);
   const [url, setUrl] = useState(null);
   const [status, setStatus] = useState("Paste the url and click on submit");
+  const [offset, setOffset] = useState(0);
+  const [data, setData] = useState([]);
+  const [perPage] = useState(3);
+  const [pageCount, setPageCount] = useState(0)
 
+
+  const getData = async() => {
+
+    get('http://127.0.0.1:8000/bookmarksection/bookmarkApi/')
+    .then(res => {
+        console.log(res)
+        const data = res
+
+        const slice = data.slice(offset, offset + perPage)
+        const postData = slice.map(book => 
+            <div>
+              <Bookmark book={book} />
+            </div>
+
+          )
+
+          setData(postData)
+          setPageCount(Math.ceil(data.length / perPage))
+    });
+  }
+
+
+
+const handlePageClick = (e) => {
+  const selectedPage = e.selected;
+  setOffset(selectedPage *perPage)
+};
   const submitUrl = () => {
 
     const data = { url_field: url };
@@ -74,10 +106,12 @@ const Bookmarks = () => {
     } else {
       sessionStorage.removeItem('reloadCount');
     }
-
+    
     get(apiURL).then(res => {
       setBookmarks(res);
     })
+
+    
     // .then(res=>{
     //   console.log(res);
     //   return res.json();
@@ -87,7 +121,9 @@ const Bookmarks = () => {
     // })
 
   }, []);
-
+  useEffect(() => {
+    getData()
+  }, [offset])
 
   return (
     <>
@@ -133,7 +169,7 @@ const Bookmarks = () => {
           </Modal>
         </div>
 
-        <div className="books" style={{ position: "absolute", zIndex: "10", width: "1200px", right: "0px", margin: "10px 10px 10px 10px" }}>
+        {/* <div className="books" style={{ position: "absolute", zIndex: "10", width: "1200px", right: "0px", margin: "10px 10px 10px 10px" }}>
           <Grid container spacing={24} style={{ width: "120%" }}>
             {bookmarks &&
               bookmarks.map((book, index) => {
@@ -147,7 +183,23 @@ const Bookmarks = () => {
                 );
               })}
           </Grid>
-        </div>
+        </div> */}
+        <div style={{marginLeft:"300px"}}>
+        {data}
+       <ReactPaginate
+                    previousLabel={"prev"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={handlePageClick}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}/>
+  
+            </div>
 
 
       </div>

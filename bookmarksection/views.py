@@ -9,7 +9,7 @@ from .serializers import BookmarkSerializer
 from rest_framework.response import Response
 from taggit.managers import TaggableManager
 from rest_framework.views import APIView
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView
 from timelines.models import Timeline
 from rest_framework import permissions
 from .permissions import IsOwner

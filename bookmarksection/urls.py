@@ -12,5 +12,6 @@ urlpatterns = [
     path('bookmarkApi/', views.BookmarkAPIView.as_view()),
     path('bookmarkApi/<int:pk>/', views.BookmarkDetail.as_view()),  
     path('bookmarkApi/discover', views.DiscoverBookmarkApiView.as_view()),
+    path('bookmarkApi/search/', views.BookmarkListDetailFilter.as_view())
     
 ]

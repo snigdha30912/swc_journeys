@@ -1,3 +1,4 @@
+from re import search
 from django.contrib.auth import get_user
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, Http404
@@ -9,11 +10,18 @@ from .serializers import BookmarkSerializer
 from rest_framework.response import Response
 from taggit.managers import TaggableManager
 from rest_framework.views import APIView
-from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from timelines.models import Timeline
 from rest_framework import permissions
 from .permissions import IsOwner
+from rest_framework import filters
 
+
+class BookmarkListDetailFilter(ListAPIView):
+    queryset = Bookmark.objects.all()
+    serializer_class = BookmarkSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['^title_name']
 
 
 class BookmarkAPIView(ListCreateAPIView):

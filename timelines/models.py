@@ -14,4 +14,3 @@ class Timeline(models.Model):
     bookmarks = models.ManyToManyField(Bookmark, default=[])
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(default="No Title", max_length=264)
-    tags = TaggableManager(blank=False)

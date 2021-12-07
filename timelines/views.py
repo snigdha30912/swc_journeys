@@ -45,5 +45,19 @@ class TimelineDetail(RetrieveUpdateDestroyAPIView):
         timeline_data = TimelineSerializer(timeline).data
         timeline_data["tags"] = timeline.tags.names()
         return Response(timeline_data)
+    
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user)
+    
+    def perform_update(self, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        print(self.request.data)
+        timeline = Timeline.objects.get(pk = pk)
+        for bookmark_id in self.request.data["bookmarks"]:
+            print("BOOKMARKS IDDSSSSSSSSSSSSDSDADASDAWD")
+            print(bookmark_id)
+            bookmark = Bookmark.objects.get(pk = bookmark_id)
+            timeline.bookmarks.add(bookmark)
+        timeline.save()
+        return Response(TimelineSerializer(timeline).data)
+    

@@ -24,6 +24,7 @@ const submitUrl = () => {
   // axios.post('http://127.0.0.1:8000/bookmarksection/bookmarkApi/', data)
   //       .then(response => {setStatus(response.status==201? "Successfully submitted":"Something Went Wrong")});
   post('http://127.0.0.1:8000/bookmarksection/bookmarkApi/', data);
+  
 }
  
   return (

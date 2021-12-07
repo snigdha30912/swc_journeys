@@ -1,5 +1,19 @@
 import MenuListComposition from "./dropdown";
+import { useState, useEffect } from 'react';
+import {useHistory} from 'react-router-dom';
+import { get } from '../Utility Functions/util';
 const TopNavBar = () => {
+ const [keyword, setKeyword] = useState("")
+ const history = useHistory();
+ const handleSearch=(e)=>{
+
+  history.push({
+    pathname:'/search/',
+    search:'?search='+keyword,
+  });
+  window.location.reload();
+  
+ }
   return (
     <>
       <nav class="flex w-full sm:flex border-solid border-2 back h-20 sticky items-center hidden" >
@@ -39,7 +53,13 @@ const TopNavBar = () => {
         <div class="relative right-6 inline-flex flex-row float-left">
           <div class="hidden mt-4 md:flex justify-around ">
             <i class="fas fa-search relative left-12 top-4"></i>
-            <input type="text" class="w-72 h-12 border-2 mx-4 px-10 rounded-md " placeholder="Search"></input>
+            <input type="text" class="w-72 h-12 border-2 mx-4 px-10 rounded-md "
+            value={keyword} 
+            onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+            onChange={(e) => setKeyword(e.target.value)}
+            placeholder="Search" >
+
+            </input>
           </div>
           <div class="w-16 h-16 mt-6 hidden lg:flex">
 

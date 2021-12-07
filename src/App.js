@@ -11,6 +11,7 @@ import CommunityDetail from "./components/Communities/CommunityDetail";
 import Login from "./components/Authentication/Login";
 import Cookies from "js-cookie";
 import Logout from "./components/Authentication/Logout";
+import SearchBookmarks from "./components/Bookmarks/SearchBookmarks";
 
 
 
@@ -18,7 +19,10 @@ function App() {
   let accessToken = Cookies.get("access");
   console.log(accessToken==='undefined')
   console.log(accessToken);
+  console.log(window.location.search)
   const history = useHistory();
+  const searchpath = "/search/"+ window.location.search;
+  console.log(searchpath)
     
   useEffect(() => {
     if(accessToken==='undefined')
@@ -56,6 +60,9 @@ function App() {
           </Route>
           <Route path="/communities/:id">
             <CommunityDetail/>
+        </Route>
+        <Route path="/search">
+            <SearchBookmarks/>
         </Route>
           <Route exact path="/">
             <Bookmarks />

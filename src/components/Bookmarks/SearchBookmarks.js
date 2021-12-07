@@ -14,6 +14,7 @@ import Button from "@material-ui/core/Button";
 import { post } from '../Utility Functions/util';
 import SendIcon from '@mui/icons-material/Send';
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Bookmarks = () => {
+const SearchBookmarks = () => {
   const classes = useStyles();
   const [bookmarks, setBookmarks] = useState(null);
   const [open, setOpen] = useState(false);
@@ -61,7 +62,7 @@ const Bookmarks = () => {
   }
 
 
-  const apiURL = "http://127.0.0.1:8000/bookmarksection/bookmarkApi/";
+  const apiURL = "http://127.0.0.1:8000/bookmarksection/bookmarkApi/search/"+window.location.search;
 
   const handleOpen = () => {
     setOpen(true);
@@ -82,6 +83,8 @@ const Bookmarks = () => {
     }
 
     get(apiURL).then(res => {
+        console.log("yeeeeeeeeeeeeeeeeeet");
+        console.log(res);
       setBookmarks(res);
     })
     // .then(res=>{
@@ -161,4 +164,4 @@ const Bookmarks = () => {
   );
 }
 
-export default Bookmarks;
+export default SearchBookmarks;

@@ -1,4 +1,3 @@
-import MenuListComposition from "./dropdown";
 import { useState, useEffect } from 'react';
 import {useHistory} from 'react-router-dom';
 import { get } from '../Utility Functions/util';

@@ -17,12 +17,10 @@ import SearchBookmarks from "./components/Bookmarks/SearchBookmarks";
 
 function App() {
   let accessToken = Cookies.get("access");
-  console.log(accessToken==='undefined')
-  console.log(accessToken);
-  console.log(window.location.search)
+  // console.log(accessToken==='undefined')
+  // console.log(accessToken);
+  // console.log(window.location.search)
   const history = useHistory();
-  const searchpath = "/search/"+ window.location.search;
-  console.log(searchpath)
     
   useEffect(() => {
     if(accessToken==='undefined')
@@ -67,7 +65,6 @@ function App() {
           <Route exact path="/">
             <Bookmarks />
           </Route>
-  
         </Switch>
       </div>      
     </div>

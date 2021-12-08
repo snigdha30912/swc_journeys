@@ -22,7 +22,6 @@ const AddToTimeline = ({ id }) => {
     console.log("submitting");
     var timelineid = 0;
     for (var key in timelines) {
-      console.log(key,timelines[key]["name"])
       if (timelines[key]["name"] === selected) {
         timelineid = timelines[key]["id"];
         break;

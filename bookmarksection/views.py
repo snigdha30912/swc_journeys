@@ -88,28 +88,27 @@ class DiscoverBookmarkApiView(ListCreateAPIView):
         
         print(recent_bookmarks)
         discoverBookmarks = []
+        tags = []
         for bookmark in recent_bookmarks:
             j=0
             for tag in bookmark.tags.most_common():
                 if(j>2):
                     break
                 j=j+1
-                tag = str(tag)
-                url = ('http://newsapi.org/v2/everything?'
-                    'q='+ tag +'&'
-                    'from=2021-8-10&'
-                    'sortBy=popularity&'
-                    'apiKey=f8e6fd8e886541e783d160dc60faf44e')
-                response = requests.get(url)
-                
-                print(response.json())
-                tag_json = response.json()
-                
-                for article in tag_json['articles']:
-                    print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\n\n")
-                    print(article)
-                    discoverBookmark = Bookmark(user=self.request.user, url_field=article['url'], title_name = article['title'], description=article['description'] , image_field=article['urlToImage'])
-                    discoverBookmarks.append(discoverBookmark)
-                
+                tags += [str(tag)]
+        
+        url = ('http://newsapi.org/v2/everything?'
+            'q='+ " OR ".join(tags) +'&'
+            'sortBy=relevancy&'
+            'apiKey=cf1b43b651c3472195adf4de93c011b3')
+        response = requests.get(url)
+        print(response.json())
+        tag_json = response.json()
+        for article in tag_json['articles']:
+            print(article)
+            if len(discoverBookmarks)>20:
+                break
+            discoverBookmark = Bookmark(user=self.request.user, url_field=article['url'], title_name = article['title'], description=article['description'] , image_field=article['urlToImage'])
+            discoverBookmarks.append(discoverBookmark)
         return discoverBookmarks 
 

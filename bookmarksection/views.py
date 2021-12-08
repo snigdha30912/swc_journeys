@@ -21,7 +21,10 @@ class BookmarkListDetailFilter(ListAPIView):
     queryset = Bookmark.objects.all()
     serializer_class = BookmarkSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['^title_name']
+    search_fields = ['title_name','tags']
+    def get_queryset(self):
+        return self.queryset.filter(user = self.request.user)
+        
 
 
 class BookmarkAPIView(ListCreateAPIView):
@@ -79,7 +82,7 @@ class DiscoverBookmarkApiView(ListCreateAPIView):
     lookup_field = "id"
     def get_queryset(self):
         recent_bookmarks = []
-        all_bookmarks = Bookmark.objects.all()
+        all_bookmarks = self.queryset.filter(user = self.request.user)
         if len(all_bookmarks)>20 :
              
             recent_bookmarks = all_bookmarks[:20] 

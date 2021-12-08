@@ -62,7 +62,7 @@ class BookmarkDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = BookmarkSerializer
     permission_classes = (permissions.IsAuthenticated, IsOwner,)
     queryset = Bookmark.objects.all()
-    lookup_field = "id"
+    lookup_field = "pk"
 
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user)

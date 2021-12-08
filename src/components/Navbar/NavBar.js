@@ -8,7 +8,6 @@ return (
     <div style={{width:"300px", height:"700px", position:"absolute", top:"100", left:"0",marginTop:"30px"}}>
       
       <SideNavBar />
-      <Logout/>
      
       
 

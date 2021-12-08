@@ -45,9 +45,6 @@ const TopNavBar = () => {
           </div>
         </div>
         <div class="hidden 2xl:flex flex-row mt-4 float-left relative right-80">
-          <a class="flex px-3 justify-around items-center text-opacity-75 h-12 w-24 nav-moderat group border-solid border-transparent border-b-2 hover:border-gray-600 hover:text-opacity-100" href="#">Discover</a>
-          <a class="flex px-3 justify-around items-center text-opacity-75 h-12 w-24 nav-moderat group border-solid border-transparent border-b-2 hover:border-gray-600 hover:text-opacity-100" href="#">Courses</a>
-          <a class="flex px-3 justify-around items-center text-opacity-75 h-12 w-28 nav-moderat group border-solid border-transparent border-b-2 hover:border-gray-600 hover:text-opacity-100" href="#">My Journey</a>
         </div>
         <div class="relative right-6 inline-flex flex-row float-left">
           <div class="hidden mt-4 md:flex justify-around ">

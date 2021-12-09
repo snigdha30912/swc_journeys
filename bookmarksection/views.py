@@ -8,14 +8,13 @@ from rest_framework import status
 from .models import *
 from .serializers import BookmarkSerializer
 from rest_framework.response import Response
-from taggit.managers import TaggableManager
 from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from timelines.models import Timeline
 from rest_framework import permissions
 from .permissions import IsOwner
 from rest_framework import filters
-
+import json
 
 class BookmarkListDetailFilter(ListAPIView):
     queryset = Bookmark.objects.all()
@@ -36,20 +35,15 @@ class BookmarkAPIView(ListCreateAPIView):
         print(self.request)
         url = self.request.data['url_field']
         scrap = scraper(url)
-        # tags = TaggableManager()
-        # for tag in scrap.tags:
-        #     tags.add(tag)
-        print("printing scrap.tagss")
-        print(scrap.tags)
-        data = {'url_field':url,'description':scrap.description,'title_name' : scrap.title,'image_field':scrap.imgsrc}
+        data = {'url_field':url,'description':scrap.description,'title_name' : scrap.title,'image_field':scrap.imgsrc, 'tags':json.dumps(scrap.tags)}
         serializer = BookmarkSerializer(data=data)
         print(serializer)
         if serializer.is_valid():
             response = serializer.save(user=self.request.user)
-            curr_bookmark = Bookmark.objects.get(url_field = url)
-            for tag in scrap.tags :
-                curr_bookmark.tags.add(tag)
-            curr_bookmark.save()
+            # curr_bookmark = Bookmark.objects.get(url_field = url)
+            # for tag in scrap.tags :
+            #     curr_bookmark.tags.add(tag)
+            # curr_bookmark.save()
             return response
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -69,9 +63,9 @@ class BookmarkDetail(RetrieveUpdateDestroyAPIView):
     
     def get(self, request, pk, *args, **kwargs):
         bookmark = Bookmark.objects.get(pk = pk)
-        print(bookmark.tags.names())
+        # print(bookmark.tags.names())
         bookmark_data = BookmarkSerializer(bookmark).data
-        bookmark_data["tags"] = bookmark.tags.names()
+        # bookmark_data["tags"] = bookmark.tags.names()
         return Response(bookmark_data)
 
 
@@ -84,17 +78,14 @@ class DiscoverBookmarkApiView(ListCreateAPIView):
         recent_bookmarks = []
         all_bookmarks = self.queryset.filter(user = self.request.user)
         if len(all_bookmarks)>20 :
-             
             recent_bookmarks = all_bookmarks[:20] 
         else:
             recent_bookmarks = all_bookmarks
-        
-        print(recent_bookmarks)
         discoverBookmarks = []
         tags = []
         for bookmark in recent_bookmarks:
             j=0
-            for tag in bookmark.tags.most_common():
+            for tag in bookmark.get_tags():
                 if(j>2):
                     break
                 j=j+1

@@ -4,7 +4,7 @@ from django.contrib import auth
 from django.utils.timezone import now
 from django.utils import timezone
 from taggit.managers import TaggableManager
-
+import json
 from django.db.models.signals import post_save
 from authentication.models import User
 
@@ -20,16 +20,11 @@ class Bookmark(models.Model):
     description = models.CharField(
         default="No Description", max_length=500, null=True)
     image_field = models.URLField(default="none", max_length=1000, null=True)
-    tags = TaggableManager(blank=False)
+    tags = models.CharField(default="",max_length=2000, blank=True)
+    favorite = models.BooleanField(default=False)
 
+    def set_tags(self, x):
+        self.tags = json.dumps(x)
 
-class DiscoverBookmark(models.Model):
-    user = models.ForeignKey(User,
-                             on_delete=models.SET_NULL, null=True)
-    title_name = models.CharField(default="No Title", max_length=264)
-    url_field = models.URLField(max_length=200, unique=True)
-    date = models.DateTimeField(default=timezone.now)
-    description = models.CharField(
-        default="No Description", max_length=500, null=True)
-    image_field = models.URLField(default="none", max_length=1000)
-    tags = TaggableManager()
+    def get_tags(self):
+        return json.loads(self.tags)

@@ -6,7 +6,8 @@ import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faShareAlt} from '@fortawesome/free-solid-svg-icons';
-import { get } from '../Utility Functions/util';
+import { get, del } from '../Utility Functions/util';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const useStyles = makeStyles({
@@ -30,7 +31,13 @@ const Timeline = ({ time }) => {
     })
   }, []);
 
+  const handleDelete = ()=>{
+    del('http://127.0.0.1:8000/timelines/timelines/'+time.id+'/').then(()=>{
+      console.log("deleted 🤔🤔🤔🤔🤔🤔🤔🤔")
+      window.location.reload();
+    })
   
+}
   return (
     <Grid
       item
@@ -46,6 +53,11 @@ const Timeline = ({ time }) => {
         className={classes.root}
         style={{ width: "400px", height: "190px", paddingBottom: "20px" }}
       >
+        {window.location.pathname == "/explore"?(
+          <></>
+        ):(<DeleteIcon  
+          onClick = {handleDelete}
+          />)}
 
         <CardMedia
             className={classes.media}

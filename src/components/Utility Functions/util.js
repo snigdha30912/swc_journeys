@@ -169,3 +169,47 @@ export const put = async (url, data) => {
         await putRequest(accessToken, refreshToken, url, data);
     }
 };
+
+
+export const deleteRequest = async (accessToken, refreshToken, url, data) => {
+    return new Promise((resolve, reject) => {
+        axios
+            .delete(
+                url,
+                
+                { headers: { authorization: `Bearer ${accessToken}` } }
+            )
+            .then(async res => {
+                resolve(true);
+
+            }).catch(error => {
+                // Handle error.
+                // console.log('An error occurred:', error.response);
+                if (error.response.status === 500) {
+                    refresh(refreshToken).then(accessToken => {
+                        toast("server me error ☠");
+                    });
+                }
+                if (error.response.status === 401) {
+                    refresh(refreshToken).then(accessToken => {
+                        deleteRequest(accessToken, refreshToken, url, data);
+                    });
+                }
+            });
+    });
+};
+
+
+export const del = async (url, data) => {
+    let accessToken = Cookies.get("access");
+    let refreshToken = Cookies.get("refresh");
+
+    accessToken = await hasAccess(accessToken, refreshToken);
+
+    if (!accessToken) {
+        // Set message saying login again.
+        toast.error("Firse login kar😾");
+    } else {
+        await deleteRequest(accessToken, refreshToken, url, data);
+    }
+};

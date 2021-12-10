@@ -9,7 +9,8 @@ import { useState } from "react";
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import { del } from "../Utility Functions/util";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,6 +42,14 @@ const Bookmark = ({ book }) => {
   const [isCreateNewTimeline, setIsCreateNewTimeline] = useState(false);
   const [isAddToTimeline, setIsAddToTimeline] = useState(false);
 
+  const handleDelete = ()=>{
+    del('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/').then(()=>{
+      console.log("deleted 🤔")
+      window.location.reload();
+    })
+  
+}
+
   const handleOpen = () => {
     setOpen(true);
     setIsAddToTimeline(false);
@@ -70,18 +79,24 @@ const Bookmark = ({ book }) => {
         className={classes.root}
         style={{ width: "400px", height: "400px" }}
       >
-
-        <CardMedia
-          className={classes.media}
-          image={book.image_field}
-          title={book.title_name}
-        />
-
-        <div><h3 className="bookmark_title">{book.title_name}</h3></div>
-        <div><p className="bookmark_description">{book.description}</p></div>
-        <Button onClick={urlpage} className="button-url" size="small" color="primary">
-          Visit Page
-        </Button>
+        {window.location.pathname == "/explore"?(
+          <></>
+        ):(<DeleteIcon  
+          onClick = {handleDelete}
+          />)}
+        
+        
+          <CardMedia
+            className={classes.media}
+            image={book.image_field}
+            title={book.title_name}
+          />
+          
+          <div><h3 className="bookmark_title">{book.title_name}</h3></div>
+          <div><p className="bookmark_description">{book.description}</p></div>
+          <Button onClick={urlpage} className="button-url" size="small" color="primary">
+            Visit Page
+          </Button>
         <div onClick={handleOpen} className="timelineadd">Add to your Timeline</div>
         {/* <CreateNewTimeline id={book.id} date = {book.date} />
          */}

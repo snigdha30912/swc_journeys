@@ -7,8 +7,8 @@ import ExploreBookmarks from "./ExploreBookmarks";
 
 const Explore = () => {
     const [index, setIndex] = useState(0);
-    const components = [<ExploreBookmarks/>,<ExploreCommunities/>,<ExploreTimelines/>,<>Hackathons</>,<>Questions</>]
-    const headings = ["Explore Bookmarks Based on your Interests", "Find Communities Where You Belong", "Learn From Experiences Of Others", "Check Your Skills", "Ask Questions"]
+    const components = [<ExploreBookmarks/>,<ExploreTimelines/>]
+    const headings = ["Explore Bookmarks Based on your Interests", "Learn From Experiences Of Others"]
     return (
         <>
         <NavBar/>
@@ -97,18 +97,11 @@ const Explore = () => {
                    <div class="relative text-white font-moderat font-black top-36 justify-around flex-shrink text-lg sm:xl md:text-2xl lg:text-4xl">
                        <p>{headings[index]}</p> 
                    </div>
-                   <div class="relative top-44 ">
-                       <i class="fas fa-search relative left-8"></i>
-                       <input type="text" class="rounded-md md:w-48 lg:w-72 md:h-8 lg:h-10 px-10" placeholder="Search "></input>
-                   </div>
                 </div>
             </div>
             <div class="flex flex-row justify-evenly h-12 shadow-md" style={{"marginLeft": "18rem"}}>
                 <div class="flex px-3 justify-around items-center text-opacity-75 h-12 font-moderat group border-solid border-transparent border-b-2 hover:border-gray-600 hover:text-opacity-100" onClick={()=>{setIndex(0)}}>Bookmarks</div>
-                <div class="flex px-3 justify-around items-center text-opacity-75 h-12 font-moderat group border-solid border-transparent border-b-2 hover:border-gray-600 hover:text-opacity-100" onClick={()=>{setIndex(1)}}>Communities</div>
-                <div class="flex px-3 justify-around items-center text-opacity-75 h-12 font-moderat group border-solid border-transparent border-b-2 hover:border-gray-600 hover:text-opacity-100" onClick={()=>{setIndex(2)}}>Timelines</div>
-                <div class="flex px-3 justify-around items-center text-opacity-75 h-12 font-moderat group border-solid border-transparent border-b-2 hover:border-gray-600 hover:text-opacity-100" onClick={()=>{setIndex(3)}}>Hackathons</div>
-                <div class="flex px-3 justify-around items-center text-opacity-75 h-12 font-moderat group border-solid border-transparent border-b-2 hover:border-gray-600 hover:text-opacity-100" onClick={()=>{setIndex(4)}}>Questions</div>
+                <div class="flex px-3 justify-around items-center text-opacity-75 h-12 font-moderat group border-solid border-transparent border-b-2 hover:border-gray-600 hover:text-opacity-100" onClick={()=>{setIndex(1)}}>Timelines</div>
             </div> 
             <div class="flex flex-row flex-wrap" style={{ "marginLeft": "18rem" }}>
                 {components[index]}

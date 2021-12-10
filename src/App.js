@@ -12,6 +12,7 @@ import Login from "./components/Authentication/Login";
 import Cookies from "js-cookie";
 import Logout from "./components/Authentication/Logout";
 import SearchBookmarks from "./components/Bookmarks/SearchBookmarks";
+import Favorites from "./components/Bookmarks/Favorites";
 
 
 
@@ -61,6 +62,9 @@ function App() {
         </Route>
         <Route path="/search">
             <SearchBookmarks/>
+        </Route>
+        <Route path="/favorites">
+            <Favorites/>
         </Route>
           <Route exact path="/">
             <Bookmarks />

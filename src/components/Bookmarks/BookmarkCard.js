@@ -10,7 +10,9 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { del } from "../Utility Functions/util";
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
+import { del, put } from "../Utility Functions/util";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -50,6 +52,24 @@ const Bookmark = ({ book }) => {
   
 }
 
+const addToFavorites = ()=>{
+  book.favorite = true;
+  put('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/', book).then(()=>{
+    console.log("added to favorites")
+    window.location.reload();
+  })
+}
+
+const removeFromFavorites = ()=>{
+  book.favorite = false;
+  put('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/', book).then(()=>{
+    console.log("removed from favorites")
+    window.location.reload();
+  })
+}
+
+
+
   const handleOpen = () => {
     setOpen(true);
     setIsAddToTimeline(false);
@@ -79,6 +99,7 @@ const Bookmark = ({ book }) => {
         className={classes.root}
         style={{ width: "400px", height: "400px" }}
       >
+        {book.favorite ?(<StarIcon onClick = {removeFromFavorites}/>):(<StarBorderIcon onClick = {addToFavorites}/>)}
         {window.location.pathname == "/explore"?(
           <></>
         ):(<DeleteIcon  
@@ -101,7 +122,7 @@ const Bookmark = ({ book }) => {
         {/* <CreateNewTimeline id={book.id} date = {book.date} />
          */}
          <h2>TAGS:</h2>
-        <ul>{JSON.parse(book.tags).map((tag, index) => (
+        <ul>{!!book.tags && JSON.parse(book.tags).map((tag, index) => (
           <li>{tag}</li>
         )
         )}</ul>

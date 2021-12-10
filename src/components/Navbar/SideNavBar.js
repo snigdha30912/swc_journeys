@@ -112,6 +112,29 @@ const SideNavBar = () => {
                 <div class="font-medium ml-2" onClick={() => { history.push("/timelines") }}>Timelines</div>
               </a>
             </li>
+            <li class="my-2 w-36 h-11 rounded-lg hover:bg-gray-200 flex">
+              <a class="m-2 flex" href="">
+                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path opacity="0.2"
+                    d="M6.92529 9.8501C8.37504 9.8501 9.55029 8.67485 9.55029 7.2251C9.55029 5.77535 8.37504 4.6001 6.92529 4.6001C5.47555 4.6001 4.30029 5.77535 4.30029 7.2251C4.30029 8.67485 5.47555 9.8501 6.92529 9.8501Z"
+                    fill="#3A4859" />
+                  <path
+                    d="M6.92529 21.1001C8.37504 21.1001 9.55029 19.9248 9.55029 18.4751C9.55029 17.0254 8.37504 15.8501 6.92529 15.8501C5.47555 15.8501 4.30029 17.0254 4.30029 18.4751C4.30029 19.9248 5.47555 21.1001 6.92529 21.1001Z"
+                    stroke="#3A4859" stroke-width="1.62" stroke-linecap="round" stroke-linejoin="round" />
+                  <path
+                    d="M6.92529 9.8501C8.37504 9.8501 9.55029 8.67485 9.55029 7.2251C9.55029 5.77535 8.37504 4.6001 6.92529 4.6001C5.47555 4.6001 4.30029 5.77535 4.30029 7.2251C4.30029 8.67485 5.47555 9.8501 6.92529 9.8501Z"
+                    stroke="#3A4859" stroke-width="1.62" stroke-linecap="round" stroke-linejoin="round" />
+                  <path
+                    d="M18.1758 16.6001C19.6255 16.6001 20.8008 15.4248 20.8008 13.9751C20.8008 12.5254 19.6255 11.3501 18.1758 11.3501C16.726 11.3501 15.5508 12.5254 15.5508 13.9751C15.5508 15.4248 16.726 16.6001 18.1758 16.6001Z"
+                    stroke="#3A4859" stroke-width="1.62" stroke-linecap="round" stroke-linejoin="round" />
+                  <path
+                    d="M15.5505 14.3501H12.783C12.1233 14.3501 11.4717 14.2051 10.8743 13.9253C10.2769 13.6454 9.7483 13.2377 9.32599 12.7309L6.92529 9.8501V15.8501"
+                    stroke="#3A4859" stroke-width="1.62" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+
+                <div class="font-medium ml-2" onClick={() => { history.push("/favorites") }}>Favorites</div>
+              </a>
+            </li>
             
             
           </ul>

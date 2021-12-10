@@ -1,12 +1,18 @@
 from rest_framework.response import Response
 from .models import *
 from .serializers import TimelineSerializer
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, get_object_or_404
+from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, get_object_or_404
 from rest_framework import permissions, response, status
 from .permissions import IsOwner
 
 
+class ExploreTimelineView(ListAPIView):
+    serializer_class = TimelineSerializer
+    queryset = Timeline.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
 
+    def get_queryset(self):
+        return self.queryset
 
 class TimelineAPIView(ListCreateAPIView):
     serializer_class = TimelineSerializer

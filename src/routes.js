@@ -3,7 +3,10 @@ import React from 'react'
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
-
+const Bookmarks = React.lazy(() => import('./views/bookmarks/Bookmarks'))
+const Timelines = React.lazy(() => import('./views/timelines/Timelines'))
+const Favorites = React.lazy(() => import('./views/favorites/Favorites'))
+const Explore = React.lazy(() => import('./views/explore/Explore'))
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
 const Breadcrumbs = React.lazy(() => import('./views/base/breadcrumbs/Breadcrumbs'))
@@ -52,6 +55,10 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
+  { path: '/bookmark', name: 'Bookmarks', component: Bookmarks },
+  { path: '/timeline', name: 'Timelines', component: Timelines },
+  { path: '/favorites', name: 'Favorites', component: Favorites },
+  { path: '/explore', name: 'Explore', component: Explore },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },

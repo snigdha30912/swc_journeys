@@ -2,13 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import { get } from '../../utilities/util'
 import {
-  CWidgetStatsB,
-  CCol,
   CRow,
 } from '@coreui/react'
-import { DocsCallout, DocsExample } from 'src/components'
-import ReactImg from 'src/assets/images/react.jpg'
-import BookmarkCard from '../../components/BookmarkCard'
 import TimelineCard from 'src/components/TimelineCard'
 
 

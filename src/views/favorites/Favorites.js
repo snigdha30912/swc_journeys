@@ -1,8 +1,34 @@
 /* eslint-disable prettier/prettier */
-import React from 'react'
-const Favorites = ()=>{
-    return (<>
-    <h1>Favorites</h1>
-    </>);
+import React, { useEffect, useState } from 'react'
+import { get } from '../../utilities/util'
+import {
+  CRow,
+} from '@coreui/react'
+import BookmarkCard from '../../components/BookmarkCard'
+
+
+const Favorites = () => {
+  const apiURL = "http://127.0.0.1:8000/bookmarksection/bookmarkApi/favorites/";
+  const [bookmarks, setBookmarks] = useState(null);
+  useEffect(() => {
+    get(apiURL).then(res => {
+      setBookmarks(res);
+    })
+  }, []);
+  return (<>
+
+
+    <CRow xs={{ cols: 1, gutter: 4 }} md={{ cols: 4 }}>
+      
+        {bookmarks && bookmarks.map((book, index) => (
+          <div key={book.id} style={{marginTop:'35px'}}>
+            <BookmarkCard book={book} />
+          </div>
+        ))}
+
+      
+    </CRow>
+
+  </>);
 }
 export default Favorites;

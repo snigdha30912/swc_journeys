@@ -9,7 +9,7 @@ import {
 
 
 
-
+const colorList = ['success','info','warning','primary']
 const TimelineCard = ({time}) => {
     
 //   const classes = useStyles();
@@ -145,12 +145,12 @@ const TimelineCard = ({time}) => {
   
    <CWidgetStatsB
                 className="mb-4"
-                color="primary"
+                color= {colorList[Math.floor(Math.random() * 4)]}
                 inverse
                 value={time.name}
-                title={`Created by ${time.author}`}
+                title={`Created by @${time.author}`}
                 progress={{ value: 100 }}
-                text={`Contains ${time.bookmarks.length} bookmarks`}
+                text={time.bookmarks.length==1?`Contains ${time.bookmarks.length} bookmark`:`Contain ${time.bookmarks.length} bookmarks`}
               />
 </CCol>
   );

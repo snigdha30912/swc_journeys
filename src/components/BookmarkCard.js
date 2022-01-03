@@ -172,7 +172,7 @@ const BookmarkCard = ({book}) => {
       </CCardText>
     </CCardBody>
     <CCardFooter>
-      <small className="text-medium-emphasis">Added on {book.date}</small>
+      <small className="text-medium-emphasis">Added on {book.date.substring(0,10)}</small>
     </CCardFooter>
   </CCard>
   </CCol>

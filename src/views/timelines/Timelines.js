@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { get } from '../../utilities/util'
 import {
   CRow,
+  CSpinner,
 } from '@coreui/react'
 import TimelineCard from 'src/components/TimelineCard'
 
@@ -16,14 +17,14 @@ const Timelines = () => {
     })
   }, []);
   return (<>
+{timelines != null? (<CRow>
 
-<CRow>
+{timelines && timelines.map((time, index) => (
 
-            {timelines && timelines.map((time, index) => (
-          
-            <TimelineCard key = {time.id} time = {time}/>
-             ))}
-          </CRow>
+<TimelineCard key = {time.id} time = {time}/>
+ ))}
+</CRow>):<CSpinner color="warning" />}
+
   
 
   </>);

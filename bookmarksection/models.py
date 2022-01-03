@@ -27,4 +27,7 @@ class Bookmark(models.Model):
         self.tags = json.dumps(x)
 
     def get_tags(self):
-        return json.loads(self.tags)
+        try:
+            return json.loads(self.tags)
+        except:
+            return []

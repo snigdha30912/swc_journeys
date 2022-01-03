@@ -5,7 +5,6 @@ from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpda
 from rest_framework import permissions, response, status
 from .permissions import IsOwner
 
-
 class ExploreTimelineView(ListAPIView):
     serializer_class = TimelineSerializer
     queryset = Timeline.objects.all()

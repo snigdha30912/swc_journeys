@@ -1,4 +1,7 @@
+/* eslint-disable prettier/prettier */
 import React from 'react'
+import { useState, useEffect } from 'react';
+import {useHistory} from 'react-router-dom';
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -10,6 +13,9 @@ import {
   CHeaderToggler,
   CNavLink,
   CNavItem,
+  CForm,
+  CFormInput,
+  CButton,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilBell, cilEnvelopeOpen, cilList, cilMenu } from '@coreui/icons'
@@ -17,10 +23,20 @@ import { cilBell, cilEnvelopeOpen, cilList, cilMenu } from '@coreui/icons'
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
 import { logo } from 'src/assets/brand/logo'
-
 const AppHeader = () => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
+  const [keyword, setKeyword] = useState("")
+ const history = useHistory();
+ const handleSearch=(e)=>{
+
+  // history.push({
+  //   pathname:'/search/',
+  //   search:'?search='+keyword,
+  // });
+  // window.location.reload();
+  
+ }
 
   return (
     <CHeader position="sticky" className="mb-4">
@@ -47,23 +63,17 @@ const AppHeader = () => {
             <CNavLink href="#">Settings</CNavLink>
           </CNavItem>
         </CHeaderNav>
-        <CHeaderNav>
-          <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilBell} size="lg" />
+        <CForm className="d-flex">
+            <CFormInput id="searchKey" type="search" className="me-2" placeholder="Search" 
+            value={keyword} 
+            onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+            onChange={(e) => setKeyword(e.target.value)} />
+            <CNavLink to="/search" component={NavLink} activeClassName="active">
+            <CButton type="submit" color="success" variant="outline">
+              Search
+            </CButton>
             </CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilList} size="lg" />
-            </CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilEnvelopeOpen} size="lg" />
-            </CNavLink>
-          </CNavItem>
-        </CHeaderNav>
+          </CForm>
         <CHeaderNav className="ms-3">
           <AppHeaderDropdown />
         </CHeaderNav>

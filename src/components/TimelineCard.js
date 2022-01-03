@@ -2,51 +2,15 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from "prop-types";
 import {
-    CButton,
-    CCard,
-    CCardBody,
-    CCardFooter,
-    CCardGroup,
-    CCardHeader,
-    CCardImage,
-    CCardLink,
-    CCardSubtitle,
-    CCardText,
-    CCardTitle,
-    CListGroup,
-    CListGroupItem,
-    CNav,
-    CNavItem,
-    CNavLink,
+    CWidgetStatsB,
     CCol,
     CRow,
   } from '@coreui/react'
-import Bookmarks from 'src/views/bookmarks/Bookmarks';
 
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     maxWidth: 345,
-//   },
-//   media: {
-//     height: 140,
-//   },
-//   modal: {
-//     display: 'flex',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-    
-//   },
-//   paper: {
-//     backgroundColor: theme.palette.background.paper,
-//     boxShadow: theme.shadows[5],
-//     padding: theme.spacing(2, 4, 3),
-//     width:'400px',
-//     height:'200px'
-//   },
-// }));
 
-const BookmarkCard = ({book}) => {
+
+const TimelineCard = ({time}) => {
     
 //   const classes = useStyles();
   
@@ -148,39 +112,52 @@ const BookmarkCard = ({book}) => {
     //   </Modal>
     //   </Card>
     // </Grid>
-    <CCol xs>
-    <CCard>
-    <CCardImage orientation="top" src={book.image_field} style={{width:'300px',height:'200px'}}/>
-    <CCardBody>
-      <CCardTitle style={{
-           maxWidth: '100%',
-           display: '-webkit-box',
-           WebkitBoxOrient: 'vertical',
-           WebkitLineClamp: 2,
-           overflow: 'hidden',
-           textOverflow: 'ellipsis',
-      }}>{book.title_name}</CCardTitle>
-      <CCardText style={{
-  maxWidth: '100%',
-  display: '-webkit-box',
-  WebkitBoxOrient: 'vertical',
-  WebkitLineClamp: 3,
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-}}>
-        {book.description}
-      </CCardText>
-    </CCardBody>
-    <CCardFooter>
-      <small className="text-medium-emphasis">Added on {book.date}</small>
-    </CCardFooter>
-  </CCard>
-  </CCol>
+//     <CCol xs>
+//     <CCard>
+//     <CCardImage orientation="top" src={book.image_field} style={{width:'300px',height:'200px'}}/>
+//     <CCardBody>
+//       <CCardTitle style={{
+//            maxWidth: '100%',
+//            display: '-webkit-box',
+//            WebkitBoxOrient: 'vertical',
+//            WebkitLineClamp: 2,
+//            overflow: 'hidden',
+//            textOverflow: 'ellipsis',
+//       }}>{book.title_name}</CCardTitle>
+//       <CCardText style={{
+//   maxWidth: '100%',
+//   display: '-webkit-box',
+//   WebkitBoxOrient: 'vertical',
+//   WebkitLineClamp: 3,
+//   overflow: 'hidden',
+//   textOverflow: 'ellipsis',
+// }}>
+//         {book.description}
+//       </CCardText>
+//     </CCardBody>
+//     <CCardFooter>
+//       <small className="text-medium-emphasis">Added on {book.date}</small>
+//     </CCardFooter>
+//   </CCard>
+//   </CCol>
+  <CCol xs={12} sm={6} lg={3}>
+ 
+  
+   <CWidgetStatsB
+                className="mb-4"
+                color="primary"
+                inverse
+                value={time.name}
+                title={`Created by ${time.author}`}
+                progress={{ value: 100 }}
+                text={`Contains ${time.bookmarks.length} bookmarks`}
+              />
+</CCol>
   );
 };
 
-BookmarkCard.propTypes = {
-    book : PropTypes.object.isRequired
+TimelineCard.propTypes = {
+    time : PropTypes.object.isRequired
   };
 
-export default BookmarkCard;
+export default TimelineCard;

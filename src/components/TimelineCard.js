@@ -9,7 +9,7 @@ import {
 
 
 
-
+const colorList = ['success','info','warning','primary']
 const TimelineCard = ({time}) => {
     
 //   const classes = useStyles();
@@ -145,7 +145,7 @@ const TimelineCard = ({time}) => {
   
    <CWidgetStatsB
                 className="mb-4"
-                color="primary"
+                color= {colorList[Math.floor(Math.random() * 4)]}
                 inverse
                 value={time.name}
                 title={`Created by ${time.author}`}

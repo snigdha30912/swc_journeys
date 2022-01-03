@@ -176,8 +176,8 @@ const BookmarkCard = ({book}) => {
     <div className='container' style={{position:'relative'}}></div>
 
     <CCardImage orientation="top" src={book.image_field} style={{width:'300px',height:'200px',display:'block'}} />
-    {book.favorite?(<CIcon onClick = {removeFromFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',top:10,left:10, color:'yellow',cursor:'pointer',}}/>
-    ):(<CIcon onClick = {addToFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',top:10,left:10, color:'white',cursor:'pointer'}}/>
+    {book.favorite?(<CIcon onClick = {removeFromFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#f9b115',cursor:'pointer',}}/>
+    ):(<CIcon onClick = {addToFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#4f5d73',cursor:'pointer'}}/>
     )}
     
     

@@ -5,8 +5,6 @@ import {
   CSpinner,
   CRow,
 } from '@coreui/react'
-import { DocsCallout, DocsExample } from 'src/components'
-import ReactImg from 'src/assets/images/react.jpg'
 import BookmarkCard from '../../components/BookmarkCard'
 
 

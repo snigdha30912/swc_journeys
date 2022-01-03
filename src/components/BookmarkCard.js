@@ -1,6 +1,13 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react'
 import PropTypes from "prop-types";
+import CIcon from '@coreui/icons-react'
+import { put } from '../utilities/util'
+import {
+  cisStar,
+  cilStar,
+  
+} from '@coreui/icons'
 import {
     CButton,
     CCard,
@@ -47,6 +54,21 @@ import Bookmarks from 'src/views/bookmarks/Bookmarks';
 // }));
 
 const BookmarkCard = ({book}) => {
+  const addToFavorites = ()=>{
+    book.favorite = true;
+    put('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/', book).then(()=>{
+      console.log("added to favorites")
+      window.location.reload();
+    })
+  }
+  
+  const removeFromFavorites = ()=>{
+    book.favorite = false;
+    put('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/', book).then(()=>{
+      console.log("removed from favorites")
+      window.location.reload();
+    })
+  }
     
 //   const classes = useStyles();
   
@@ -150,7 +172,15 @@ const BookmarkCard = ({book}) => {
     // </Grid>
     <CCol xs>
     <CCard>
-    <CCardImage orientation="top" src={book.image_field} style={{width:'300px',height:'200px'}}/>
+    
+    <div className='container' style={{position:'relative'}}></div>
+
+    <CCardImage orientation="top" src={book.image_field} style={{width:'300px',height:'200px',display:'block'}} />
+    {book.favorite?(<CIcon onClick = {removeFromFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',top:10,left:10, color:'yellow',cursor:'pointer',}}/>
+    ):(<CIcon onClick = {addToFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',top:10,left:10, color:'white',cursor:'pointer'}}/>
+    )}
+    
+    
     <CCardBody>
       <CCardTitle style={{
            maxWidth: '100%',
@@ -171,6 +201,7 @@ const BookmarkCard = ({book}) => {
         {book.description}
       </CCardText>
     </CCardBody>
+    
     <CCardFooter>
       <small className="text-medium-emphasis">Added on {book.date.substring(0,10)}</small>
     </CCardFooter>

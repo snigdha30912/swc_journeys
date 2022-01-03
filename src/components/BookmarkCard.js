@@ -2,10 +2,11 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from "prop-types";
 import CIcon from '@coreui/icons-react'
-import { put } from '../utilities/util'
+import { put,del } from '../utilities/util'
 import {
   cisStar,
   cilStar,
+  cilOptions,
   
 } from '@coreui/icons'
 import {
@@ -27,6 +28,13 @@ import {
     CNavLink,
     CCol,
     CRow,
+    
+      CDropdown,
+      CDropdownMenu,
+      CDropdownItem,
+      CDropdownToggle,
+      CWidgetStatsA,
+    
   } from '@coreui/react'
 import Bookmarks from 'src/views/bookmarks/Bookmarks';
 
@@ -69,6 +77,13 @@ const BookmarkCard = ({book}) => {
       window.location.reload();
     })
   }
+  const handleDelete = ()=>{
+    del('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/').then(()=>{
+      console.log("deleted 🤔")
+      window.location.reload();
+    })
+  
+}
     
 //   const classes = useStyles();
   
@@ -174,7 +189,17 @@ const BookmarkCard = ({book}) => {
     <CCard>
     
     <div className='container' style={{position:'relative'}}></div>
-
+   
+    <CDropdown alignment="end" color='danger' style={{position:'absolute',top:10,right:10}}>
+              <CDropdownToggle color="transparent" caret={false} className="p-0">
+                <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
+              </CDropdownToggle>
+              <CDropdownMenu>
+                <CDropdownItem>Add to existing timeline</CDropdownItem>
+                <CDropdownItem>Add to New Timeline</CDropdownItem>
+                <CDropdownItem onClick = {handleDelete}>Delete Bookmark</CDropdownItem>
+              </CDropdownMenu>
+            </CDropdown>
     <CCardImage orientation="top" src={book.image_field} style={{width:'300px',height:'200px',display:'block'}} />
     {book.favorite?(<CIcon onClick = {removeFromFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#f9b115',cursor:'pointer',}}/>
     ):(<CIcon onClick = {addToFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#4f5d73',cursor:'pointer'}}/>

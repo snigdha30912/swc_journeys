@@ -27,7 +27,7 @@ const AppContent = () => {
               )
             )
           })}
-          <Redirect from="/" to="/dashboard" />
+          <Redirect from="/" to="/bookmarks" />
         </Switch>
       </Suspense>
     </CContainer>

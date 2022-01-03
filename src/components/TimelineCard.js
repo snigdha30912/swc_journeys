@@ -150,7 +150,7 @@ const TimelineCard = ({time}) => {
                 value={time.name}
                 title={`Created by ${time.author}`}
                 progress={{ value: 100 }}
-                text={`Contains ${time.bookmarks.length} bookmarks`}
+                text={time.bookmarks.length==1?`Contains ${time.bookmarks.length} bookmark`:`Contain ${time.bookmarks.length} bookmarks`}
               />
 </CCol>
   );

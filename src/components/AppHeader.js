@@ -52,19 +52,16 @@ const AppHeader = () => {
         </CHeaderBrand>
         <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>
-            <CNavLink to="/dashboard" component={NavLink} activeClassName="active">
-              Dashboards
-            </CNavLink>
           </CNavItem>
           <CNavItem>
-            <CNavLink href="#">Users</CNavLink>
+            
           </CNavItem>
           <CNavItem>
-            <CNavLink href="#">Settings</CNavLink>
+          
           </CNavItem>
         </CHeaderNav>
         <CForm className="d-flex">
-            <CFormInput id="searchKey" type="search" className="me-2" placeholder="Search" 
+            <CFormInput id="searchKey"type="search" className="me-2" placeholder="Search" 
             value={keyword} 
             onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
             onChange={(e) => setKeyword(e.target.value)} />

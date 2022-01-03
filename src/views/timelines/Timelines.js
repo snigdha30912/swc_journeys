@@ -2,13 +2,9 @@
 import React, { useEffect, useState } from 'react'
 import { get } from '../../utilities/util'
 import {
-  CWidgetStatsB,
-  CCol,
   CRow,
+  CSpinner,
 } from '@coreui/react'
-import { DocsCallout, DocsExample } from 'src/components'
-import ReactImg from 'src/assets/images/react.jpg'
-import BookmarkCard from '../../components/BookmarkCard'
 import TimelineCard from 'src/components/TimelineCard'
 
 
@@ -21,14 +17,14 @@ const Timelines = () => {
     })
   }, []);
   return (<>
+{timelines != null? (<CRow>
 
-<CRow>
+{timelines && timelines.map((time, index) => (
 
-            {timelines && timelines.map((time, index) => (
-          
-            <TimelineCard key = {time.id} time = {time}/>
-             ))}
-          </CRow>
+<TimelineCard key = {time.id} time = {time}/>
+ ))}
+</CRow>):<CSpinner color="warning" />}
+
   
 
   </>);

@@ -2,23 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { get } from '../../utilities/util'
 import {
-  CButton,
-  CCard,
-  CCardBody,
-  CCardFooter,
-  CCardGroup,
-  CCardHeader,
-  CCardImage,
-  CCardLink,
-  CCardSubtitle,
-  CCardText,
-  CCardTitle,
-  CListGroup,
-  CListGroupItem,
-  CNav,
-  CNavItem,
-  CNavLink,
-  CCol,
+  CSpinner,
   CRow,
 } from '@coreui/react'
 import { DocsCallout, DocsExample } from 'src/components'
@@ -36,17 +20,17 @@ const Bookmarks = () => {
   }, []);
   return (<>
 
-
-    <CRow xs={{ cols: 1, gutter: 4 }} md={{ cols: 4 }}>
+    {bookmarks != null? (<CRow xs={{ cols: 1, gutter: 4 }} md={{ cols: 4 }}>
       
-        {bookmarks && bookmarks.map((book, index) => (
-          <div key={book.id} style={{marginTop:'35px'}}>
-            <BookmarkCard book={book} />
-          </div>
-        ))}
+      {bookmarks && bookmarks.map((book, index) => (
+        <div key={book.id} style={{marginTop:'35px'}}>
+          <BookmarkCard book={book} />
+        </div>
+      ))}
 
-      
-    </CRow>
+    
+  </CRow>) : <CSpinner color="warning" />}
+    
 
   </>);
 }

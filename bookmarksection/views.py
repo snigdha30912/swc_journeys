@@ -95,11 +95,13 @@ class DiscoverBookmarkApiView(ListCreateAPIView):
         tags = []
         for bookmark in recent_bookmarks:
             j=0
-            for tag in bookmark.get_tags():
-                if(j>2):
-                    break
-                j=j+1
-                tags += [str(tag)]
+            if(len(bookmark.get_tags())>0):
+                for tag in bookmark.get_tags():
+                    if(j>2):
+                        break
+                    j=j+1
+                    tags += [str(tag)]
+                    print(tags)
         
         url = ('http://newsapi.org/v2/everything?'
             'q='+ " OR ".join(tags) +'&'

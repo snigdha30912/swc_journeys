@@ -9,7 +9,8 @@ import {
 
 
 
-const colorList = ['success','info','warning','primary','danger']
+const colorList = ['info','warning','primary','danger']
+var i = 0;
 const TimelineCard = ({time}) => {
     
 //   const classes = useStyles();
@@ -141,14 +142,13 @@ const TimelineCard = ({time}) => {
 //   </CCard>
 //   </CCol>
   <CCol xs={12} sm={6} lg={3}>
- 
-  
    <CWidgetStatsB
                 className="mb-4"
-                color= {colorList[Math.floor(Math.random() * 5)]}
+                color= {
+                  colorList[(i++)%4]}
                 inverse
                 value={time.name}
-                title={`Created by ${time.author}`}
+                title={`Created by @${time.author}`}
                 progress={{ value: 100 }}
                 text={time.bookmarks.length==1?`Contains ${time.bookmarks.length} bookmark`:`Contains ${time.bookmarks.length} bookmarks`}
               />

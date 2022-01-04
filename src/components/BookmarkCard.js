@@ -7,6 +7,7 @@ import {
   cisStar,
   cilStar,
   cilOptions,
+  cilExternalLink,
   
 } from '@coreui/icons'
 import {
@@ -208,9 +209,11 @@ const BookmarkCard = ({book}) => {
     ):(<CIcon onClick = {addToFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#4f5d73',cursor:'pointer'}}/>
     )}
     
-    
+    <a href={book.url_field} target="_blank" rel="noreferrer" style={{textDecoration:"none", color:"black"}}>
+    <CIcon icon={cilExternalLink}  size="m"  style={{position:'absolute',bottom:10,right:40,cursor:'pointer', color:"4f5d73"}}/>
+    </a>
     <CCardBody>
-      <a href={book.url_field} target="_blank" rel="noreferrer" style={{textDecoration:"none", color:"black"}}>
+      
       <CCardTitle style={{
            maxWidth: '100%',
            display: '-webkit-box',
@@ -218,7 +221,7 @@ const BookmarkCard = ({book}) => {
            WebkitLineClamp: 2,
            overflow: 'hidden',
            textOverflow: 'ellipsis',
-      }}>{book.title_name}</CCardTitle></a>
+      }}>{book.title_name}</CCardTitle>
       <CCardText style={{
   maxWidth: '100%',
   display: '-webkit-box',
@@ -230,6 +233,7 @@ const BookmarkCard = ({book}) => {
         {book.description}
       </CCardText>
     </CCardBody>
+    
     
     <CCardFooter>
       <small className="text-medium-emphasis">Added on {book.date.substring(0,10)}</small>

@@ -24,6 +24,8 @@ import {
   cilSettings,
   cilTask,
   cilUser,
+  cilMail,
+  cilPregnant
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 
@@ -34,11 +36,15 @@ const clientId = '398500418397-csmd0de4p1l7b6smiclfbhafubv96vpi.apps.googleuserc
 const AppHeaderDropdown = () => {
 
   const history = useHistory();
+  let username = Cookies.get("username");
+  let email = Cookies.get("email");
 
   const onSuccess = () => {
     console.log('Logout made successfully');
     Cookies.set("access",undefined);
     Cookies.set("refresh",undefined);
+    Cookies.set("username",undefined);
+    Cookies.set("email",undefined);
     history.push('/login');
   };
 
@@ -51,9 +57,13 @@ const AppHeaderDropdown = () => {
        
         
         <CDropdownHeader className="bg-light fw-semibold py-2">Settings</CDropdownHeader>
-        <CDropdownItem href="#">
+        <CDropdownItem>
           <CIcon icon={cilUser} className="me-2" />
-          Profile
+          {username}
+        </CDropdownItem>
+        <CDropdownItem>
+          <CIcon icon={cilPregnant} className="me-2" />
+          {email}
         </CDropdownItem>
         
         <CDropdownDivider />

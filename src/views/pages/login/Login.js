@@ -36,6 +36,8 @@ const Login = () => {
     console.log(res1.data);
     Cookies.set("access", res1.data.tokens.access);
     Cookies.set("refresh", res1.data.tokens.refresh);
+    Cookies.set("username", res1.data.username);
+    Cookies.set("email", res1.data.email);
     history.push('/');
   }
   const onFailure = (res) => {

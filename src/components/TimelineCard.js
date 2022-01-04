@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react'
 import PropTypes from "prop-types";
-import { get} from '../utilities/util'
+import { get,del} from '../utilities/util'
 import {
     CWidgetStatsB,
     CCol,
@@ -54,6 +54,8 @@ import {
     cilUserFemale,
     cilBookmark,
     cilExternalLink,
+    cilDelete,
+    cilXCircle,
   } from '@coreui/icons'
 
   import avatar1 from 'src/assets/images/avatars/1.jpg'
@@ -71,103 +73,20 @@ const TimelineCard = ({time}) => {
   const apiURL = 'http://localhost:8000/timelines/timelines/bookmarks/' + time.id.toString() + '/'
   const [visible, setVisible] = useState(false)
   const [bookmarks, setBookmarks] = useState(null)
-
+  const deletetimeline = () =>{
+    del('http://127.0.0.1:8000/timelines/timelines/'+time.id.toString()+'/').then(()=>{
+      console.log("deleted 🤔")
+      window.location.reload()
+    })
+  }
+  
   useEffect(() => {
     get(apiURL).then(res => {
       setBookmarks(res);
     })
   }, []);
 
-  const tableExample = [
-    {
-      avatar: { src: avatar1, status: 'success' },
-      user: {
-        name: 'Yiorgos Avraamu',
-        new: true,
-        registered: 'Jan 1, 2021',
-      },
-      country: { name: 'USA', flag: cifUs },
-      usage: {
-        value: 50,
-        period: 'Jun 11, 2021 - Jul 10, 2021',
-        color: 'success',
-      },
-      payment: { name: 'Mastercard', icon: cibCcMastercard },
-      activity: '10 sec ago',
-    },
-    {
-      avatar: { src: avatar2, status: 'danger' },
-      user: {
-        name: 'Avram Tarasios',
-        new: false,
-        registered: 'Jan 1, 2021',
-      },
-      country: { name: 'Brazil', flag: cifBr },
-      usage: {
-        value: 22,
-        period: 'Jun 11, 2021 - Jul 10, 2021',
-        color: 'info',
-      },
-      payment: { name: 'Visa', icon: cibCcVisa },
-      activity: '5 minutes ago',
-    },
-    {
-      avatar: { src: avatar3, status: 'warning' },
-      user: { name: 'Quintin Ed', new: true, registered: 'Jan 1, 2021' },
-      country: { name: 'India', flag: cifIn },
-      usage: {
-        value: 74,
-        period: 'Jun 11, 2021 - Jul 10, 2021',
-        color: 'warning',
-      },
-      payment: { name: 'Stripe', icon: cibCcStripe },
-      activity: '1 hour ago',
-    },
-    {
-      avatar: { src: avatar4, status: 'secondary' },
-      user: { name: 'Enéas Kwadwo', new: true, registered: 'Jan 1, 2021' },
-      country: { name: 'France', flag: cifFr },
-      usage: {
-        value: 98,
-        period: 'Jun 11, 2021 - Jul 10, 2021',
-        color: 'danger',
-      },
-      payment: { name: 'PayPal', icon: cibCcPaypal },
-      activity: 'Last month',
-    },
-    {
-      avatar: { src: avatar5, status: 'success' },
-      user: {
-        name: 'Agapetus Tadeáš',
-        new: true,
-        registered: 'Jan 1, 2021',
-      },
-      country: { name: 'Spain', flag: cifEs },
-      usage: {
-        value: 22,
-        period: 'Jun 11, 2021 - Jul 10, 2021',
-        color: 'primary',
-      },
-      payment: { name: 'Google Wallet', icon: cibCcApplePay },
-      activity: 'Last week',
-    },
-    {
-      avatar: { src: avatar6, status: 'danger' },
-      user: {
-        name: 'Friderik Dávid',
-        new: true,
-        registered: 'Jan 1, 2021',
-      },
-      country: { name: 'Poland', flag: cifPl },
-      usage: {
-        value: 43,
-        period: 'Jun 11, 2021 - Jul 10, 2021',
-        color: 'success',
-      },
-      payment: { name: 'Amex', icon: cibCcAmex },
-      activity: 'Last week',
-    },
-  ]
+  
 
     return (
       <>
@@ -199,6 +118,7 @@ const TimelineCard = ({time}) => {
                     <CTableHeaderCell>Bookmark</CTableHeaderCell>
                     <CTableHeaderCell className="text-center">Created At</CTableHeaderCell>
                     <CTableHeaderCell>Visit Bookmark</CTableHeaderCell>
+                    
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
@@ -228,16 +148,20 @@ const TimelineCard = ({time}) => {
                         <CIcon size="sm" icon={cilExternalLink} />
                         </a>
                       </CTableDataCell>
-                      
+                     
                     </CTableRow>
                   ))}
                 </CTableBody>
               </CTable>
           </CModalBody>
           <CModalFooter>
+          <CButton color="danger" onClick={deletetimeline}>
+              Delete Timeline
+            </CButton>
             <CButton color="secondary" onClick={() => setVisible(false)}>
               Close
             </CButton>
+           
           </CModalFooter>
         </CModal>
         </CCol>

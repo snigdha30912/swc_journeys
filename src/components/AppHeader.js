@@ -157,7 +157,7 @@ const AddTimelineButton = () => {
         {AddBookmarkButton()}
         {AddTimelineButton()}
         <CForm className="d-flex">
-            <CFormInput id="searchKey"type="search" className="me-2" placeholder="Search" 
+            <CFormInput style={{marginTop: "8px", height: "38px", border:"1px solid"}} id="searchKey"type="search" className="me-2" placeholder="Search" 
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)} />
             <CNavLink to="/search" component={NavLink} activeClassName="active">

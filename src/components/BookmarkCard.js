@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from "prop-types";
 import CIcon from '@coreui/icons-react'
-import { put,del } from '../utilities/util'
+import { post,put,del } from '../utilities/util'
 import {
   cisStar,
   cilStar,
@@ -29,17 +29,27 @@ import {
     CNavLink,
     CCol,
     CRow,
-    
-      CDropdown,
-      CDropdownMenu,
-      CDropdownItem,
-      CDropdownToggle,
-      CWidgetStatsA,
-    
+    CDropdown,
+    CDropdownMenu,
+    CDropdownItem,
+    CDropdownToggle,
+    CWidgetStatsA,
+    CForm,
+    CFormInput,
+    CModal,
+    CModalBody,
+    CModalFooter,
+    CModalHeader,
+    CModalTitle,
+    CFormFloating,
+    CFormLabel,
+    CFormSelect,
+    CFormTextarea,
+    CSpinner,
   } from '@coreui/react'
 import Bookmarks from 'src/views/bookmarks/Bookmarks';
 
-
+const timelineApiURL = 'http://127.0.0.1:8000/timelines/timelines/'
 // const useStyles = makeStyles((theme) => ({
 //   root: {
 //     maxWidth: 345,
@@ -64,6 +74,7 @@ import Bookmarks from 'src/views/bookmarks/Bookmarks';
 
 const BookmarkCard = ({book}) => {
   const [isFavorite,setIsFavorite] = useState(book.favorite)
+  const [posting,setPosting] = useState(false)
   const addToFavorites = ()=>{
     book.favorite = true;
     put('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/', book).then(()=>{
@@ -87,7 +98,57 @@ const BookmarkCard = ({book}) => {
       window.location.reload()
     })
   
-}
+  }
+  const [visible, setVisible] = useState(false)
+
+  const addTimeline = () => {
+    setPosting(true)
+    console.log(document.getElementById('TimelineNameInput').value)
+    const data = {name: document.getElementById('TimelineNameInput').value , description: document.getElementById('TimelineDescriptionInput').value, bookmarks: [book.id]};
+    post(timelineApiURL, data).then(() => {
+      console.log("added new timeline")
+      setPosting(false)
+      setVisible(false)
+    });
+
+  }
+
+  const AddToNewTimelineButton = () => {
+    return (
+      <>
+        <CDropdownItem style={{cursor:"pointer"}} onClick={() => setVisible(!visible)}>Add To New Timeline</CDropdownItem>
+        <CModal alignment="center" visible={visible} onClose={() => setVisible(false)}>
+          <CModalHeader>
+            <CModalTitle>Start New Timeline</CModalTitle>
+          </CModalHeader>
+          <CModalBody>
+            Enter the name of the new timeline you wish to create. This bookmark will be automatically added to this timeline.
+          </CModalBody>
+          <CFormFloating style={{margin:"20px"}}>
+            <CFormInput
+              type="name"
+              id="TimelineNameInput"
+              placeholder="name@example.com"
+            />
+            <CFormLabel htmlFor="TimelineNameInput">Enter Name Here</CFormLabel>
+            <CFormInput
+              style={{marginTop:"10px"}}
+              type="name"
+              id="TimelineDescriptionInput"
+              placeholder="name@example.com"
+            />
+            <CFormLabel style={{marginTop:"70px"}} htmlFor="TimelineDescriptionInput">Enter Description Here</CFormLabel>
+          </CFormFloating>
+          <CModalFooter>
+            <CButton color="secondary" onClick={() => setVisible(false)}>
+              Close
+            </CButton>
+            {posting?(<CSpinner/>):(<CButton onClick={addTimeline} color="primary">{'Save Timeline'}</CButton>)}
+          </CModalFooter>
+        </CModal>
+      </>
+    )
+  }
     
 //   const classes = useStyles();
   
@@ -200,7 +261,7 @@ const BookmarkCard = ({book}) => {
               </CDropdownToggle>
               <CDropdownMenu>
                 <CDropdownItem>Add to existing timeline</CDropdownItem>
-                <CDropdownItem>Add to New Timeline</CDropdownItem>
+                {AddToNewTimelineButton()}
                 <CDropdownItem onClick = {handleDelete}>Delete Bookmark</CDropdownItem>
               </CDropdownMenu>
             </CDropdown>

@@ -8,6 +8,7 @@ import {
 import { DocsCallout, DocsExample } from 'src/components'
 import ReactImg from 'src/assets/images/react.jpg'
 import BookmarkCard from '../../components/BookmarkCard'
+import CIcon from '@coreui/icons-react'
 
 
 const Bookmarks = () => {
@@ -30,7 +31,6 @@ const Bookmarks = () => {
 
     
   </CRow>) : <CSpinner color="warning" />}
-    
 
   </>);
 }

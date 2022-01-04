@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from "prop-types";
 import CIcon from '@coreui/icons-react'
-import { post,put,del } from '../utilities/util'
+import { post,put,del,get } from '../utilities/util'
 import {
   cisStar,
   cilStar,
@@ -75,6 +75,13 @@ const timelineApiURL = 'http://127.0.0.1:8000/timelines/timelines/'
 const BookmarkCard = ({book}) => {
   const [isFavorite,setIsFavorite] = useState(book.favorite)
   const [posting,setPosting] = useState(false)
+  const [timelines, setTimelines] = useState(null);
+  const [selected, setSelected] = useState(null);
+  useEffect(() => {
+    get(timelineApiURL).then(res => {
+      setTimelines(res);
+    });
+  }, []);
   const addToFavorites = ()=>{
     book.favorite = true;
     put('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/', book).then(()=>{
@@ -99,8 +106,8 @@ const BookmarkCard = ({book}) => {
     })
   
   }
-  const [visible, setVisible] = useState(false)
-
+  const [newVisible, setNewVisible] = useState(false)
+  const [existingVisible, setExistingVisible] = useState(false)
   const addTimeline = () => {
     setPosting(true)
     console.log(document.getElementById('TimelineNameInput').value)
@@ -108,7 +115,7 @@ const BookmarkCard = ({book}) => {
     post(timelineApiURL, data).then(() => {
       console.log("added new timeline")
       setPosting(false)
-      setVisible(false)
+      setNewVisible(false)
     });
 
   }
@@ -116,8 +123,8 @@ const BookmarkCard = ({book}) => {
   const AddToNewTimelineButton = () => {
     return (
       <>
-        <CDropdownItem style={{cursor:"pointer"}} onClick={() => setVisible(!visible)}>Add To New Timeline</CDropdownItem>
-        <CModal alignment="center" visible={visible} onClose={() => setVisible(false)}>
+        <CDropdownItem style={{cursor:"pointer"}} onClick={() => setNewVisible(!newVisible)}>Add To New Timeline</CDropdownItem>
+        <CModal alignment="center" visible={newVisible} onClose={() => setNewVisible(false)}>
           <CModalHeader>
             <CModalTitle>Start New Timeline</CModalTitle>
           </CModalHeader>
@@ -140,7 +147,7 @@ const BookmarkCard = ({book}) => {
             <CFormLabel style={{marginTop:"70px"}} htmlFor="TimelineDescriptionInput">Enter Description Here</CFormLabel>
           </CFormFloating>
           <CModalFooter>
-            <CButton color="secondary" onClick={() => setVisible(false)}>
+            <CButton color="secondary" onClick={() => setNewVisible(false)}>
               Close
             </CButton>
             {posting?(<CSpinner/>):(<CButton onClick={addTimeline} color="primary">{'Save Timeline'}</CButton>)}
@@ -149,107 +156,51 @@ const BookmarkCard = ({book}) => {
       </>
     )
   }
-    
-//   const classes = useStyles();
-  
-//   const [open, setOpen] = useState(false);
-//   const [isCreateNewTimeline , setIsCreateNewTimeline] = useState(false);
-//   const [isAddToTimeline, setIsAddToTimeline] = useState(false);
+  const addExistingTimeline = ()=>{
+    setPosting(true)
+    let timeline_id = document.getElementById("existingTimelinesMenu").selectedOptions[0].value
+    if(timeline_id==="none"){
+      alert("Please select an option");
+      setPosting(false)
+    }
+    else {
+    const data = { bookmarks: [book.id] };
+    put('http://127.0.0.1:8000/timelines/timelines/' + timeline_id + '/', data).then(()=>{
+      console.log("added to existing timeline");
+      setPosting(false)
+      setExistingVisible(false)
+    });
+  }
+  }
+  const AddToExistingTimelineButton = () => {
+    return (
+      <>
+        <CDropdownItem style={{cursor:"pointer"}} onClick={() => setExistingVisible(!existingVisible)}>Add To Existing Timeline</CDropdownItem>
+        <CModal alignment="center" visible={existingVisible} onClose={() => setExistingVisible(false)}>
+          <CModalHeader>
+            <CModalTitle>Add to Existing Timeline</CModalTitle>
+          </CModalHeader>
+          <CModalBody>
+            Select the timeline you wish to add this bookmark to.
+          </CModalBody>
+          <CFormSelect id="existingTimelinesMenu" style={{ width:"80%", margin:"10px"}} className="mb-3" aria-label="Large select example">
+            <option value="none">Open this timeline menu</option>
+            {timelines && timelines.map((time,index)=>(
+              <option key={time.id} value={time.id}>{time.name}</option>
+            ))}
+          </CFormSelect>
+          <CModalFooter>
+            <CButton color="secondary" onClick={() => setExistingVisible(false)}>
+              Close
+            </CButton>
+            {posting?(<CSpinner/>):(<CButton onClick={addExistingTimeline} color="primary">{'Save Changes'}</CButton>)}
+          </CModalFooter>
+        </CModal>
+      </>
+    )
+  }
 
-//   const handleDelete = ()=>{
-//     del('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/').then(()=>{
-//       console.log("deleted 🤔")
-//       window.location.reload();
-//     })
-  
-// }
-
-//   const handleOpen = () => {
-//     setOpen(true);
-//     setIsAddToTimeline(false);
-//     setIsCreateNewTimeline(false);
-//   };
-
-//   const handleClose = () => {
-//     setOpen(false);
-//   };
-//   const url = book.url_field
-//   const urlpage = () =>{
-
-//     window.open(url, "_blank")
-//   }
   return (
-    // <Grid
-    //   item
-    //   md={3}
-    //   style={{
-    //     width: "400px",
-    //     height: "400px",
-    //     margin: "10px 10px 10px 10px",
-    //     paddingBottom: "20px",
-    //   }}
-    // >
-    //   <Card
-    //     className={classes.root}
-    //     style={{ width: "400px", height: "400px" }}
-    //   >
-    //     {window.location.pathname == "/explore"?(
-    //       <></>
-    //     ):(<DeleteIcon  
-    //       onClick = {handleDelete}
-    //       />)}
-        
-        
-    //       <CardMedia
-    //         className={classes.media}
-    //         image={book.image_field}
-    //         title={book.title_name}
-    //       />
-          
-    //       <div><h3 className="bookmark_title">{book.title_name}</h3></div>
-    //       <div><p className="bookmark_description">{book.description}</p></div>
-    //       <Button onClick={urlpage} className="button-url" size="small" color="primary">
-    //         Visit Page
-    //       </Button>
-    //     <div onClick={handleOpen} className="timelineadd">Add to your Timeline</div>
-    //     {/* <CreateNewTimeline id={book.id} date = {book.date} />
-    //      */}
-    //     <Modal
-    //     aria-labelledby="transition-modal-title"
-    //     aria-describedby="transition-modal-description"
-    //     className={classes.modal}
-    //     open={open}
-    //     onClose={handleClose}
-    //     closeAfterTransition
-    //     BackdropComponent={Backdrop}
-    //     BackdropProps={{
-    //       timeout: 500,
-    //     }}
-    //   >
-    //     <Fade in={open}>
-    //       <div className={classes.paper}>
-    //         {/* <h2 id="transition-modal-title">Transition modal</h2>
-    //         <p id="transition-modal-description">react-transition-group animates me.</p> */}
-            
-    //        {
-    //          !isAddToTimeline && !isCreateNewTimeline ?(
-    //             <div className="custom-modal">
-    //           <Button onClick={()=>{setIsCreateNewTimeline(false);setIsAddToTimeline(true)}} style={{color:'blue',padding:'15px',fontWeight:'normal'}}>Add to existing timeline</Button>
-    //         <Button onClick={()=>{setIsCreateNewTimeline(true);setIsAddToTimeline(false)}} style={{color:'blue',padding:'15px',fontWeight:'normal'}}>Create New Timeline</Button>
-    //         </div>
-    //          ): isCreateNewTimeline?(
-    //          <CreateNewTimeline id={book.id}/>
-    //          ): isAddToTimeline?(
-    //            <AddToTimeline id={book.id}/>
-    //          ):(
-    //            <></>
-    //          )
-    //        }
-    //       </div>
-    //     </Fade>
-    //   </Modal>
-    //   </Card>
-    // </Grid>
     <CCol xs>
     <CCard>
     
@@ -260,8 +211,8 @@ const BookmarkCard = ({book}) => {
                 <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
               </CDropdownToggle>
               <CDropdownMenu>
-                <CDropdownItem>Add to existing timeline</CDropdownItem>
                 {AddToNewTimelineButton()}
+                {AddToExistingTimelineButton()}
                 <CDropdownItem onClick = {handleDelete}>Delete Bookmark</CDropdownItem>
               </CDropdownMenu>
             </CDropdown>

@@ -13,6 +13,7 @@ const Timelines = () => {
   const [timelines, setTimelines] = useState(null);
   useEffect(() => {
     get(apiURL).then(res => {
+      console.log(res);
       setTimelines(res);
     })
   }, []);

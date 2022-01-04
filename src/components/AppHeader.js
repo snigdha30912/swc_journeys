@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import {useHistory} from 'react-router-dom';
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { post } from '../utilities/util'
 import {
   CContainer,
   CHeader,
@@ -21,6 +22,11 @@ import {
   CModalFooter,
   CModalHeader,
   CModalTitle,
+  CFormFloating,
+  CFormLabel,
+  CFormSelect,
+  CFormTextarea,
+  CSpinner,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilBookmark, cilPlus, cilFork, cilList, cilMenu } from '@coreui/icons'
@@ -28,38 +34,99 @@ import { cilBookmark, cilPlus, cilFork, cilList, cilMenu } from '@coreui/icons'
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
 import { logo } from 'src/assets/brand/logo'
+
+const bookmarkApiURL = "http://127.0.0.1:8000/bookmarksection/bookmarkApi/";
+const timelineApiURL = 'http://127.0.0.1:8000/timelines/timelines/'
 const AppHeader = () => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
   const [keyword, setKeyword] = useState("")
- const history = useHistory();
- const handleSearch=(e)=>{
+  const history = useHistory();
+  const [posting,setPosting] = useState(false);
+  const addBookmark = () => {
+    const data = { url_field: document.getElementById('bookmarkUrlInput').value };
+    setPosting(true)
+    console.log(document.getElementById('bookmarkUrlInput').value)
+    post(bookmarkApiURL, data).then(() => {
+      console.log("added new bookmark")
+      setPosting(false)
+      window.location.reload();
+    }
+    );
+  }
 
-  // history.push({
-  //   pathname:'/search/',
-  //   search:'?search='+keyword,
-  // });
-  // window.location.reload();
-  
- }
- const VerticallyCentered = () => {
+  const addTimeline = () => {
+    setPosting(true)
+    console.log(document.getElementById('TimelineNameInput').value)
+    const data = {name: document.getElementById('TimelineNameInput').value};
+    post(timelineApiURL, data).then(() => {
+      console.log("added new timeline")
+      setPosting(false)
+      window.location.reload();
+    });
+
+  }
+ const AddBookmarkButton = () => {
   const [visible, setVisible] = useState(false)
   return (
     <>
-      <CButton onClick={() => setVisible(!visible)}>Vertically centered modal</CButton>
-      <CModal alignment="center" visible={visible} onClose={() => setVisible(false)}>
+      <div onClick={() => setVisible(!visible)} style={{ cursor:"pointer", position:"relative", marginRight:"30px",}}>
+        <CIcon icon={cilBookmark} size="xxl" />
+        <CIcon style={{position:"absolute", color:"#2eb85c",top:"-13px", left:"20px", marginBottom:"30px"}} icon={cilPlus} size="lg" />
+      </div>
+      <CModal size="lg" alignment="center" visible={visible} onClose={() => setVisible(false)}>
         <CModalHeader>
-          <CModalTitle>Modal title</CModalTitle>
+          <CModalTitle>Add New Bookmark</CModalTitle>
         </CModalHeader>
         <CModalBody>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-          in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          Save your favorite website as a bookmark by entering its URL in the box below.
         </CModalBody>
+        <CFormFloating style={{margin:"20px"}}>
+          <CFormInput
+            type="email"
+            id="bookmarkUrlInput"
+            placeholder="name@example.com"
+          />
+          <CFormLabel htmlFor="bookmarkUrlInput">Enter URL Here</CFormLabel>
+        </CFormFloating>
         <CModalFooter>
           <CButton color="secondary" onClick={() => setVisible(false)}>
             Close
           </CButton>
-          <CButton color="primary">Save changes</CButton>
+          {posting?(<CSpinner/>):(<CButton onClick={addBookmark} color="primary">{'Save Bookmark'}</CButton>)}
+        </CModalFooter>
+      </CModal>
+    </>
+  )
+}
+const AddTimelineButton = () => {
+  const [visible, setVisible] = useState(false)
+  return (
+    <>
+      <div onClick={() => setVisible(!visible)} style={{ cursor:"pointer", position:"relative", marginRight:"30px",}}>
+        <CIcon icon={cilFork} size="xxl" />
+        <CIcon style={{position:"absolute", color:"#2eb85c",top:"-13px", left:"20px", marginBottom:"30px"}} icon={cilPlus} size="lg" />
+      </div>
+      <CModal alignment="center" visible={visible} onClose={() => setVisible(false)}>
+        <CModalHeader>
+          <CModalTitle>Start New Timeline</CModalTitle>
+        </CModalHeader>
+        <CModalBody>
+          Enter the name of the new timeline you wish to create. Then add some bookmarks to it.
+        </CModalBody>
+        <CFormFloating style={{margin:"20px"}}>
+          <CFormInput
+            type="email"
+            id="TimelineNameInput"
+            placeholder="name@example.com"
+          />
+          <CFormLabel htmlFor="TimelineNameInput">Enter Name Here</CFormLabel>
+        </CFormFloating>
+        <CModalFooter>
+          <CButton color="secondary" onClick={() => setVisible(false)}>
+            Close
+          </CButton>
+          {posting?(<CSpinner/>):(<CButton onClick={addTimeline} color="primary">{'Save Timeline'}</CButton>)}
         </CModalFooter>
       </CModal>
     </>
@@ -87,18 +154,11 @@ const AppHeader = () => {
           
           </CNavItem>
         </CHeaderNav>
-        <div style={{ cursor:"pointer", position:"relative", marginRight:"30px",}}>
-        <CIcon icon={cilFork} size="xxl" />
-        <CIcon style={{position:"absolute", color:"#2eb85c",top:"-13px", left:"20px", marginBottom:"30px"}} icon={cilPlus} size="lg" />
-        </div>
-        <div style={{ cursor:"pointer", position:"relative", marginRight:"30px",}}>
-        <CIcon icon={cilBookmark} size="xxl" />
-        <CIcon style={{position:"absolute", color:"#2eb85c",top:"-13px", left:"20px", marginBottom:"30px"}} icon={cilPlus} size="lg" />
-        </div>
+        {AddBookmarkButton()}
+        {AddTimelineButton()}
         <CForm className="d-flex">
             <CFormInput id="searchKey"type="search" className="me-2" placeholder="Search" 
-            value={keyword} 
-            onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+            value={keyword}
             onChange={(e) => setKeyword(e.target.value)} />
             <CNavLink to="/search" component={NavLink} activeClassName="active">
             <CButton type="submit" color="success" variant="outline">

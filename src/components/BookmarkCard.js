@@ -61,7 +61,7 @@ import Bookmarks from 'src/views/bookmarks/Bookmarks';
 //   },
 // }));
 
-const BookmarkCard = ({book, handleRefresh}) => {
+const BookmarkCard = ({book}) => {
   const [isFavorite,setIsFavorite] = useState(book.favorite)
   const addToFavorites = ()=>{
     book.favorite = true;
@@ -83,8 +83,7 @@ const BookmarkCard = ({book, handleRefresh}) => {
   const handleDelete = ()=>{
     del('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/').then(()=>{
       console.log("deleted 🤔")
-      
-      handleRefresh()
+      window.location.reload()
     })
   
 }
@@ -241,8 +240,7 @@ const BookmarkCard = ({book, handleRefresh}) => {
 };
 
 BookmarkCard.propTypes = {
-    book : PropTypes.object.isRequired,
-    handleRefresh: PropTypes.func.isRequired
+    book : PropTypes.object.isRequired
   };
 
 export default BookmarkCard;

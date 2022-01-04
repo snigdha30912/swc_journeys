@@ -23,7 +23,7 @@ class Post(models.Model):
                              on_delete=models.CASCADE, related_name="posts")
     body = models.TextField(default="Add post", null=True)
     created_at = models.DateTimeField(default=now)
-    comments = models.ManyToManyField(Comment, null=True, default=[])
+    comments = models.ManyToManyField(Comment, default=[])
 
 
 # Create your models here.
@@ -32,6 +32,6 @@ class Community(models.Model):
     description = models.CharField(
         default="No Description", max_length=500, null=True)
     members = models.ManyToManyField(
-        User, related_name="members", null=True, default=[])
+        User, related_name="members", default=[])
     posts = models.ManyToManyField(
-        Post, related_name="community_posts", null=True, default=[])
+        Post, related_name="community_posts", default=[])

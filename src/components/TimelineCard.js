@@ -148,7 +148,7 @@ const TimelineCard = ({time}) => {
                 color= {colorList[Math.floor(Math.random() * 5)]}
                 inverse
                 value={time.name}
-                title={`Created by ${time.author}`}
+                title={`Created by @${time.author}`}
                 progress={{ value: 100 }}
                 text={time.bookmarks.length==1?`Contains ${time.bookmarks.length} bookmark`:`Contains ${time.bookmarks.length} bookmarks`}
               />

@@ -16,9 +16,14 @@ import {
   CForm,
   CFormInput,
   CButton,
+  CModal,
+  CModalBody,
+  CModalFooter,
+  CModalHeader,
+  CModalTitle,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilBell, cilEnvelopeOpen, cilList, cilMenu } from '@coreui/icons'
+import { cilBookmark, cilPlus, cilFork, cilList, cilMenu } from '@coreui/icons'
 
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
@@ -37,7 +42,29 @@ const AppHeader = () => {
   // window.location.reload();
   
  }
-
+ const VerticallyCentered = () => {
+  const [visible, setVisible] = useState(false)
+  return (
+    <>
+      <CButton onClick={() => setVisible(!visible)}>Vertically centered modal</CButton>
+      <CModal alignment="center" visible={visible} onClose={() => setVisible(false)}>
+        <CModalHeader>
+          <CModalTitle>Modal title</CModalTitle>
+        </CModalHeader>
+        <CModalBody>
+          Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
+          in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+        </CModalBody>
+        <CModalFooter>
+          <CButton color="secondary" onClick={() => setVisible(false)}>
+            Close
+          </CButton>
+          <CButton color="primary">Save changes</CButton>
+        </CModalFooter>
+      </CModal>
+    </>
+  )
+}
   return (
     <CHeader position="sticky" className="mb-4">
       <CContainer fluid>
@@ -60,6 +87,14 @@ const AppHeader = () => {
           
           </CNavItem>
         </CHeaderNav>
+        <div style={{ cursor:"pointer", position:"relative", marginRight:"30px",}}>
+        <CIcon icon={cilFork} size="xxl" />
+        <CIcon style={{position:"absolute", color:"#2eb85c",top:"-13px", left:"20px", marginBottom:"30px"}} icon={cilPlus} size="lg" />
+        </div>
+        <div style={{ cursor:"pointer", position:"relative", marginRight:"30px",}}>
+        <CIcon icon={cilBookmark} size="xxl" />
+        <CIcon style={{position:"absolute", color:"#2eb85c",top:"-13px", left:"20px", marginBottom:"30px"}} icon={cilPlus} size="lg" />
+        </div>
         <CForm className="d-flex">
             <CFormInput id="searchKey"type="search" className="me-2" placeholder="Search" 
             value={keyword} 

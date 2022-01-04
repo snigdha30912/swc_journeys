@@ -61,12 +61,14 @@ import Bookmarks from 'src/views/bookmarks/Bookmarks';
 //   },
 // }));
 
-const BookmarkCard = ({book}) => {
+const BookmarkCard = ({book, handleRefresh}) => {
+  const [isFavorite,setIsFavorite] = useState(book.favorite)
   const addToFavorites = ()=>{
     book.favorite = true;
     put('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/', book).then(()=>{
       console.log("added to favorites")
-      window.location.reload();
+      setIsFavorite(true);
+      // window.location.reload();
     })
   }
   
@@ -74,13 +76,15 @@ const BookmarkCard = ({book}) => {
     book.favorite = false;
     put('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/', book).then(()=>{
       console.log("removed from favorites")
-      window.location.reload();
+      setIsFavorite(false);
+      // window.location.reload();
     })
   }
   const handleDelete = ()=>{
     del('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/').then(()=>{
       console.log("deleted 🤔")
-      window.location.reload();
+      
+      handleRefresh()
     })
   
 }
@@ -201,7 +205,7 @@ const BookmarkCard = ({book}) => {
               </CDropdownMenu>
             </CDropdown>
     <CCardImage orientation="top" src={book.image_field} style={{width:'300px',height:'200px',display:'block'}} />
-    {book.favorite?(<CIcon onClick = {removeFromFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#f9b115',cursor:'pointer',}}/>
+    {isFavorite?(<CIcon onClick = {removeFromFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#f9b115',cursor:'pointer',}}/>
     ):(<CIcon onClick = {addToFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#4f5d73',cursor:'pointer'}}/>
     )}
     
@@ -236,7 +240,8 @@ const BookmarkCard = ({book}) => {
 };
 
 BookmarkCard.propTypes = {
-    book : PropTypes.object.isRequired
+    book : PropTypes.object.isRequired,
+    handleRefresh: PropTypes.func.isRequired
   };
 
 export default BookmarkCard;

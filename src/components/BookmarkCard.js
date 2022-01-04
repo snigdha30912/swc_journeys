@@ -211,6 +211,7 @@ const BookmarkCard = ({book, handleRefresh}) => {
     
     
     <CCardBody>
+      <a href={book.url_field} target="_blank" rel="noreferrer" style={{textDecoration:"none", color:"black"}}>
       <CCardTitle style={{
            maxWidth: '100%',
            display: '-webkit-box',
@@ -218,7 +219,7 @@ const BookmarkCard = ({book, handleRefresh}) => {
            WebkitLineClamp: 2,
            overflow: 'hidden',
            textOverflow: 'ellipsis',
-      }}>{book.title_name}</CCardTitle>
+      }}>{book.title_name}</CCardTitle></a>
       <CCardText style={{
   maxWidth: '100%',
   display: '-webkit-box',

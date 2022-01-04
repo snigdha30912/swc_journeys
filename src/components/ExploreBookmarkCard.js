@@ -2,12 +2,13 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from "prop-types";
 import CIcon from '@coreui/icons-react'
-import { post,put,del } from '../utilities/util'
+import { post,del } from '../utilities/util'
 import {
   cisStar,
   cilStar,
   cilOptions,
   cilExternalLink,
+  cilBookmark
   
 } from '@coreui/icons'
 import {
@@ -29,27 +30,18 @@ import {
     CNavLink,
     CCol,
     CRow,
-    CDropdown,
-    CDropdownMenu,
-    CDropdownItem,
-    CDropdownToggle,
-    CWidgetStatsA,
-    CForm,
-    CFormInput,
-    CModal,
-    CModalBody,
-    CModalFooter,
-    CModalHeader,
-    CModalTitle,
-    CFormFloating,
-    CFormLabel,
-    CFormSelect,
-    CFormTextarea,
-    CSpinner,
+    
+      CDropdown,
+      CDropdownMenu,
+      CDropdownItem,
+      CDropdownToggle,
+      CWidgetStatsA,
+      CSpinner,
+    
   } from '@coreui/react'
 import Bookmarks from 'src/views/bookmarks/Bookmarks';
 
-const timelineApiURL = 'http://127.0.0.1:8000/timelines/timelines/'
+
 // const useStyles = makeStyles((theme) => ({
 //   root: {
 //     maxWidth: 345,
@@ -71,85 +63,33 @@ const timelineApiURL = 'http://127.0.0.1:8000/timelines/timelines/'
 //     height:'200px'
 //   },
 // }));
-
-const BookmarkCard = ({book}) => {
-  const [isFavorite,setIsFavorite] = useState(book.favorite)
-  const [posting,setPosting] = useState(false)
-  const addToFavorites = ()=>{
-    book.favorite = true;
-    put('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/', book).then(()=>{
-      console.log("added to favorites")
-      setIsFavorite(true);
-      // window.location.reload();
-    })
+const bookmarkApiURL = "http://127.0.0.1:8000/bookmarksection/bookmarkApi/";
+const ExploreBookmarkCard = ({book}) => {
+  const [isBookmark,setIsBookmark] = useState(book.favorite)
+ const [posting,setPosting] = useState(false)
+  
+  const addToBookmarks = () => {
+    const data = { url_field: book.url_field };
+    setPosting(true)
+    console.log(book.url_field)
+    post(bookmarkApiURL, data).then(() => {
+      console.log("added new bookmark")
+      setIsBookmark(true);
+      setPosting(false)
+      
+    }
+    );
   }
   
-  const removeFromFavorites = ()=>{
-    book.favorite = false;
-    put('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/', book).then(()=>{
-      console.log("removed from favorites")
-      setIsFavorite(false);
-      // window.location.reload();
-    })
-  }
-  const handleDelete = ()=>{
+  const removeFromBookmarks = ()=>{
+    
     del('http://127.0.0.1:8000/bookmarksection/bookmarkApi/'+book.id+'/').then(()=>{
       console.log("deleted 🤔")
       window.location.reload()
+      setIsBookmark(false);
     })
+  }
   
-  }
-  const [visible, setVisible] = useState(false)
-
-  const addTimeline = () => {
-    setPosting(true)
-    console.log(document.getElementById('TimelineNameInput').value)
-    const data = {name: document.getElementById('TimelineNameInput').value , description: document.getElementById('TimelineDescriptionInput').value, bookmarks: [book.id]};
-    post(timelineApiURL, data).then(() => {
-      console.log("added new timeline")
-      setPosting(false)
-      setVisible(false)
-    });
-
-  }
-
-  const AddToNewTimelineButton = () => {
-    return (
-      <>
-        <CDropdownItem style={{cursor:"pointer"}} onClick={() => setVisible(!visible)}>Add To New Timeline</CDropdownItem>
-        <CModal alignment="center" visible={visible} onClose={() => setVisible(false)}>
-          <CModalHeader>
-            <CModalTitle>Start New Timeline</CModalTitle>
-          </CModalHeader>
-          <CModalBody>
-            Enter the name of the new timeline you wish to create. This bookmark will be automatically added to this timeline.
-          </CModalBody>
-          <CFormFloating style={{margin:"20px"}}>
-            <CFormInput
-              type="name"
-              id="TimelineNameInput"
-              placeholder="name@example.com"
-            />
-            <CFormLabel htmlFor="TimelineNameInput">Enter Name Here</CFormLabel>
-            <CFormInput
-              style={{marginTop:"10px"}}
-              type="name"
-              id="TimelineDescriptionInput"
-              placeholder="name@example.com"
-            />
-            <CFormLabel style={{marginTop:"70px"}} htmlFor="TimelineDescriptionInput">Enter Description Here</CFormLabel>
-          </CFormFloating>
-          <CModalFooter>
-            <CButton color="secondary" onClick={() => setVisible(false)}>
-              Close
-            </CButton>
-            {posting?(<CSpinner/>):(<CButton onClick={addTimeline} color="primary">{'Save Timeline'}</CButton>)}
-          </CModalFooter>
-        </CModal>
-      </>
-    )
-  }
-    
 //   const classes = useStyles();
   
 //   const [open, setOpen] = useState(false);
@@ -255,20 +195,14 @@ const BookmarkCard = ({book}) => {
     
     <div className='container' style={{position:'relative'}}></div>
    
-    <CDropdown alignment="end" color='danger' style={{position:'absolute',top:10,right:10}}>
-              <CDropdownToggle color="transparent" caret={false} className="p-0">
-                <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
-              </CDropdownToggle>
-              <CDropdownMenu>
-                <CDropdownItem>Add to existing timeline</CDropdownItem>
-                {AddToNewTimelineButton()}
-                <CDropdownItem onClick = {handleDelete}>Delete Bookmark</CDropdownItem>
-              </CDropdownMenu>
-            </CDropdown>
+    
     <CCardImage orientation="top" src={book.image_field} style={{width:'300px',height:'200px',display:'block'}} />
-    {isFavorite?(<CIcon onClick = {removeFromFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#f9b115',cursor:'pointer',}}/>
-    ):(<CIcon onClick = {addToFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#4f5d73',cursor:'pointer'}}/>
-    )}
+    {posting?(<CSpinner size='sm' style={{position:'absolute',bottom:10,right:10, color:'##4f5d73'}}/>):(isBookmark?
+    
+        (
+    <CIcon onClick = {removeFromBookmarks} icon={cilBookmark}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#f9b115',cursor:'pointer',}}/>
+    ):(<CIcon onClick = {addToBookmarks} icon={cilBookmark}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#4f5d73',cursor:'pointer'}}/>
+    ))}
     
     <a href={book.url_field} target="_blank" rel="noreferrer" style={{textDecoration:"none", color:"black"}}>
     <CIcon icon={cilExternalLink}  size="m"  style={{position:'absolute',bottom:10,right:40,cursor:'pointer', color:"4f5d73"}}/>
@@ -304,8 +238,8 @@ const BookmarkCard = ({book}) => {
   );
 };
 
-BookmarkCard.propTypes = {
+ExploreBookmarkCard.propTypes = {
     book : PropTypes.object.isRequired
   };
 
-export default BookmarkCard;
+export default ExploreBookmarkCard;

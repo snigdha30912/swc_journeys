@@ -7,7 +7,7 @@ import {
 } from '@coreui/react'
 import { DocsCallout, DocsExample } from 'src/components'
 import ReactImg from 'src/assets/images/react.jpg'
-import BookmarkCard from '../../components/BookmarkCard'
+import ExploreBookmarkCard from '../../components/ExploreBookmarkCard'
 
 
 const Bookmarks = () => {
@@ -24,7 +24,7 @@ const Bookmarks = () => {
       
       {bookmarks && bookmarks.map((book, index) => (
         <div key={book.id} style={{marginTop:'35px'}}>
-          <BookmarkCard book={book} />
+          <ExploreBookmarkCard book={book} />
         </div>
       ))}
 

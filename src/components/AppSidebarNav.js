@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -12,7 +13,7 @@ export const AppSidebarNav = ({ items }) => {
         {icon && icon}
         {name && name}
         {badge && (
-          <CBadge color="black" className="ms-auto">
+          <CBadge color={badge.color} className="ms-auto">
             {badge.text}
           </CBadge>
         )}
@@ -34,6 +35,7 @@ export const AppSidebarNav = ({ items }) => {
         {...rest}
       >
         {navLink(name, icon, badge)}
+
       </Component>
     )
   }

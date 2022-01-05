@@ -30,11 +30,11 @@ const AppSidebar = () => {
         dispatch({ type: 'set', sidebarShow: visible })
       }}
     >
-      <CSidebarBrand className="d-none d-md-flex" to="/">
+      <CSidebarBrand className="d-none d-md-flex" to="/" style={{backgroundColor:"#005b54"}}>
         <CIcon className="sidebar-brand-full" icon={logoNegative} height={50} />
         <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} />
       </CSidebarBrand>
-      <CSidebarNav>
+      <CSidebarNav style={{backgroundColor:"#005b54"}}>
         <SimpleBar >
           <AppSidebarNav items={navigation} />
         </SimpleBar>
@@ -42,6 +42,7 @@ const AppSidebar = () => {
       <CSidebarToggler
         className="d-none d-lg-flex"
         onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}
+        style={{backgroundColor:"#005b54"}}
       />
     </CSidebar>
   )

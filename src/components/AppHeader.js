@@ -133,8 +133,9 @@ const AddTimelineButton = () => {
   )
 }
   return (
-    <CHeader position="sticky" className="mb-4">
-      <CContainer fluid>
+    <CHeader position="sticky" className="mb-4" style={{backgroundColor:"#99ccc0"}}>
+      <CContainer fluid >
+
         <CHeaderToggler
           className="ps-1"
           onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
@@ -144,7 +145,7 @@ const AddTimelineButton = () => {
         <CHeaderBrand className="mx-auto d-md-none" to="/">
           <CIcon icon={logo} height={48} alt="Logo" />
         </CHeaderBrand>
-        <CHeaderNav className="d-none d-md-flex me-auto">
+        <CHeaderNav className="d-none d-md-flex me-auto" >
           <CNavItem>
           </CNavItem>
           <CNavItem>

@@ -72,7 +72,7 @@ const AppHeader = () => {
     <>
       <div onClick={() => setVisible(!visible)} style={{ cursor:"pointer", position:"relative", marginRight:"30px",}}>
         <CIcon icon={cilBookmark} size="xxl" />
-        <CIcon style={{position:"absolute", color:"#2eb85c",top:"-13px", left:"20px", marginBottom:"30px"}} icon={cilPlus} size="lg" />
+        <CIcon style={{position:"absolute", color:"#005b54",top:"-13px", left:"20px", marginBottom:"30px"}} icon={cilPlus} size="lg" />
       </div>
       <CModal size="lg" alignment="center" visible={visible} onClose={() => setVisible(false)}>
         <CModalHeader>
@@ -105,7 +105,7 @@ const AddTimelineButton = () => {
     <>
       <div onClick={() => setVisible(!visible)} style={{ cursor:"pointer", position:"relative", marginRight:"30px",}}>
         <CIcon icon={cilFork} size="xxl" />
-        <CIcon style={{position:"absolute", color:"#2eb85c",top:"-13px", left:"20px", marginBottom:"30px"}} icon={cilPlus} size="lg" />
+        <CIcon style={{position:"absolute", color:"#005b54",top:"-13px", left:"20px", marginBottom:"30px"}} icon={cilPlus} size="lg" />
       </div>
       <CModal alignment="center" visible={visible} onClose={() => setVisible(false)}>
         <CModalHeader>

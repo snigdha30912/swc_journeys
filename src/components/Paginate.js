@@ -16,7 +16,7 @@ const Paginate = ({pageCount,onPageChange,currentPage}) => {
   }
   for(let i=1; i<=pageCount; i++) {
     if(currentPage===i){
-      items.push(<CPaginationItem key={i} active>{i}</CPaginationItem>)
+      items.push(<CPaginationItem key={i} className="pagination-active">{i}</CPaginationItem>)
     } else {
       items.push(<CPaginationItem key={i} onClick={()=>{onPageChange(i)}}>{i}</CPaginationItem>)
     }

@@ -5,8 +5,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const refresh = refreshToken => {
-
-
     return new Promise((resolve, reject) => {
         axios
             .post("http://localhost:8000/auth/token/refresh/", { refresh: refreshToken })
@@ -29,10 +27,8 @@ const hasAccess = async (accessToken, refreshToken) => {
         accessToken = await refresh(refreshToken);
         return accessToken;
     }
-
     return accessToken;
 };
-
 
 export const postRequest = async (accessToken, refreshToken, url, data) => {
     return new Promise((resolve, reject) => {
@@ -63,7 +59,6 @@ export const postRequest = async (accessToken, refreshToken, url, data) => {
             });
     });
 };
-
 
 export const post = async (url, data) => {
     let accessToken = Cookies.get("access");
@@ -98,7 +93,7 @@ export const getRequest = async (accessToken, refreshToken, url) => {
                 // Handle error.
                 if (error.response.status === 500) {
                     refresh(refreshToken).then(accessToken => {
-                        
+
                     });
                 }
                 if (error.response.status === 401) {
@@ -107,14 +102,11 @@ export const getRequest = async (accessToken, refreshToken, url) => {
                         getRequest(accessToken, refreshToken, url);
                     });
                 }
-
             });
-
     });
 };
 
 export const get = async (url) => {
-
     let accessToken = Cookies.get("access");
     let refreshToken = Cookies.get("refresh");
 
@@ -156,7 +148,6 @@ export const putRequest = async (accessToken, refreshToken, url, data) => {
             });
     });
 };
-
 
 export const put = async (url, data) => {
     let accessToken = Cookies.get("access");

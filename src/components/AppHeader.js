@@ -24,16 +24,14 @@ import {
   CModalTitle,
   CFormFloating,
   CFormLabel,
-  CFormSelect,
-  CFormTextarea,
   CSpinner,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilBookmark, cilPlus, cilFork, cilList, cilMenu } from '@coreui/icons'
-
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
 import { logo } from 'src/assets/brand/logo'
+import { logoNegative } from 'src/assets/brand/logo-negative';
 
 const bookmarkApiURL = "http://127.0.0.1:8000/bookmarksection/bookmarkApi/";
 const timelineApiURL = 'http://127.0.0.1:8000/timelines/timelines/'

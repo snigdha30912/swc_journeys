@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -34,7 +35,7 @@ const AppSidebar = () => {
         <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} />
       </CSidebarBrand>
       <CSidebarNav>
-        <SimpleBar>
+        <SimpleBar >
           <AppSidebarNav items={navigation} />
         </SimpleBar>
       </CSidebarNav>

@@ -133,7 +133,11 @@ const AddTimelineButton = () => {
   )
 }
   return (
+<<<<<<< HEAD
+    <CHeader position="sticky" className="mb-4">
+=======
     <CHeader position="sticky" className="mb-4" style={{backgroundColor:'#ffffff'}} >
+>>>>>>> 763f77a669be7b9a872513c0efd2cde4086a4569
       <CContainer fluid >
 
         <CHeaderToggler

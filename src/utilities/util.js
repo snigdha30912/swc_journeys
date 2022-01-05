@@ -92,7 +92,7 @@ export const getRequest = async (accessToken, refreshToken, url) => {
                 console.log("Successful");
                 if (res.data.results == null)
                     resolve(res.data);
-                resolve(res.data.results);
+                resolve(res.data);
 
             }).catch(error => {
                 // Handle error.

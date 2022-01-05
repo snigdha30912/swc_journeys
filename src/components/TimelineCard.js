@@ -82,7 +82,7 @@ const TimelineCard = ({time}) => {
   
   useEffect(() => {
     get(apiURL).then(res => {
-      setBookmarks(res);
+      setBookmarks(res.results);
     })
   }, []);
 

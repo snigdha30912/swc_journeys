@@ -14,7 +14,7 @@ const Timelines = () => {
   useEffect(() => {
     get(apiURL).then(res => {
       console.log(res);
-      setTimelines(res);
+      setTimelines(res.results);
     })
   }, []);
   return (<>

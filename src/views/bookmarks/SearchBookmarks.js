@@ -32,7 +32,7 @@ const Bookmarks = () => {
   const [bookmarks, setBookmarks] = useState(null);
   useEffect(() => {
     get(apiURL).then(res => {
-      setBookmarks(res);
+      setBookmarks(res.results);
     })
   }, [apiURL]);
   return (<>

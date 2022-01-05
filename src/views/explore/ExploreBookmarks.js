@@ -15,7 +15,8 @@ const Bookmarks = () => {
   const [bookmarks, setBookmarks] = useState(null);
   useEffect(() => {
     get(apiURL).then(res => {
-      setBookmarks(res);
+      console.log(res);
+      setBookmarks(res.results);
     })
   }, []);
   return (<>

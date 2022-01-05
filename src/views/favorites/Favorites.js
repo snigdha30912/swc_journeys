@@ -13,7 +13,7 @@ const Favorites = () => {
   const [bookmarks, setBookmarks] = useState(null);
   useEffect(() => {
     get(apiURL).then(res => {
-      setBookmarks(res);
+      setBookmarks(res.results);
     })
   }, []);
   return (<>

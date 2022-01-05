@@ -18,7 +18,7 @@
     "changelog": "auto-changelog --starting-version 4.1.0 --commit-limit false --hide-credit",
     "eject": "react-scripts eject",
     "lint": "eslint \"src/**/*.js\"",
-    "start": "react-scripts start",
+    "start": "./node_modules/.bin/react-scripts start",
     "start:n17": "react-scripts --openssl-legacy-provider start",
     "test": "react-scripts test",
     "test:cov": "npm test -- --coverage --watchAll=false",
@@ -51,7 +51,8 @@
     "react-router-dom": "^5.3.0",
     "react-toastify": "^8.1.0",
     "redux": "4.1.2",
-    "simplebar-react": "^2.3.6"
+    "simplebar-react": "^2.3.6",
+    "react-scripts": "^4.0.3"
   },
   "devDependencies": {
     "auto-changelog": "~2.3.0",

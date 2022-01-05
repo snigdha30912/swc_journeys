@@ -24,7 +24,7 @@ const Timelines = () => {
 
 <TimelineCard key = {time.id} time = {time}/>
  ))}
-</CRow>):<CSpinner color="warning" />}
+</CRow>):<CSpinner className="spinner" />}
 
   
 

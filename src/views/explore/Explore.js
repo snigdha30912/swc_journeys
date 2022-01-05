@@ -21,10 +21,10 @@ const Explore = ()=>{
     return (<>
    <CNav variant="tabs" style={{marginBottom:'20px'}}>
                 <CNavItem style={{cursor:'pointer'}}>
-                {index==0? <CNavLink style={{cursor:'pointer'}} active onClick={()=>setIndex(0)}>Explore Bookmarks</CNavLink>:<CNavLink style={{cursor:'pointer'}} onClick={()=>setIndex(0)}>Explore Bookmarks</CNavLink>}
+                {index==0? <CNavLink style={{cursor:'pointer'}} active onClick={()=>setIndex(0)}>Explore Bookmarks</CNavLink>:<CNavLink style={{cursor:'pointer',color:'#005b54'}} onClick={()=>setIndex(0)}>Explore Bookmarks</CNavLink>}
                 </CNavItem>
                 <CNavItem style={{cursor:'pointer'}}>
-                 {index==1? <CNavLink style={{cursor:'pointer'}} active onClick={()=>setIndex(1)}>Explore Timelines</CNavLink>:<CNavLink style={{cursor:'pointer'}} onClick={()=>setIndex(1)}>Explore Timelines</CNavLink>}
+                 {index==1? <CNavLink style={{cursor:'pointer'}} active onClick={()=>setIndex(1)}>Explore Timelines</CNavLink>:<CNavLink style={{cursor:'pointer',color:'#005b54'}} onClick={()=>setIndex(1)}>Explore Timelines</CNavLink>}
 
                 </CNavItem>
                

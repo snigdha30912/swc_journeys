@@ -28,7 +28,7 @@ const Favorites = () => {
       ))}
 
     
-  </CRow>) : <CSpinner color="warning" />}
+  </CRow>) : <CSpinner className='spinner' />}
 
   </>);
 }

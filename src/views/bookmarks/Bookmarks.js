@@ -72,7 +72,7 @@ const Bookmarks = () => {
              
              
   </>
-  ) : <CSpinner color="warning" />}
+  ) : <CSpinner className='spinner' />}
 
   </>);
 }

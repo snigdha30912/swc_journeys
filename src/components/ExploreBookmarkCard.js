@@ -197,15 +197,15 @@ const ExploreBookmarkCard = ({book}) => {
    
     
     <CCardImage orientation="top" src={book.image_field} style={{width:'300px',height:'200px',display:'block'}} />
-    {posting?(<CSpinner size='sm' style={{position:'absolute',bottom:10,right:10, color:'##4f5d73'}}/>):(isBookmark?
+    {posting?(<CSpinner size='sm' style={{position:'absolute',bottom:10,right:10, color:'#005b54'}}/>):(isBookmark?
     
         (
     <CIcon onClick = {removeFromBookmarks} icon={cilBookmark}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#f9b115',cursor:'pointer',}}/>
-    ):(<CIcon onClick = {addToBookmarks} icon={cilBookmark}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#4f5d73',cursor:'pointer'}}/>
+    ):(<CIcon onClick = {addToBookmarks} icon={cilBookmark}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#005b54',cursor:'pointer'}}/>
     ))}
     
     <a href={book.url_field} target="_blank" rel="noreferrer" style={{textDecoration:"none", color:"black"}}>
-    <CIcon icon={cilExternalLink}  size="m"  style={{position:'absolute',bottom:10,right:40,cursor:'pointer', color:"4f5d73"}}/>
+    <CIcon icon={cilExternalLink}  size="m"  style={{position:'absolute',bottom:10,right:40,cursor:'pointer', color:"#005b54"}}/>
     </a>
     <CCardBody>
       
@@ -230,7 +230,7 @@ const ExploreBookmarkCard = ({book}) => {
     </CCardBody>
     
     
-    <CCardFooter>
+    <CCardFooter style={{backgroundColor:'#ECF8F3'}}>
       <small className="text-medium-emphasis">Added on {book.date.substring(0,10)}</small>
     </CCardFooter>
   </CCard>

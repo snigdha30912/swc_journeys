@@ -51,7 +51,7 @@ export const postRequest = async (accessToken, refreshToken, url, data) => {
                 // console.log('An error occurred:', error.response);
                 if (error.response.status === 500) {
                     refresh(refreshToken).then(accessToken => {
-                        toast("server me error ☠");
+                        toast("server  error ☠");
                     });
                 }
                 if (error.response.status === 401) {

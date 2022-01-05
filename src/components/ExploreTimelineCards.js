@@ -52,12 +52,7 @@ const TimelineCard = ({time}) => {
   const apiURL = 'http://localhost:8000/timelines/timelines/bookmarks/' + time.id.toString() + '/?page='+page.toString();
   const [visible, setVisible] = useState(false)
   const [bookmarks, setBookmarks] = useState(null)
-  const deletetimeline = () =>{
-    del(apiURL).then(()=>{
-      console.log("deleted 🤔")
-      window.location.reload()
-    })
-  }
+  
   
   useEffect(() => {
     get(apiURL).then(res => {
@@ -134,7 +129,7 @@ const TimelineCard = ({time}) => {
                      
                     </CTableRow>
                   ))}
-                  <CPagination align='right' size='sm' aria-label="Page navigation example" style={{marginTop:'20px'}}>
+                  <CPagination align='center' size='sm' aria-label="Page navigation example" style={{marginTop:'20px'}}>
               <div >
                 {page<=1?(<CPaginationItem aria-label="Previous" disabled>
                   <span aria-hidden="true" >&laquo;</span>
@@ -166,9 +161,7 @@ const TimelineCard = ({time}) => {
               </CTable>
           </CModalBody>
           <CModalFooter>
-          <CButton color="danger" onClick={deletetimeline}>
-              Delete Timeline
-            </CButton>
+          
             <CButton color="secondary" onClick={() => setVisible(false)}>
               Close
             </CButton>

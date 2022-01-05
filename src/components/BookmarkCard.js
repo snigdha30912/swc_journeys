@@ -79,7 +79,7 @@ const BookmarkCard = ({book}) => {
   const [selected, setSelected] = useState(null);
   useEffect(() => {
     get(timelineApiURL).then(res => {
-      setTimelines(res);
+      setTimelines(res.results);
     });
   }, []);
   const addToFavorites = ()=>{

@@ -95,16 +95,16 @@ const TimelineCard = ({time}) => {
                         progress={{ value: 100 }}
                         text={time.bookmarks.length==1?`Contains ${time.bookmarks.length} bookmark`:`Contains ${time.bookmarks.length} bookmarks`}
                       />
-        <CModal size="xl" alignment="center" visible={visible} onClose={() => setVisible(false)}>
-          <CModalHeader>
-            <CModalTitle>{time.name}</CModalTitle>
+        <CModal size="xl" alignment="center" visible={visible} onClose={() => setVisible(false)} style={{color:"white"}}>
+          <CModalHeader style={{backgroundColor:colorList[(i-1)%3], color:"white"}}>
+            <CModalTitle style={{color:"white"}}>{time.name}</CModalTitle>
           </CModalHeader>
           <CModalBody>
             {time.description}
             </CModalBody>
             <CModalBody>
             <CTable align="middle" className="mb-0 border" hover responsive>
-                <CTableHead color="light">
+                <CTableHead  style ={{backgroundColor:"#ECF8F3"}}>
                   <CTableRow>
                     <CTableHeaderCell className="text-center">
                       <CIcon icon={cilBookmark} />

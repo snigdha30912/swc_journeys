@@ -22,7 +22,6 @@ const Bookmarks = () => {
     get(apiURL).then(res => {
       setBookmarks(res.results);
       setCount(Math.floor(res.count/12)+1);
-
     })
   }, [apiURL]);
   var pages = []
@@ -54,7 +53,8 @@ const Bookmarks = () => {
                 
                 {pages && pages.map((i, index) => (
                   <div key = {i} onClick={()=>setPage(i)}>
-                <CPaginationItem >{i}</CPaginationItem>
+                    {i==page?(<CPaginationItem active >{i}</CPaginationItem>):(<CPaginationItem >{i}</CPaginationItem>)}
+                
                 </div>
 
 ))}

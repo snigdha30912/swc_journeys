@@ -18,6 +18,14 @@
 .greenbtn{
     background-color: #005b54; /* Green */
     color: white;
+    border:2px solid;
+    border-color: white;
+}
+.greenbtn:hover{
+    background-color: #019286; /* Green */
+    color: white;
+    border:2px solid;
+    border-color: white;
 }
 
 .dropdown:active{

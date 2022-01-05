@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -13,6 +13,7 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
+  CNavLink,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
@@ -40,6 +41,30 @@ const Login = () => {
     Cookies.set("email", res1.data.email);
     history.push('/');
   }
+  const loginURL = "http://127.0.0.1:8000/auth/login/"
+  const loginWithEmail = async () => {
+    var data = {
+      email:document.getElementById('emailInput').value,
+      password:document.getElementById('passwordInput').value
+    }
+    if(data.email!=="" && data.password!==""){
+      axios.post(loginURL,data).then(res => {
+        Cookies.set("access", res.data.tokens.access);
+        Cookies.set("refresh", res.data.tokens.refresh);
+        Cookies.set("username", res.data.username);
+        Cookies.set("email", res.data.email);
+        history.push('/');
+      }).catch(error => {
+        if (error.response.status === 401) {
+          alert("Incorrect Credentials")
+        } else {
+          alert("Something went wrong")
+        }
+
+    });
+
+    }
+  }
   const onFailure = (res) => {
     console.log('Login failed: res:', res);
     alert(
@@ -61,13 +86,14 @@ const Login = () => {
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput placeholder="Username" autoComplete="username" />
+                      <CFormInput id="emailInput" placeholder="Email" autoComplete="email" />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
                         <CIcon icon={cilLockLocked} />
                       </CInputGroupText>
                       <CFormInput
+                        id="passwordInput"
                         type="password"
                         placeholder="Password"
                         autoComplete="current-password"
@@ -75,20 +101,23 @@ const Login = () => {
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton color="primary" className="px-4">
+                        <CButton onClick={loginWithEmail} color="primary" className="greenbtn">
                           Login
                         </CButton>
                       </CCol>
+                      
                       <CCol xs={6} className="text-right">
+                      <CNavLink to="/register" component={NavLink} activeClassName="active">
                         <CButton color="link" className="px-0">
-                          Forgot password?
+                          Create an account
                         </CButton>
+                      </CNavLink>
                       </CCol>
                     </CRow>
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
+              <CCard className="text-white py-5" style={{ backgroundColor:'#005b54', width: '44%' }}>
                 <CCardBody className="text-center">
                   <div>
                     <h2>Login with Google</h2>

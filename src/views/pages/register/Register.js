@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react'
 import {
   CButton,
@@ -13,10 +14,44 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
+import { useHistory } from 'react-router-dom';
+import axios from "axios";
 
 const Register = () => {
+  const registerURL = "http://127.0.0.1:8000/auth/register/"
+  const history = useHistory();
+  const createAccount = () => {
+    var username = document.getElementById('usernameInput').value
+    var email = document.getElementById('emailInput').value
+    var password = document.getElementById('passwordInput').value
+    var repeatPassword = document.getElementById('repeatPasswordInput').value
+    if(username!=="" && email!=="" && password!=="" && repeatPassword!=="") {
+      if(password===repeatPassword) {
+        var data = {
+          username:username,
+          email:email,
+          password:password,
+        }
+        axios.post(registerURL,data).then(res => {
+          alert("Registered successfully, Kindly proceed to login")
+          history.push('/login');
+        }).catch(error => {
+          if (error.response.status === 400) {
+            alert("Check your entered data again")
+          } else {
+            alert("Something went wrong")
+          }
+  
+      });
+      } else {
+        alert("Passwords don't match")
+      }
+    } else {
+      alert("Fields can't be blank")
+    }
+  }
   return (
-    <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
+    <div style={{backgroundColor:'#ECF8F3'}} className="min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md={9} lg={7} xl={6}>
@@ -29,17 +64,18 @@ const Register = () => {
                     <CInputGroupText>
                       <CIcon icon={cilUser} />
                     </CInputGroupText>
-                    <CFormInput placeholder="Username" autoComplete="username" />
+                    <CFormInput id="usernameInput" placeholder="Username" autoComplete="username" />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>@</CInputGroupText>
-                    <CFormInput placeholder="Email" autoComplete="email" />
+                    <CFormInput id="emailInput" placeholder="Email" autoComplete="email" />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
                       <CIcon icon={cilLockLocked} />
                     </CInputGroupText>
                     <CFormInput
+                      id="passwordInput"
                       type="password"
                       placeholder="Password"
                       autoComplete="new-password"
@@ -50,13 +86,14 @@ const Register = () => {
                       <CIcon icon={cilLockLocked} />
                     </CInputGroupText>
                     <CFormInput
+                      id="repeatPasswordInput"
                       type="password"
                       placeholder="Repeat password"
                       autoComplete="new-password"
                     />
                   </CInputGroup>
                   <div className="d-grid">
-                    <CButton color="success">Create Account</CButton>
+                    <CButton onClick={createAccount} className="greenbtn">Create Account</CButton>
                   </div>
                 </CForm>
               </CCardBody>

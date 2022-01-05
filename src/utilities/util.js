@@ -98,11 +98,11 @@ export const getRequest = async (accessToken, refreshToken, url) => {
                 // Handle error.
                 if (error.response.status === 500) {
                     refresh(refreshToken).then(accessToken => {
-                        toast("server me error ☠");
+                        
                     });
                 }
                 if (error.response.status === 401) {
-                    console.log("Trying again");
+                    alert("Session Expired, Please login again")
                     refresh(refreshToken).then(accessToken => {
                         getRequest(accessToken, refreshToken, url);
                     });

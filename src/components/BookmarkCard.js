@@ -123,7 +123,7 @@ const BookmarkCard = ({book}) => {
   const AddToNewTimelineButton = () => {
     return (
       <>
-        <CDropdownItem style={{cursor:"pointer"}} onClick={() => setNewVisible(!newVisible)}>Add To New Timeline</CDropdownItem>
+        <CDropdownItem className='dropdown' style={{cursor:"pointer"}} onClick={() => setNewVisible(!newVisible)}>Add To New Timeline</CDropdownItem>
         <CModal alignment="center" visible={newVisible} onClose={() => setNewVisible(false)}>
           <CModalHeader>
             <CModalTitle>Start New Timeline</CModalTitle>
@@ -147,10 +147,10 @@ const BookmarkCard = ({book}) => {
             <CFormLabel style={{marginTop:"70px"}} htmlFor="TimelineDescriptionInput">Enter Description Here</CFormLabel>
           </CFormFloating>
           <CModalFooter>
-            <CButton color="secondary" onClick={() => setNewVisible(false)}>
+            <CButton color='secondary' onClick={() => setNewVisible(false)}>
               Close
             </CButton>
-            {posting?(<CSpinner/>):(<CButton onClick={addTimeline} color="primary">{'Save Timeline'}</CButton>)}
+            {posting?(<CSpinner className='spinner' />):(<CButton className='greenbtn' onClick={addTimeline} color="primary">{'Save Timeline'}</CButton>)}
           </CModalFooter>
         </CModal>
       </>
@@ -175,7 +175,7 @@ const BookmarkCard = ({book}) => {
   const AddToExistingTimelineButton = () => {
     return (
       <>
-        <CDropdownItem style={{cursor:"pointer"}} onClick={() => setExistingVisible(!existingVisible)}>Add To Existing Timeline</CDropdownItem>
+        <CDropdownItem className='dropdown' style={{cursor:"pointer"}} onClick={() => setExistingVisible(!existingVisible)}>Add To Existing Timeline</CDropdownItem>
         <CModal alignment="center" visible={existingVisible} onClose={() => setExistingVisible(false)}>
           <CModalHeader>
             <CModalTitle>Add to Existing Timeline</CModalTitle>
@@ -183,7 +183,7 @@ const BookmarkCard = ({book}) => {
           <CModalBody>
             Select the timeline you wish to add this bookmark to.
           </CModalBody>
-          <CFormSelect id="existingTimelinesMenu" style={{ width:"80%", margin:"10px"}} className="mb-3" aria-label="Large select example">
+          <CFormSelect id="existingTimelinesMenu" style={{ width:"80%", margin:"10px", color:'#005b54'}} className="mb-3" aria-label="Large select example">
             <option value="none">Open this timeline menu</option>
             {timelines && timelines.map((time,index)=>(
               <option key={time.id} value={time.id}>{time.name}</option>
@@ -193,7 +193,7 @@ const BookmarkCard = ({book}) => {
             <CButton color="secondary" onClick={() => setExistingVisible(false)}>
               Close
             </CButton>
-            {posting?(<CSpinner/>):(<CButton onClick={addExistingTimeline} color="primary">{'Save Changes'}</CButton>)}
+            {posting?(<CSpinner className='spinner'/>):(<CButton className='greenbtn' onClick={addExistingTimeline} color="primary">{'Save Changes'}</CButton>)}
           </CModalFooter>
         </CModal>
       </>
@@ -218,11 +218,11 @@ const BookmarkCard = ({book}) => {
             </CDropdown>
     <CCardImage orientation="top" src={book.image_field} style={{width:'300px',height:'200px',display:'block'}} />
     {isFavorite?(<CIcon onClick = {removeFromFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#f9b115',cursor:'pointer',}}/>
-    ):(<CIcon onClick = {addToFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#4f5d73',cursor:'pointer'}}/>
+    ):(<CIcon onClick = {addToFavorites} icon={cilStar}  size="lg"  style={{position:'absolute',bottom:10,right:10, color:'#005b54',cursor:'pointer'}}/>
     )}
     
     <a href={book.url_field} target="_blank" rel="noreferrer" style={{textDecoration:"none", color:"black"}}>
-    <CIcon icon={cilExternalLink}  size="m"  style={{position:'absolute',bottom:10,right:40,cursor:'pointer', color:"4f5d73"}}/>
+    <CIcon icon={cilExternalLink}  size="m"  style={{position:'absolute',bottom:10,right:40,cursor:'pointer', color:"#005b54"}}/>
     </a>
     <CCardBody>
       
@@ -247,7 +247,7 @@ const BookmarkCard = ({book}) => {
     </CCardBody>
     
     
-    <CCardFooter>
+    <CCardFooter style={{backgroundColor:'#ECF8F3'}}>
       <small className="text-medium-emphasis">Added on {book.date.substring(0,10)}</small>
     </CCardFooter>
   </CCard>

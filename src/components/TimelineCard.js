@@ -58,16 +58,11 @@ import {
     cilXCircle,
   } from '@coreui/icons'
 
-  import avatar1 from 'src/assets/images/avatars/1.jpg'
-import avatar2 from 'src/assets/images/avatars/2.jpg'
-import avatar3 from 'src/assets/images/avatars/3.jpg'
-import avatar4 from 'src/assets/images/avatars/4.jpg'
-import avatar5 from 'src/assets/images/avatars/5.jpg'
-import avatar6 from 'src/assets/images/avatars/6.jpg'
 
 
 
-const colorList = ['info','warning','primary','danger']
+
+const colorList = ['#65C3A1','#4BAA87','#32906E']
 var i = 0;
 const TimelineCard = ({time}) => {
   const apiURL = 'http://localhost:8000/timelines/timelines/bookmarks/' + time.id.toString() + '/'
@@ -91,10 +86,9 @@ const TimelineCard = ({time}) => {
     return (
       <>
         <CCol xs={12} sm={6} lg={3} onClick={() => setVisible(!visible)}>
-          <CWidgetStatsB style={{cursor:"pointer"}}
+          <CWidgetStatsB style={{cursor:"pointer",backgroundColor:
+                          colorList[(i++)%3]}}
                         className="mb-4"
-                        color= {
-                          colorList[(i++)%4]}
                         inverse
                         value={time.name}
                         title={`Created by @${time.author}`}

@@ -90,10 +90,10 @@ const AppHeader = () => {
           <CFormLabel htmlFor="bookmarkUrlInput">Enter URL Here</CFormLabel>
         </CFormFloating>
         <CModalFooter>
-          <CButton color="secondary" onClick={() => setVisible(false)}>
+          <CButton color='secondary' onClick={() => setVisible(false)}>
             Close
           </CButton>
-          {posting?(<CSpinner/>):(<CButton onClick={addBookmark} color="primary">{'Save Bookmark'}</CButton>)}
+          {posting?(<CSpinner className='spinner'/>):(<CButton className='greenbtn' onClick={addBookmark} >{'Save Bookmark'}</CButton>)}
         </CModalFooter>
       </CModal>
     </>
@@ -126,14 +126,14 @@ const AddTimelineButton = () => {
           <CButton color="secondary" onClick={() => setVisible(false)}>
             Close
           </CButton>
-          {posting?(<CSpinner/>):(<CButton onClick={addTimeline} color="primary">{'Save Timeline'}</CButton>)}
+          {posting?(<CSpinner className='spinner'/>):(<CButton className = 'greenbtn' onClick={addTimeline} color="primary">{'Save Timeline'}</CButton>)}
         </CModalFooter>
       </CModal>
     </>
   )
 }
   return (
-    <CHeader position="sticky" className="mb-4" style={{backgroundColor:"#99ccc0"}}>
+    <CHeader position="sticky" className="mb-4" style={{backgroundColor:'#ffffff'}} >
       <CContainer fluid >
 
         <CHeaderToggler
@@ -158,21 +158,21 @@ const AddTimelineButton = () => {
         {AddBookmarkButton()}
         {AddTimelineButton()}
         <CForm className="d-flex">
-            <CFormInput style={{marginTop: "8px", height: "38px", border:"1px solid"}} id="searchKey"type="search" className="me-2" placeholder="Search" 
+            <CFormInput style={{marginTop: "8px", height: "38px", border:"2px solid #4f5d73"}} id="searchKey"type="search" className="me-2" placeholder="Search" 
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)} />
             <CNavLink to="/search" component={NavLink} activeClassName="active">
-            <CButton type="submit" color="success" variant="outline">
+            <CButton className='searchbtn' type="submit" color='success' variant="outline">
               Search
             </CButton>
             </CNavLink>
           </CForm>
-        <CHeaderNav className="ms-3">
+        <CHeaderNav className="ms-3" >
           <AppHeaderDropdown />
         </CHeaderNav>
       </CContainer>
       <CHeaderDivider />
-      <CContainer fluid>
+      <CContainer >
         <AppBreadcrumb />
       </CContainer>
     </CHeader>

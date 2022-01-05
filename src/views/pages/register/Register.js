@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -11,6 +12,7 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
+  CNavLink,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
@@ -94,6 +96,11 @@ const Register = () => {
                   </CInputGroup>
                   <div className="d-grid">
                     <CButton onClick={createAccount} className="greenbtn">Create Account</CButton>
+                    <CNavLink to="/login" component={NavLink} activeClassName="active">
+                    <CButton color="link" className="px-0">
+                          Already have an account? 
+                    </CButton>
+                    </CNavLink>
                   </div>
                 </CForm>
               </CCardBody>

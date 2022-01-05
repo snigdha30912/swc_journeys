@@ -8,6 +8,7 @@ const Timelines = React.lazy(() => import('./views/timelines/Timelines'))
 const Favorites = React.lazy(() => import('./views/favorites/Favorites'))
 const Explore = React.lazy(() => import('./views/explore/Explore'))
 const SearchBookmarks = React.lazy(() => import('./views/bookmarks/SearchBookmarks'))
+
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
 const Breadcrumbs = React.lazy(() => import('./views/base/breadcrumbs/Breadcrumbs'))

@@ -45,7 +45,7 @@ import {
 
 
 const colorList = ['#65C3A1','#4BAA87','#32906E']
-var i = 0;
+var j = 0;
 const TimelineCard = ({time}) => {
   const [page, setPage] = useState(1)
   const [count, setCount] = useState(2)
@@ -76,7 +76,7 @@ const TimelineCard = ({time}) => {
       <>
         <CCol xs={12} sm={6} lg={3} onClick={() => setVisible(!visible)}>
           <CWidgetStatsB style={{cursor:"pointer",backgroundColor:
-                          colorList[(i++)%3]}}
+                          colorList[(j++)%3]}}
                         className="mb-4"
                         inverse
                         value={time.name}
@@ -85,7 +85,7 @@ const TimelineCard = ({time}) => {
                         text={time.bookmarks.length==1?`Contains ${time.bookmarks.length} bookmark`:`Contains ${time.bookmarks.length} bookmarks`}
                       />
         <CModal size="xl" alignment="center" visible={visible} onClose={() => setVisible(false)} style={{color:"white"}}>
-          <CModalHeader style={{backgroundColor:colorList[(i-1)%3], color:"white"}}>
+          <CModalHeader style={{backgroundColor:colorList[(j-1)%3], color:"white"}}>
             <CModalTitle style={{color:"white"}}>{time.name}</CModalTitle>
           </CModalHeader>
           <CModalBody>

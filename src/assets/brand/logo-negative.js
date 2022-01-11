@@ -1,7 +1,7 @@
 export const logoNegative = [
   '608 134',
   `
-  <title>coreui react pro logo</title>
+  <title>journeys logo</title>
   <?xml version="1.0" standalone="no"?>
   <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
@@ -81,10 +81,5 @@ export const logoNegative = [
   -37 70 -7 0 -13 -4 -13 -10z"/>
   </g>
   </svg>
-  
-
-  
-
-
 `,
 ]

@@ -21,6 +21,7 @@ import axios from "axios";
 import { GoogleLogin } from 'react-google-login';
 import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom';
+import {withRouter} from 'react-router'
 
 const clientId = '398500418397-csmd0de4p1l7b6smiclfbhafubv96vpi.apps.googleusercontent.com';
 
@@ -140,4 +141,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default withRouter(Login)

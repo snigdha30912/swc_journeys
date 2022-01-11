@@ -22,8 +22,7 @@ import { GoogleLogin } from 'react-google-login';
 import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom';
 
-
-const clientId ='398500418397-csmd0de4p1l7b6smiclfbhafubv96vpi.apps.googleusercontent.com';
+const clientId = '398500418397-csmd0de4p1l7b6smiclfbhafubv96vpi.apps.googleusercontent.com';
 
 const Login = () => {
   const history = useHistory();
@@ -42,13 +41,14 @@ const Login = () => {
     history.push('/');
   }
   const loginURL = "http://127.0.0.1:8000/auth/login/"
+
   const loginWithEmail = async () => {
     var data = {
-      email:document.getElementById('emailInput').value,
-      password:document.getElementById('passwordInput').value
+      email: document.getElementById('emailInput').value,
+      password: document.getElementById('passwordInput').value
     }
-    if(data.email!=="" && data.password!==""){
-      axios.post(loginURL,data).then(res => {
+    if (data.email !== "" && data.password !== "") {
+      axios.post(loginURL, data).then(res => {
         Cookies.set("access", res.data.tokens.access);
         Cookies.set("refresh", res.data.tokens.refresh);
         Cookies.set("username", res.data.username);
@@ -60,11 +60,10 @@ const Login = () => {
         } else {
           alert("Something went wrong")
         }
-
-    });
-
+      });
     }
   }
+
   const onFailure = (res) => {
     console.log('Login failed: res:', res);
     alert(
@@ -105,19 +104,19 @@ const Login = () => {
                           Login
                         </CButton>
                       </CCol>
-                      
+
                       <CCol xs={6} className="text-right">
-                      <CNavLink to="/register" component={NavLink} activeClassName="active">
-                        <CButton color="link" className="px-0">
-                          Create an account
-                        </CButton>
-                      </CNavLink>
+                        <CNavLink to="/register" component={NavLink} activeClassName="active">
+                          <CButton color="link" className="px-0">
+                            Create an account
+                          </CButton>
+                        </CNavLink>
                       </CCol>
                     </CRow>
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white py-5" style={{ backgroundColor:'#005b54', width: '44%' }}>
+              <CCard className="text-white py-5" style={{ backgroundColor: '#005b54' }}>
                 <CCardBody className="text-center">
                   <div>
                     <h2>Login with Google</h2>
@@ -130,11 +129,6 @@ const Login = () => {
                       cookiePolicy={'single_host_origin'}
                       isSignedIn={true}
                     />
-                    {/* <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>
-                        Register Now!
-                      </CButton>
-                    </Link> */}
                   </div>
                 </CCardBody>
               </CCard>

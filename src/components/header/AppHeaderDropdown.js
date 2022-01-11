@@ -3,10 +3,8 @@ import React from 'react'
 import Cookies from 'js-cookie'
 import { GoogleLogout } from 'react-google-login'
 import { useHistory } from 'react-router'
-
 import {
   CAvatar,
-  CBadge,
   CDropdown,
   CDropdownDivider,
   CDropdownHeader,
@@ -15,36 +13,26 @@ import {
   CDropdownToggle,
 } from '@coreui/react'
 import {
-  cilBell,
-  cilCreditCard,
-  cilCommentSquare,
-  cilEnvelopeOpen,
-  cilFile,
   cilArrowCircleRight,
-  cilSettings,
-  cilTask,
   cilUser,
-  cilMail,
   cilPregnant
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
-
 import avatar8 from './../../assets/images/avatars/8.jpg'
 
 const clientId = '398500418397-csmd0de4p1l7b6smiclfbhafubv96vpi.apps.googleusercontent.com'
 
 const AppHeaderDropdown = () => {
-
   const history = useHistory();
   let username = Cookies.get("username");
   let email = Cookies.get("email");
 
   const onSuccess = () => {
     console.log('Logout made successfully');
-    Cookies.set("access",undefined);
-    Cookies.set("refresh",undefined);
-    Cookies.set("username",undefined);
-    Cookies.set("email",undefined);
+    Cookies.set("access", undefined);
+    Cookies.set("refresh", undefined);
+    Cookies.set("username", undefined);
+    Cookies.set("email", undefined);
     history.push('/login');
   };
 
@@ -54,8 +42,6 @@ const AppHeaderDropdown = () => {
         <CAvatar src={avatar8} size="md" />
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
-       
-        
         <CDropdownHeader className="bg-light fw-semibold py-2">Settings</CDropdownHeader>
         <CDropdownItem>
           <CIcon icon={cilUser} className="me-2" />
@@ -65,7 +51,6 @@ const AppHeaderDropdown = () => {
           <CIcon icon={cilPregnant} className="me-2" />
           {email}
         </CDropdownItem>
-        
         <CDropdownDivider />
         <GoogleLogout
           clientId={clientId}

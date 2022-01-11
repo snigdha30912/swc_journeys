@@ -97,7 +97,7 @@ export const getRequest = async (accessToken, refreshToken, url) => {
                     });
                 }
                 if (error.response.status === 401) {
-                    alert("Session Expired, Please login again")
+                    // alert("Session Expired, Please login again")
                     refresh(refreshToken).then(accessToken => {
                         getRequest(accessToken, refreshToken, url);
                     });

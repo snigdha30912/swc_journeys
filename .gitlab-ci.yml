@@ -18,7 +18,7 @@ stages:
 #       - build
 #       - frontend/node_modules/
 
-# recat-test:
+# react-test:
 #   stage: test
 #   image: node
 #   script:

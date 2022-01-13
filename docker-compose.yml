@@ -2,7 +2,6 @@ version: "3.2"
 services:
   backend:
     build: ./backend
-    image: registry.gitlab.com/shirin.jain30/backend:latest
     volumes:
       - ./backend:/app/backend
     ports:
@@ -12,7 +11,6 @@ services:
     command: python3 manage.py runserver 0.0.0.0:8000
   frontend:
     build: ./frontend
-    image: registry.gitlab.com/shirin.jain30/frontend:latest
     volumes:
       - ./frontend:/app
       # One-way volume to use node_modules from inside image

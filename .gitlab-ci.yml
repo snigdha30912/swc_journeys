@@ -1,0 +1,27 @@
+stages:
+  - build
+  - test
+
+react-build:
+  stage: build
+  image: node
+  script: 
+    - echo "Start building App"
+    - cd frontend
+    - npm install
+    - npm build
+    - echo "Build successfully"
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - build
+      - frontend/node_modules/
+
+recat-test:
+  stage: test
+  image: node
+  script:
+    - echo "Testing App"
+    - cd frontend
+    - npm test
+    - echo "Test successfully!"

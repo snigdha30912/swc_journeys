@@ -1,27 +1,40 @@
 stages:
-  - build
-  - test
+  # - build
+  # - test
+  - docker-build
 
-react-build:
-  stage: build
-  image: node
-  script: 
-    - echo "Start building App"
-    - cd frontend
-    - npm install
-    - npm build
-    - echo "Build successfully"
-  artifacts:
-    expire_in: 1 hour
-    paths:
-      - build
-      - frontend/node_modules/
+# react-build:
+#   stage: build
+#   image: node
+#   script: 
+#     - echo "Start building App"
+#     - cd frontend
+#     - npm install
+#     - npm build
+#     - echo "Build successfully"
+#   artifacts:
+#     expire_in: 1 hour
+#     paths:
+#       - build
+#       - frontend/node_modules/
 
-recat-test:
-  stage: test
-  image: node
+# recat-test:
+#   stage: test
+#   image: node
+#   script:
+#     - echo "Testing App"
+#     - cd frontend
+#     - npm test
+#     - echo "Test successfully!"
+  
+
+docker-build:
+  stage: docker-build
+  image: docker:latest
+  services: 
+    - name: docker:19.03.8-dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - echo "Testing App"
-    - cd frontend
-    - npm test
-    - echo "Test successfully!"
+    - docker-compose build
+    - docker-compose push

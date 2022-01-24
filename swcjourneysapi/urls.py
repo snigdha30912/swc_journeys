@@ -35,18 +35,18 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('auth/', include('authentication.urls')),
-    path('social_auth/', include(('social_auth.urls', 'social_auth'),
+    path('swc_journeys/admin/', admin.site.urls),
+    path('swc_journeys/auth/', include('authentication.urls')),
+    path('swc_journeys/social_auth/', include(('social_auth.urls', 'social_auth'),
                                  namespace="social_auth")),
-    path('', schema_view.with_ui('swagger',
+    path('swc_journeys/', schema_view.with_ui('swagger',
                                  cache_timeout=0), name='schema-swagger-ui'),
 
-    path('api/api.json/', schema_view.without_ui(cache_timeout=0),
+    path('swc_journeys/api/api.json/', schema_view.without_ui(cache_timeout=0),
          name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc',
+    path('swc_journeys/redoc/', schema_view.with_ui('redoc',
                                        cache_timeout=0), name='schema-redoc'),
-    path('bookmarksection/', include('bookmarksection.urls')),
-    path('timelines/', include('timelines.urls')),
-    path('communities/', include('communities.urls')),
+    path('swc_journeys/bookmarksection/', include('bookmarksection.urls')),
+    path('swc_journeys/timelines/', include('timelines.urls')),
+    path('swc_journeys/communities/', include('communities.urls')),
 ]

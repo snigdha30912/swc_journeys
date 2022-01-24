@@ -3,6 +3,8 @@ from django.contrib.auth import get_user
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, Http404
 import requests
+from rest_framework import response
+from rest_framework.serializers import Serializer
 from .Scraper import scraper
 from rest_framework import status
 from .models import *
@@ -15,6 +17,7 @@ from rest_framework import permissions
 from .permissions import IsOwner
 from rest_framework import filters
 import json
+from django.forms.models import model_to_dict
 
 class BookmarkListDetailFilter(ListAPIView):
     queryset = Bookmark.objects.all()
@@ -56,7 +59,9 @@ class BookmarkAPIView(ListCreateAPIView):
 
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user)
+       
     
+        
 
 
 class BookmarkDetail(RetrieveUpdateDestroyAPIView):
@@ -101,6 +106,7 @@ class DiscoverBookmarkApiView(ListCreateAPIView):
                         break
                     j=j+1
                     tags += [str(tag)]
+                    print(tags)
         
         url = ('http://newsapi.org/v2/everything?'
             'q='+ " OR ".join(tags) +'&'

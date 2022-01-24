@@ -27,7 +27,7 @@ class TimelineAPIView(ListCreateAPIView):
         return self.queryset.filter(user=self.request.user)
 
 
-class TimelineBookmarks(ListCreateAPIView):
+class TimelineBookmarks(ListAPIView):
     serializer_class = BookmarkSerializer
     permission_classes = (permissions.IsAuthenticated,)
     lookup_field = "pk"

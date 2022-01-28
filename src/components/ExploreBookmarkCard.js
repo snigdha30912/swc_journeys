@@ -18,7 +18,7 @@ import {
   CSpinner,
 } from '@coreui/react'
 
-const bookmarkApiURL = "http://127.0.0.1:8000/bookmarksection/bookmarkApi/";
+const bookmarkApiURL = "http://127.0.0.1:8000/swc_journeys/bookmarksection/bookmarkApi/";
 
 const ExploreBookmarkCard = ({ book }) => {
   const [isBookmark, setIsBookmark] = useState(book.favorite)
@@ -37,7 +37,7 @@ const ExploreBookmarkCard = ({ book }) => {
   }
 
   const removeFromBookmarks = () => {
-    del('http://127.0.0.1:8000/bookmarksection/bookmarkApi/' + book.id + '/').then(() => {
+    del('http://127.0.0.1:8000/swc_journeys/bookmarksection/bookmarkApi/' + book.id + '/').then(() => {
       console.log("deleted 🤔")
       window.location.reload()
       setIsBookmark(false);

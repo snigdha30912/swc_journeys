@@ -20,7 +20,7 @@ import { useHistory } from 'react-router-dom';
 import axios from "axios";
 
 const Register = () => {
-  const registerURL = "http://127.0.0.1:8000/auth/register/"
+  const registerURL = "http://127.0.0.1:8000/swc_journeys/auth/register/"
   const history = useHistory();
   const createAccount = () => {
     var username = document.getElementById('usernameInput').value

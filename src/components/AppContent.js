@@ -13,8 +13,8 @@ const AppContent = () => {
     console.log("app.js is running")
     if (accessToken=='undefined' || !accessToken) {
       console.log('hi');
-      if (window.location.href !="http://localhost:3000/#/login") {
-        window.location.replace("http://localhost:3000/#/login");
+      if (window.location.href !="http://localhost:3000/journeys/login") {
+        window.location.replace("http://localhost:3000/journeys/login");
         // window.location.reload();
       }
 

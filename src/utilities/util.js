@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const refresh = refreshToken => {
     return new Promise((resolve, reject) => {
         axios
-            .post("http://localhost:8000/auth/token/refresh/", { refresh: refreshToken })
+            .post("http://localhost:8000/swc_journeys/auth/token/refresh/", { refresh: refreshToken })
             .then(res => {
                 const accessToken = res.data.access;
                 Cookies.set("access", accessToken);

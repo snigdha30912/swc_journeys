@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import 'react-app-polyfill/stable'
 import 'core-js'
 import React from 'react'

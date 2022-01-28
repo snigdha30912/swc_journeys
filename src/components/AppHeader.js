@@ -33,8 +33,8 @@ import { AppHeaderDropdown } from './header/index'
 import { logo } from 'src/assets/brand/logo'
 import { logoNegative } from 'src/assets/brand/logo-negative';
 
-const bookmarkApiURL = "http://127.0.0.1:8000/bookmarksection/bookmarkApi/";
-const timelineApiURL = 'http://127.0.0.1:8000/timelines/timelines/'
+const bookmarkApiURL = "http://127.0.0.1:8000/swc_journeys/bookmarksection/bookmarkApi/";
+const timelineApiURL = 'http://127.0.0.1:8000/swc_journeys/timelines/timelines/'
 const AppHeader = () => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)

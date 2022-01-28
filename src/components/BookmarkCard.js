@@ -33,7 +33,7 @@ import {
   CSpinner,
 } from '@coreui/react'
 
-const timelineApiURL = 'http://127.0.0.1:8000/timelines/timelines/'
+const timelineApiURL = 'http://127.0.0.1:8000/swc_journeys/timelines/timelines/'
 
 const BookmarkCard = ({ book }) => {
   const [isFavorite, setIsFavorite] = useState(book.favorite)
@@ -48,7 +48,7 @@ const BookmarkCard = ({ book }) => {
 
   const addToFavorites = () => {
     book.favorite = true;
-    put('http://127.0.0.1:8000/bookmarksection/bookmarkApi/' + book.id + '/', book).then(() => {
+    put('http://127.0.0.1:8000/swc_journeys/bookmarksection/bookmarkApi/' + book.id + '/', book).then(() => {
       console.log("added to favorites")
       setIsFavorite(true);
     })
@@ -56,14 +56,14 @@ const BookmarkCard = ({ book }) => {
 
   const removeFromFavorites = () => {
     book.favorite = false;
-    put('http://127.0.0.1:8000/bookmarksection/bookmarkApi/' + book.id + '/', book).then(() => {
+    put('http://127.0.0.1:8000/swc_journeys/bookmarksection/bookmarkApi/' + book.id + '/', book).then(() => {
       console.log("removed from favorites")
       setIsFavorite(false);
     })
   }
 
   const handleDelete = () => {
-    del('http://127.0.0.1:8000/bookmarksection/bookmarkApi/' + book.id + '/').then(() => {
+    del('http://127.0.0.1:8000/swc_journeys/bookmarksection/bookmarkApi/' + book.id + '/').then(() => {
       console.log("deleted 🤔")
       window.location.reload()
     })
@@ -130,7 +130,7 @@ const BookmarkCard = ({ book }) => {
     }
     else {
       const data = { bookmarks: [book.id] };
-      put('http://127.0.0.1:8000/timelines/timelines/' + timeline_id + '/', data).then(() => {
+      put('http://127.0.0.1:8000/swc_journeys/timelines/timelines/' + timeline_id + '/', data).then(() => {
         console.log("added to existing timeline");
         setPosting(false)
         setExistingVisible(false)

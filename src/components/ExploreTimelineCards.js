@@ -36,7 +36,7 @@ var j = 0;
 const TimelineCard = ({ time }) => {
   const [page, setPage] = useState(1)
   const [count, setCount] = useState(2)
-  const apiURL = 'http://localhost:8000/timelines/timelines/bookmarks/' + time.id.toString() + '/?page=' + page.toString();
+  const apiURL = 'http://localhost:8000/swc_journeys/timelines/timelines/bookmarks/' + time.id.toString() + '/?page=' + page.toString();
   const [visible, setVisible] = useState(false)
   const [bookmarks, setBookmarks] = useState(null)
 

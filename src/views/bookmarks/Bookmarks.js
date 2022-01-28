@@ -12,7 +12,7 @@ import BookmarkCard from '../../components/BookmarkCard'
 const Bookmarks = () => {
   const [page, setPage] = useState(1)
   const [count, setCount] = useState(2)
-  const apiURL = "http://127.0.0.1:8000/bookmarksection/bookmarkApi/?page=" + page.toString();
+  const apiURL = "http://127.0.0.1:8000/swc_journeys/bookmarksection/bookmarkApi/?page=" + page.toString();
   const [bookmarks, setBookmarks] = useState(null);
 
   useEffect(() => {

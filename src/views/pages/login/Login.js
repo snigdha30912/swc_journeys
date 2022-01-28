@@ -29,7 +29,7 @@ const Login = () => {
   const history = useHistory();
   const onSuccess = async (res) => {
     let res1 = await axios.post(
-      "http://localhost:8000/social_auth/google/",
+      "http://localhost:8000/swc_journeys/social_auth/google/",
       {
         auth_token: res.tokenId
       }
@@ -41,7 +41,7 @@ const Login = () => {
     Cookies.set("email", res1.data.email);
     history.push('/');
   }
-  const loginURL = "http://127.0.0.1:8000/auth/login/"
+  const loginURL = "http://127.0.0.1:8000/swc_journeys/auth/login/"
 
   const loginWithEmail = async () => {
     var data = {

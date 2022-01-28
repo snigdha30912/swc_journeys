@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect } from 'react'
-import { HashRouter, Route, Switch } from 'react-router-dom'
-import { createHashHistory } from 'history'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
 import './scss/style.scss'
 import './scss/_custom.scss'
 import Cookies from "js-cookie";
@@ -24,24 +24,13 @@ const App = () => {
   // console.log(accessToken==='undefined')
   // console.log(accessToken);
   // console.log(window.location.search)
-  const history = createHashHistory()
+  const history = createBrowserHistory()
   console.log(accessToken);
 
-  useEffect(() => {
-    console.log("app.js is running")
-    if (accessToken=='undefined' || !accessToken) {
-      console.log('hi');
-      if (window.location.href !="http://localhost:3000/#/login") {
-        window.location.replace("http://localhost:3000/#/login");
-        // window.location.reload();
-      }
-
-    }
-
-  }, [accessToken]);
+ 
 
   return (
-    <HashRouter>
+    <BrowserRouter basename="/journeys">
       <React.Suspense fallback={loading}>
         <Switch>
           <Route exact path="/login" name="Login Page" render={(props) => <Login {...props} />} />
@@ -54,7 +43,7 @@ const App = () => {
           <Route path="/" name="Home" render={(props) => <DefaultLayout {...props} />} />
         </Switch>
       </React.Suspense>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
 

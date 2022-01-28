@@ -117,7 +117,7 @@ const Login = () => {
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white py-5" style={{ backgroundColor: '#005b54', width: '44%' }}>
+              <CCard className="text-white py-5" style={{ backgroundColor: '#005b54' }}>
                 <CCardBody className="text-center">
                   <div>
                     <h2>Login with Google</h2>

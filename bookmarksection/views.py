@@ -25,6 +25,9 @@ class BookmarkListDetailFilter(ListAPIView):
     filter_backends = [filters.SearchFilter]
     search_fields = ['title_name','tags']
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Bookmark.objects.none()
         return self.queryset.filter(user = self.request.user)
 
 class FavoriteApiView(ListAPIView):
@@ -32,6 +35,9 @@ class FavoriteApiView(ListAPIView):
     serializer_class = BookmarkSerializer
     
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Bookmark.objects.none()
         return self.queryset.filter(user = self.request.user, favorite=True)
         
 
@@ -58,6 +64,9 @@ class BookmarkAPIView(ListCreateAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Bookmark.objects.none()
         return self.queryset.filter(user=self.request.user)
        
     
@@ -71,9 +80,15 @@ class BookmarkDetail(RetrieveUpdateDestroyAPIView):
     lookup_field = "pk"
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Bookmark.objects.none()
         return self.queryset.filter(user=self.request.user)
     
     def get(self, request, pk, *args, **kwargs):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Bookmark.objects.none()
         bookmark = Bookmark.objects.get(pk = pk)
         # print(bookmark.tags.names())
         bookmark_data = BookmarkSerializer(bookmark).data
@@ -90,6 +105,9 @@ class DiscoverBookmarkApiView(ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticated, IsOwner,)
     lookup_field = "id"
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Bookmark.objects.none()
         recent_bookmarks = []
         all_bookmarks = self.queryset.filter(user = self.request.user)
         if len(all_bookmarks)>20 :

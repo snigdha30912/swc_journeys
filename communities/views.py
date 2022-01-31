@@ -13,6 +13,9 @@ class CommunityAPIView(ListCreateAPIView):
         return serializer.save()
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Community.objects.none()
         return self.queryset.filter()
 
 
@@ -23,6 +26,8 @@ class CommunityDetail(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+            return Community.objects.none()
         return self.queryset.filter()
 
 

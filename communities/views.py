@@ -38,6 +38,9 @@ class PostDetail(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Post.objects.none()
         return self.queryset.filter(user=self.request.user)
 
 
@@ -48,6 +51,9 @@ class CommentDetail(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Comment.objects.none()
         return self.queryset.filter(user=self.request.user)
 
 
@@ -60,5 +66,8 @@ class AllCommunities(ListCreateAPIView):
         return serializer.save()
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Community.objects.none()
         return self.queryset.filter()
  

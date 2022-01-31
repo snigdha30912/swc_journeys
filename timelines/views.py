@@ -13,6 +13,9 @@ class ExploreTimelineView(ListAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Timeline.objects.none()
         return self.queryset
 
 class TimelineAPIView(ListCreateAPIView):
@@ -24,6 +27,9 @@ class TimelineAPIView(ListCreateAPIView):
         return serializer.save(user=self.request.user)
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Timeline.objects.none()
         return self.queryset.filter(user=self.request.user)
 
 
@@ -33,6 +39,9 @@ class TimelineBookmarks(ListAPIView):
     lookup_field = "pk"
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Timeline.objects.none()
         timeline = Timeline.objects.get(pk=self.kwargs['pk'])
         # queryset = []
 
@@ -53,11 +62,17 @@ class TimelineDetail(RetrieveUpdateDestroyAPIView):
         # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
     def get(self, request, pk, *args, **kwargs):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Timeline.objects.none()
         timeline = Timeline.objects.get(pk = pk)
         timeline_data = TimelineSerializer(timeline).data
         return Response(timeline_data)
     
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+        # queryset just for schema generation metadata
+            return Timeline.objects.none()
         return self.queryset.filter(user=self.request.user)
     
     def perform_update(self, *args, **kwargs):

@@ -4,10 +4,11 @@ import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const baseURL = "https://swc.iitg.ac.in/swc_journeys/";
 const refresh = refreshToken => {
     return new Promise((resolve, reject) => {
         axios
-            .post("http://localhost:8000/swc_journeys/auth/token/refresh/", { refresh: refreshToken })
+            .post(baseURL + "auth/token/refresh/", { refresh: refreshToken })
             .then(res => {
                 const accessToken = res.data.access;
                 Cookies.set("access", accessToken);
@@ -70,7 +71,7 @@ export const post = async (url, data) => {
         // Set message saying login again.
         toast.error("Firse login kar😾");
     } else {
-        await postRequest(accessToken, refreshToken, url, data);
+        await postRequest(accessToken, refreshToken,baseURL + url, data);
     }
 };
 
@@ -116,7 +117,7 @@ export const get = async (url) => {
         // Set message saying login again.
         toast.error("Firse login kar😾");
     } else {
-        const data = await getRequest(accessToken, refreshToken, url);
+        const data = await getRequest(accessToken, refreshToken, baseURL + url);
         return data;
     }
 };
@@ -159,7 +160,7 @@ export const put = async (url, data) => {
         // Set message saying login again.
         toast.error("Firse login kar😾");
     } else {
-        await putRequest(accessToken, refreshToken, url, data);
+        await putRequest(accessToken, refreshToken, baseURL + url, data);
     }
 };
 
@@ -203,6 +204,6 @@ export const del = async (url, data) => {
         // Set message saying login again.
         toast.error("Firse login kar😾");
     } else {
-        await deleteRequest(accessToken, refreshToken, url, data);
+        await deleteRequest(accessToken, refreshToken, baseURL + url, data);
     }
 };

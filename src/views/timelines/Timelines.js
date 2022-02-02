@@ -12,7 +12,7 @@ import TimelineCard from 'src/components/TimelineCard'
 const Timelines = () => {
   const [page, setPage] = useState(1)
   const [count, setCount] = useState(2)
-  const apiURL = "http://127.0.0.1:8000/swc_journeys/timelines/timelines/?page=" + page.toString();
+  const apiURL = "timelines/timelines/?page=" + page.toString();
   const [timelines, setTimelines] = useState(null);
 
   useEffect(() => {

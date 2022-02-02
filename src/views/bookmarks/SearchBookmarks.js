@@ -8,7 +8,7 @@ import BookmarkCard from '../../components/BookmarkCard'
 
 const Bookmarks = () => {
   console.log(document.getElementById("searchKey").value)
-  const apiURL = "http://127.0.0.1:8000/swc_journeys/bookmarksection/bookmarkApi/search/?search=" + document.getElementById("searchKey").value;
+  const apiURL = "bookmarksection/bookmarkApi/search/?search=" + document.getElementById("searchKey").value;
   const [bookmarks, setBookmarks] = useState(null);
 
   useEffect(() => {

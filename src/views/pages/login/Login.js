@@ -28,8 +28,9 @@ const clientId = '398500418397-csmd0de4p1l7b6smiclfbhafubv96vpi.apps.googleuserc
 const Login = () => {
   const history = useHistory();
   const onSuccess = async (res) => {
+    console.log(res);
     let res1 = await axios.post(
-      "http://localhost:8000/swc_journeys/social_auth/google/",
+      "https://swc.iitg.ac.in/swc_journeys/social_auth/google/",
       {
         auth_token: res.tokenId
       }
@@ -41,7 +42,7 @@ const Login = () => {
     Cookies.set("email", res1.data.email);
     history.push('/');
   }
-  const loginURL = "http://127.0.0.1:8000/swc_journeys/auth/login/"
+  const loginURL = "https://swc.iitg.ac.in/swc_journeys/auth/login/"
 
   const loginWithEmail = async () => {
     var data = {

@@ -1,39 +1,32 @@
-FROM node:12.18.3
+# FROM node:12.18.3
 
 
-WORKDIR /app
-
-COPY ["package.json", "package-lock.json", "./"]
-
-RUN npm install --production
-
-COPY . .
-
-EXPOSE 3000
-
-CMD ["npm", "start"]
-
-# # Set the base image to node:12-alpine
-# FROM node:12-alpine as build
-
-# # Specify where our app will live in the container
 # WORKDIR /app
 
-# # Copy the React App to the container
-# COPY . /app/
+# COPY ["package.json", "package-lock.json", "./"]
 
-# # Prepare the container for building React
-# RUN npm install
-# RUN npm install react-scripts@3.0.1 -g
-# # We want the production version
-# RUN npm run build
+# RUN npm install --production
 
-# # Prepare nginx
-# FROM nginx:1.16.0-alpine
-# COPY --from=build /app/build /usr/share/nginx/html
-# RUN rm /etc/nginx/conf.d/default.conf
-# COPY nginx/nginx.conf /etc/nginx/conf.d
+# COPY . .
 
-# # Fire up nginx
-# EXPOSE 80
-# CMD ["nginx", "-g", "daemon off;"]
+# EXPOSE 3000
+
+# CMD ["npm", "start"]
+
+FROM node:14-alpine AS builder
+ENV NODE_ENV production
+# Add a work directory
+WORKDIR /app
+# Cache and Install dependencies
+COPY package.json .
+COPY package-lock.json ./
+RUN npm ci --silent
+COPY . .
+COPY .env* ./
+RUN npm run build
+
+FROM node:14-alpine AS prod
+WORKDIR /app
+COPY --from=builder /app/build ./build
+RUN npm install -g serve
+RUN mv ./build/static ./build/journeys

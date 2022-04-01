@@ -26,7 +26,7 @@ const App = () => {
   // console.log(window.location.search)
   const history = createBrowserHistory()
   console.log(accessToken);
-
+  alert("Changed");
  
 
   return (

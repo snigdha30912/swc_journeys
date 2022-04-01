@@ -12,12 +12,12 @@ const AppContent = () => {
   useEffect(() => {
     console.log("app.js is running")
     if (accessToken=='undefined' || !accessToken) {
-      console.log('hi');
-      // if (window.location.href !="https://swc.iitg.ac.in/journeys/login") {
-      //   window.location.replace("https://swc.iitg.ac.in/journeys/login");
-      //   // window.location.reload();
-      // }
-      alert("please login again ;_;");
+      // console.log('hi');
+      if (window.location.href !="https://swc.iitg.ac.in/journeys/login") {
+        window.location.replace("https://swc.iitg.ac.in/journeys/login");
+        // window.location.reload();
+      }
+      // alert("please login again ;_;");
     }
 
   }, [accessToken]);

@@ -6,6 +6,6 @@ services:
               image: journeys-frontend
               command : sh -c "ls build/ && serve -s build"
               ports:
-                  - 3011:3000
+                  - 3020:3000
               build:
                   context: .

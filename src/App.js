@@ -5,7 +5,7 @@ import { createBrowserHistory } from 'history'
 import './scss/style.scss'
 import './scss/_custom.scss'
 import Cookies from "js-cookie";
-
+// lol comment
 const loading = (
   <div className="pt-3 text-center">
     <div className="sk-spinner sk-spinner-pulse"></div>

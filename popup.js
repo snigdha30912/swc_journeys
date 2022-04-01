@@ -8,13 +8,13 @@ button.addEventListener('click', () => {
         chrome.tabs.executeScript(tab.id, {
             code: 'window.location.href'
         }, (url_field) => {
-            chrome.cookies.get({ url: 'http://localhost:3000', name: 'access' },
+            chrome.cookies.get({ url: 'https://swc.iitg.ac.in/journeys', name: 'access' },
                 function (cookie) {
                     if (cookie) {
                         console.log(cookie.value);
                         let accessToken = cookie.value;
                         var Http = new XMLHttpRequest();
-                        var apiUrl = "http://127.0.0.1:8000/bookmarksection/bookmarkApi/";
+                        var apiUrl = "https://swc.iitg.ac.in/swc_journeys/bookmarksection/bookmarkApi/";
                         Http.open("POST", apiUrl, true);
                         Http.setRequestHeader('Authorization', 'Bearer ' + accessToken);
                         Http.setRequestHeader('Content-type', 'application/json');

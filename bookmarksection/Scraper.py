@@ -28,14 +28,18 @@ class scraper:
         self.URL = URL
         self.page = requests.get(URL)
         self.soup = BeautifulSoup(self.page.content,'html.parser')
-        self.title = self.soup.find('head').find('title').text
-        self.imgscr = "https://revenuearchitects.com/wp-content/uploads/2017/02/Blog_pic-450x255.png"
+        #print("Page Recieved")
+        try:
+            self.title = self.soup.find('head').find('title').text
+        except:
+            self.title = re.findall('://www.([\w\-\.]+)', URL)
+        self.imgscr = "https://swc.iitg.ac.in/stud/gymkhana/static/Home/swc-logo.svg"
         try:   
             self.imgsrc = self.soup.find('img')['src']
             if(self.imgsrc[0]!='h'):
                 self.imgsrc = self.URL + self.imgsrc
         except:
-            self.imgsrc = "https://revenuearchitects.com/wp-content/uploads/2017/02/Blog_pic-450x255.png"
+            self.imgsrc = "https://swc.iitg.ac.in/stud/gymkhana/static/Home/swc-logo.svg"
         self.description = ""
         for meta in self.soup.find('head').find_all('meta'):
             try:
@@ -49,6 +53,7 @@ class scraper:
             self.description += para.text
         self.description = re.sub(' +', ' ', self.description)
         self.description = self.description.replace("\n", "")
+        print("Trying to tag content")
         self.tags = tag_content(self.description)
         print(self.tags)
         if(len(self.description)>500):

@@ -23,11 +23,11 @@ button.addEventListener('click', () => {
                             //document.getElementById("2").innerHTML = Http.responseText;
                             if (Http.readyState == 4 && Http.status == 201) {
                                 button.innerHTML = "URL SAVED";
-                                alert(Http.responseText);
+                                // alert(Http.responseText);
                             }
                             if (Http.readyState == 4 && Http.status == 400) {
                                 button.innerHTML = "ERROR";
-                                alert(Http.responseText);
+                                // alert(Http.responseText);
                             }
                         }
                         var bookmarkurl = String(url_field);
@@ -36,6 +36,7 @@ button.addEventListener('click', () => {
                         Http.send(data);
                     }
                     else {
+                        window.open("https://swc.iitg.ac.in/journeys/login", width=100, height=100)
                         console.log('Can\'t get cookie! Check the name!');
                     }
                 })

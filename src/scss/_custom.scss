@@ -14,7 +14,11 @@
     border:2px solid
   
 }
-
+.addBookmarkButton{
+    cursor:"pointer";
+    position:"relative";
+    margin-right:"30px";
+}
 .greenbtn{
     background-color: #005b54; /* Green */
     color: white;

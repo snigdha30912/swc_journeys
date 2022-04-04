@@ -3,6 +3,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './scss/style.scss'
 import './scss/_custom.scss'
+import Tour from './components/Tour'
 // lol comment
 const loading = (
   <div className="pt-3 text-center">
@@ -18,8 +19,9 @@ const Login = React.lazy(() => import('./views/pages/login/Login'))
 const Register = React.lazy(() => import('./views/pages/register/Register'))
 
 const App = () => {
-
   return (
+    <div>
+      <Tour/>
     <BrowserRouter basename="/journeys">
       <React.Suspense fallback={loading}>
         <Switch>
@@ -34,6 +36,7 @@ const App = () => {
         </Switch>
       </React.Suspense>
     </BrowserRouter>
+    </div>
   )
 }
 

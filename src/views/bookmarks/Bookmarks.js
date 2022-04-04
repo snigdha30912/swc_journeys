@@ -8,7 +8,7 @@ import {
   CPaginationItem,
 } from '@coreui/react'
 import BookmarkCard from '../../components/BookmarkCard'
-
+import Tour from '../../components/Tour'
 const Bookmarks = () => {
   const [page, setPage] = useState(1)
   const [count, setCount] = useState(2)
@@ -29,6 +29,8 @@ const Bookmarks = () => {
   }
 
   return (<>
+  
+    <Tour/>
     {bookmarks != null ? (<><CRow xs={{ cols: 1, gutter: 4 }} md={{ cols: 4 }}>
       {bookmarks && bookmarks.map((book, index) => (
         <div key={book.id} style={{ marginTop: '35px' }}>
@@ -36,7 +38,7 @@ const Bookmarks = () => {
         </div>
       ))}
     </CRow>
-      <CPagination aria-label="Page navigation example" style={{ marginTop: '20px' }}>
+      <CPagination className='abc' aria-label="Page navigation example" style={{ marginTop: '20px' }}>
         <div >
           {page <= 1 ? (<CPaginationItem aria-label="Previous" disabled>
             <span aria-hidden="true" >&laquo;</span>

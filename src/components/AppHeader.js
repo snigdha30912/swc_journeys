@@ -68,7 +68,7 @@ const AppHeader = () => {
   const [visible, setVisible] = useState(false)
   return (
     <>
-      <div onClick={() => setVisible(!visible)} style={{ cursor:"pointer", position:"relative", marginRight:"30px",}}>
+      <div id="firstBtn" onClick={() => setVisible(!visible)} style={{ cursor:"pointer", position:"relative", marginRight:"30px",}}>
         <CIcon icon={cilBookmark} size="xxl" />
         <CIcon style={{position:"absolute", color:"#005b54",top:"-13px", left:"20px", marginBottom:"30px"}} icon={cilPlus} size="lg" />
       </div>
@@ -101,7 +101,7 @@ const AddTimelineButton = () => {
   const [visible, setVisible] = useState(false)
   return (
     <>
-      <div onClick={() => setVisible(!visible)} style={{ cursor:"pointer", position:"relative", marginRight:"30px",}}>
+      <div id="secondBtn" onClick={() => setVisible(!visible)} style={{ cursor:"pointer", position:"relative", marginRight:"30px",}}>
         <CIcon icon={cilFork} size="xxl" />
         <CIcon style={{position:"absolute", color:"#005b54",top:"-13px", left:"20px", marginBottom:"30px"}} icon={cilPlus} size="lg" />
       </div>
@@ -156,7 +156,7 @@ const AddTimelineButton = () => {
         {AddBookmarkButton()}
         {AddTimelineButton()}
         <CForm className="d-flex">
-            <CFormInput style={{marginTop: "8px", height: "38px", border:"2px solid #4f5d73"}} id="searchKey"type="search" className="me-2" placeholder="Search" 
+            <CFormInput style={{marginTop: "8px", height: "38px", border:"2px solid #4f5d73"}} id="searchKey"type="search" className="me-2" placeholder="Search Bookmarks" 
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)} />
             <CNavLink to="/search" component={NavLink} activeClassName="active">

@@ -3,6 +3,7 @@ import React, { Suspense, useEffect } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { CContainer, CSpinner } from '@coreui/react'
 import Cookies from "js-cookie";
+import Tour from './Tour'
 import { useHistory } from 'react-router'
 // routes config
 import routes from '../routes'

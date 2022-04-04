@@ -49,7 +49,7 @@ const ExploreBookmarkCard = ({ book }) => {
       <CCard>
 
         <div className='container' style={{ position: 'relative' }}></div>
-        <CCardImage orientation="top" src={book.image_field} style={{ width: '300px', height: '200px', display: 'block' }} />
+        <CCardImage orientation="top" src={book.image_field} style={{ height: '200px', display: 'block' }} />
         {posting ? (<CSpinner size='sm' style={{ position: 'absolute', bottom: 10, right: 10, color: '#005b54' }} />) : (isBookmark ? (
           <CIcon onClick={removeFromBookmarks} icon={cilBookmark} size="lg" style={{ position: 'absolute', bottom: 10, right: 10, color: '#f9b115', cursor: 'pointer', }} />
         ) : (<CIcon onClick={addToBookmarks} icon={cilBookmark} size="lg" style={{ position: 'absolute', bottom: 10, right: 10, color: '#005b54', cursor: 'pointer' }} />

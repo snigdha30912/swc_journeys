@@ -182,7 +182,7 @@ const BookmarkCard = ({ book }) => {
             <CDropdownItem onClick={handleDelete}>Delete Bookmark</CDropdownItem>
           </CDropdownMenu>
         </CDropdown>
-        <CCardImage orientation="top" src={book.image_field} style={{ width: '300px', height: '200px', display: 'block' }} />
+        <CCardImage orientation="top" src={book.image_field} style={{ height: '200px', display: 'block' }} />
         {isFavorite ? (<CIcon onClick={removeFromFavorites} icon={cilStar} size="lg" style={{ position: 'absolute', bottom: 10, right: 10, color: '#f9b115', cursor: 'pointer', }} />
         ) : (<CIcon onClick={addToFavorites} icon={cilStar} size="lg" style={{ position: 'absolute', bottom: 10, right: 10, color: '#005b54', cursor: 'pointer' }} />
         )}

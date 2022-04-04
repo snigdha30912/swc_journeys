@@ -15,7 +15,7 @@ import {
 import {
   cilArrowCircleRight,
   cilUser,
-  cilPregnant
+  cilAddressBook,
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import avatar8 from './../../assets/images/avatars/8.jpg'
@@ -42,13 +42,13 @@ const AppHeaderDropdown = () => {
         <CAvatar src={avatar8} size="md" />
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
-        <CDropdownHeader className="bg-light fw-semibold py-2">Settings</CDropdownHeader>
+        <CDropdownHeader className="bg-light fw-semibold py-2">Profile</CDropdownHeader>
         <CDropdownItem>
           <CIcon icon={cilUser} className="me-2" />
           {username}
         </CDropdownItem>
         <CDropdownItem>
-          <CIcon icon={cilPregnant} className="me-2" />
+          <CIcon icon={cilAddressBook} className="me-2" />
           {email}
         </CDropdownItem>
         <CDropdownDivider />
